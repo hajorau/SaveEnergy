@@ -84,43 +84,7 @@ export default function App() {
       waermepreis_eur_kwh: Number(waermepreis),
       zeitreduktion_h_d: Number(zeit),
       betriebstage_d_a: Number(tage),
-    }
-
-
-    
-  async function downloadCSV() {
-    const r = await fetch(`${API}/calc/export/csv`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!r.ok) {
-      alert("CSV-Export fehlgeschlagen");
-      return;
-    }
-    const blob = await r.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "saveenergy_calcs.csv";
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }
-
-  async function downloadPDF(calcId) {
-    const r = await fetch(`${API}/calc/${calcId}/export/pdf`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (!r.ok) {
-      alert("PDF-Export fehlgeschlagen");
-      return;
-    }
-    const blob = await r.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `saveenergy_calc_${calcId}.pdf`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  };
+    };
     
     const r = await fetch(`${API}/calc`, {
       method: "POST",
