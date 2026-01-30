@@ -100,6 +100,42 @@ export default function App() {
     }
   }
 
+  async function downloadCSV() {
+    const r = await fetch(`${API}/calc/export/csv`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!r.ok) {
+      alert("CSV-Export fehlgeschlagen");
+      return;
+    }
+    const blob = await r.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "saveenergy_calcs.csv";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  async function downloadPDF(calcId) {
+    const r = await fetch(`${API}/calc/${calcId}/export/pdf`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!r.ok) {
+      alert("PDF-Export fehlgeschlagen");
+      return;
+    }
+    const blob = await r.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `saveenergy_calc_${calcId}.pdf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+
+  
   if (!token) {
     return (
       <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
