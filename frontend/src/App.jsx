@@ -282,9 +282,6 @@ export default function App() {
 
 
           
-          <button onClick={() => { setToken(""); setOut(null); setHistory([]); }} style={{ marginTop: 12 }}>
-            Logout
-          </button>
         </div>
       </div>
     </div>
