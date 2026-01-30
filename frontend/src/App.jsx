@@ -158,7 +158,7 @@ export default function App() {
   }
 
   return (
-    <div style={{ maxWidth: 1100, margin: "70px auto", padding: 20 }}>
+    <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
       <h2>SaveEnergy – Berechnung & Speicherung - Team SaveEnergy</h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "start" }}>
