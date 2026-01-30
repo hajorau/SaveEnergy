@@ -300,21 +300,6 @@ def list_calc(uid: int = Depends(get_current_user)):
             rows = cur.fetchall()
 
     return [
-
-def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
-    with get_conn() as con:
-        with con.cursor() as cur:
-            cur.execute(
-                "SELECT id, created_at, inputs_json, outputs_json FROM calculations WHERE id=%s AND user_id=%s",
-                (calc_id, uid),
-            )
-            row = cur.fetchone()
-    if not row:
-        raise HTTPException(status_code=404, detail="Berechnung nicht gefunden")
-    return row
-
-
-        
         CalcRecord(
             id=r["id"],
             created_at=r["created_at"],
