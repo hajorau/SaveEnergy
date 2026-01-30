@@ -196,6 +196,7 @@ export default function App() {
                   <th style={{ textAlign: "left", padding: 10, borderBottom: "1px solid #eee" }}>Datum</th>
                   <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>€ / a</th>
                   <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>t CO₂e</th>
+                  <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>PDF</th>
                 </tr>
               </thead>
               <tbody>
@@ -209,11 +210,15 @@ export default function App() {
                     </td>
                     <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
                       {h.outputs.co2_t}
+                      <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+  <button onClick={() => downloadPDF(h.id)}>PDF</button>
+</td>
+
                     </td>
                   </tr>
                 ))}
                 {history.length === 0 && (
-                  <tr><td colSpan="3" style={{ padding: 10, opacity: 0.7 }}>Noch keine Einträge.</td></tr>
+                  <tr><td colSpan="4" style={{ padding: 10, opacity: 0.7 }}>Noch keine Einträge.</td></tr>
                 )}
               </tbody>
             </table>
