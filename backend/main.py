@@ -309,6 +309,20 @@ def list_calc(uid: int = Depends(get_current_user)):
         for r in rows
     ]
 
+def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
+    with get_conn() as con:
+        with con.cursor() as cur:
+            cur.execute(
+                "SELECT id, created_at, inputs_json, outputs_json FROM calculations WHERE id=%s AND user_id=%s",
+                (calc_id, uid),
+            )
+            row = cur.fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="Berechnung nicht gefunden")
+    return row
+
+
+
 
 from fastapi.responses import StreamingResponse
 
@@ -371,6 +385,9 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         media_type="application/pdf",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+
 @app.get("/calc/export/csv")
 def export_calc_csv(uid: int = Depends(get_current_user)):
     with get_conn() as con:
