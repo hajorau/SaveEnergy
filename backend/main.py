@@ -6,6 +6,12 @@ import hashlib
 import hmac
 import base64
 
+import io
+import csv
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+
+
 import psycopg
 from psycopg.rows import dict_row
 
@@ -294,6 +300,21 @@ def list_calc(uid: int = Depends(get_current_user)):
             rows = cur.fetchall()
 
     return [
+
+def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
+    with get_conn() as con:
+        with con.cursor() as cur:
+            cur.execute(
+                "SELECT id, created_at, inputs_json, outputs_json FROM calculations WHERE id=%s AND user_id=%s",
+                (calc_id, uid),
+            )
+            row = cur.fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="Berechnung nicht gefunden")
+    return row
+
+
+        
         CalcRecord(
             id=r["id"],
             created_at=r["created_at"],
@@ -302,3 +323,108 @@ def list_calc(uid: int = Depends(get_current_user)):
         )
         for r in rows
     ]
+
+
+from fastapi.responses import StreamingResponse
+
+@app.get("/calc/{calc_id}/export/pdf")
+def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
+    row = get_calc_for_user(calc_id, uid)
+    inputs = json.loads(row["inputs_json"])
+    outputs = json.loads(row["outputs_json"])
+
+    buffer = io.BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+
+    y = height - 60
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
+    y -= 25
+
+    c.setFont("Helvetica", 10)
+    c.drawString(50, y, f"ID: {row['id']}   Datum: {row['created_at']}")
+    y -= 30
+
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, y, "Eingaben")
+    y -= 18
+    c.setFont("Helvetica", 11)
+    lines_in = [
+        f"Volumenstrom: {inputs.get('vdot_m3h')} m³/h",
+        f"Strompreis: {inputs.get('strompreis_eur_kwh')} €/kWh",
+        f"Wärmepreis: {inputs.get('waermepreis_eur_kwh')} €/kWh",
+        f"Zeitreduktion: {inputs.get('zeitreduktion_h_d')} h/d",
+        f"Betriebstage: {inputs.get('betriebstage_d_a')} d/a",
+    ]
+    for line in lines_in:
+        c.drawString(60, y, line)
+        y -= 16
+
+    y -= 10
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, y, "Ergebnisse")
+    y -= 18
+    c.setFont("Helvetica", 11)
+    lines_out = [
+        f"Einsparung Wärme: {outputs.get('waerme_kwh_a')} kWh/a",
+        f"Einsparung Strom: {outputs.get('strom_kwh_a')} kWh/a",
+        f"Kosteneinsparung: {outputs.get('euro_a')} €/a",
+        f"CO₂-Einsparung: {outputs.get('co2_t')} t CO₂e",
+    ]
+    for line in lines_out:
+        c.drawString(60, y, line)
+        y -= 16
+
+    c.showPage()
+    c.save()
+
+    buffer.seek(0)
+    filename = f"saveenergy_calc_{calc_id}.pdf"
+    return StreamingResponse(
+        buffer,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+@app.get("/calc/export/csv")
+def export_calc_csv(uid: int = Depends(get_current_user)):
+    with get_conn() as con:
+        with con.cursor() as cur:
+            cur.execute(
+                "SELECT id, created_at, inputs_json, outputs_json FROM calculations WHERE user_id=%s ORDER BY id DESC",
+                (uid,),
+            )
+            rows = cur.fetchall()
+
+    output = io.StringIO()
+    writer = csv.writer(output, delimiter=";")
+
+    writer.writerow([
+        "id", "created_at",
+        "vdot_m3h", "strompreis_eur_kwh", "waermepreis_eur_kwh", "zeitreduktion_h_d", "betriebstage_d_a",
+        "waerme_kwh_a", "strom_kwh_a", "euro_a", "co2_t"
+    ])
+
+    for r in rows:
+        inputs = json.loads(r["inputs_json"])
+        outputs = json.loads(r["outputs_json"])
+        writer.writerow([
+            r["id"], r["created_at"],
+            inputs.get("vdot_m3h"),
+            inputs.get("strompreis_eur_kwh"),
+            inputs.get("waermepreis_eur_kwh"),
+            inputs.get("zeitreduktion_h_d"),
+            inputs.get("betriebstage_d_a"),
+            outputs.get("waerme_kwh_a"),
+            outputs.get("strom_kwh_a"),
+            outputs.get("euro_a"),
+            outputs.get("co2_t"),
+        ])
+
+    data = output.getvalue().encode("utf-8")
+    filename = "saveenergy_calcs.csv"
+    return StreamingResponse(
+        io.BytesIO(data),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
