@@ -309,6 +309,8 @@ def list_calc(uid: int = Depends(get_current_user)):
         for r in rows
     ]
 
+
+
 def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
     with get_conn() as con:
         with con.cursor() as cur:
@@ -320,7 +322,6 @@ def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
     if not row:
         raise HTTPException(status_code=404, detail="Berechnung nicht gefunden")
     return row
-
 
 
 
