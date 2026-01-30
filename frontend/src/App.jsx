@@ -215,7 +215,19 @@ export default function App() {
   </td>
 
   <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
-    <button onClick={() => downloadPDF(h.id)}>PDF</button>
+    <button
+  onClick={() => downloadPDF(h.id)}
+  style={{
+    padding: "6px 12px",
+    borderRadius: 6,
+    border: "1px solid #ccc",
+    background: "#f9f9f9",
+    cursor: "pointer",
+  }}
+>
+  PDF
+</button>
+
   </td>
 </tr>
 
@@ -227,10 +239,45 @@ export default function App() {
             </table>
           </div>
 
+<div
+  style={{
+    display: "flex",
+    gap: 10,
+    justifyContent: "flex-start",
+    marginTop: 12,
+  }}
+>
+  <button
+    onClick={downloadCSV}
+    style={{
+      padding: "8px 14px",
+      borderRadius: 8,
+      border: "1px solid #ccc",
+      background: "#f3f3f3",
+      cursor: "pointer",
+    }}
+  >
+    CSV Export
+  </button>
 
-          <button onClick={downloadCSV} style={{ marginBottom: 10 }}>
-            Alle als CSV exportieren
-          </button>
+  <button
+    onClick={() => {
+      setToken("");
+      setOut(null);
+      setHistory([]);
+    }}
+    style={{
+      padding: "8px 14px",
+      borderRadius: 8,
+      border: "1px solid #ccc",
+      background: "#fff",
+      cursor: "pointer",
+    }}
+  >
+    Logout
+  </button>
+</div>
+
 
 
 
