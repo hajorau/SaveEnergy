@@ -201,21 +201,24 @@ export default function App() {
               </thead>
               <tbody>
                 {history.map((h) => (
-                  <tr key={h.id}>
-                    <td style={{ padding: 10, borderBottom: "1px solid #f3f3f3" }}>
-                      {new Date(h.created_at + "Z").toLocaleString()}
-                    </td>
-                    <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
-                      {h.outputs.euro_a}
-                    </td>
-                    <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
-                      {h.outputs.co2_t}
-                      <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
-  <button onClick={() => downloadPDF(h.id)}>PDF</button>
-</td>
+                 <tr key={h.id}>
+  <td style={{ padding: 10, borderBottom: "1px solid #f3f3f3" }}>
+    {new Date(h.created_at + "Z").toLocaleString()}
+  </td>
 
-                    </td>
-                  </tr>
+  <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+    {h.outputs.euro_a}
+  </td>
+
+  <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+    {h.outputs.co2_t}
+  </td>
+
+  <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+    <button onClick={() => downloadPDF(h.id)}>PDF</button>
+  </td>
+</tr>
+
                 ))}
                 {history.length === 0 && (
                   <tr><td colSpan="4" style={{ padding: 10, opacity: 0.7 }}>Noch keine Einträge.</td></tr>
