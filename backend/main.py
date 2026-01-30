@@ -135,12 +135,13 @@ def verify_token(token: str) -> Dict[str, Any]:
         raise HTTPException(status_code=401, detail="Ungültiger Token")
 
 
-def get_current_user(auth: Optional[str] = Header(None)) -> int:
-    if not auth or not auth.startswith("Bearer "):
-        raise HTTPException(status_code=401)
+def get_current_user(authorization: Optional[str] = Header(None)) -> int:
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Nicht eingeloggt")
 
-    token = auth.split(" ", 1)[1]
+    token = authorization.split(" ", 1)[1]
     return int(verify_token(token)["uid"])
+
 
 
 # ----------------------------
