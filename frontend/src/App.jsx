@@ -274,13 +274,10 @@ if (page === "home") {
           </h1>
 
           <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85, whiteSpace: "pre-line" }}>
-            {`Auf Basis der nachgewiesenen hohen Einsparungen wurde der nachfolgende Leitfaden erstellt.
+            {`Auf Basis der nachgewiesenen hohen Einsparungen in der durchgeführten Studie der DTHG wurde die nachfolgende näherungsweise Berechnungsgrundlage erstellt.
 Er zeigt Möglichkeiten zur Verbesserung der bedarfsgerechten Betriebsführung durch eine präzisere Anpassung
 des Anlagenbetriebs an die tatsächliche Nutzung der Räume.
-
-Die vorgeschlagenen Maßnahmen sollen in kurzer Zeit den Energieverbrauch senken. Sie sollen weder den
-künstlerischen Betrieb noch die Behaglichkeit während des Aufenthaltes in den Räumen beeinträchtigen,
-sondern eher noch verbessern.`}
+`}
           </p>
 
           <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -325,7 +322,7 @@ sondern eher noch verbessern.`}
           borderTop: "1px solid #eee",
         }}
       >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
       </footer>
     </div>
   );
