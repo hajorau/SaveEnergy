@@ -421,8 +421,7 @@ if (!token) {
   </td>
 
   <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
-    <button
-  onClick={() => downloadPDF(h.id)}
+    <button onClick={() => downloadPDF(h.id)}
   style={{
     padding: "6px 12px",
     borderRadius: 6,
@@ -430,7 +429,6 @@ if (!token) {
     background: "#f9f9f9",
     cursor: "pointer",
   }}
-  </td>
   PDF
 </button>
 
