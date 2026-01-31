@@ -42,7 +42,6 @@ export default function App() {
   const [authMsg, setAuthMsg] = useState("");
   const [authErr, setAuthErr] = useState("");
   const [authBusy, setAuthBusy] = useState(false);
-  const [page, setPage] = useState("app"); // "app" | "impressum"
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [organization, setOrganization] = useState("");
@@ -50,6 +49,8 @@ export default function App() {
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
   const [vdot, setVdot] = useState("10000");
+  const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum"
+
   
   const [strompreis, setStrompreis] = useState("0.30");
   const [waermepreis, setWaermepreis] = useState("0.22");
@@ -57,6 +58,79 @@ export default function App() {
   const [tage, setTage] = useState("300");
   const [out, setOut] = useState(null);
   const [history, setHistory] = useState([]);
+
+if (page === "home") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
+          <h1 style={{ fontSize: 34, marginBottom: 10 }}>
+            Berechnung der Energieeinsparung
+          </h1>
+
+          <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85, whiteSpace: "pre-line" }}>
+            {`Auf Basis der nachgewiesenen hohen Einsparungen wurde das nachfolgende näherungsweise Berechnungsverfahren erstellt.
+Er zeigt Möglichkeiten zur Verbesserung der bedarfsgerechten Betriebsführung durch eine präzisere Anpassung
+des Anlagenbetriebs an die tatsächliche Nutzung der Räume.}
+          </p>
+
+          <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <button
+              type="button"
+              onClick={() => setPage("auth")}
+              style={{
+                padding: "12px 16px",
+                borderRadius: 12,
+                border: "1px solid #ccc",
+                background: "#f3f3f3",
+                cursor: "pointer",
+                fontWeight: 600,
+              }}
+            >
+              Weiter / Login
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPage("impressum")}
+              style={{
+                padding: "12px 16px",
+                borderRadius: 12,
+                border: "1px solid #ccc",
+                background: "#fff",
+                cursor: "pointer",
+              }}
+            >
+              Impressum / Datenschutz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        style={{
+          padding: "12px 0",
+          textAlign: "center",
+          fontSize: 12,
+          color: "#666",
+          borderTop: "1px solid #eee",
+        }}
+      >
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
+      </footer>
+    </div>
+  );
+}
+
+  
 
 async function register() {
   setAuthErr("");
@@ -158,6 +232,7 @@ async function login() {
     }
 
     setToken(j.token);
+    setPage("app");
     setPw("");         // Passwortfeld leeren
     setAuthMsg("");    // Meldungen leeren
     setAuthErr("");
@@ -244,8 +319,10 @@ async function loadHistory() {
 
 
   
-if (!token) {
-  return (
+if (!token && page === "auth") {
+  return
+}
+
     <div
       style={{
         minHeight: "100vh",
@@ -506,6 +583,12 @@ if (page === "impressum") {
   );
 }
 
+
+if (page !== "app") {
+  return null;
+}
+
+            
   
 return (
   <div
@@ -721,6 +804,13 @@ return (
                 }}
               >
                 Logout
+
+setToken("");
+setOut(null);
+setHistory([]);
+setPage("home");
+
+                
               </button>
             </div>
           </div>
