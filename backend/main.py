@@ -74,7 +74,8 @@ def init_db():
     with get_conn() as con:
         with con.cursor() as cur:
             cur.execute("""
-           CREATE TABLE IF NOT EXISTS users (
+           cur.execute("""
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     firstname TEXT,
     lastname TEXT,
@@ -84,8 +85,8 @@ def init_db():
     password_hash TEXT NOT NULL,
     created_at TEXT NOT NULL
 );
+""")
 
-            """)
             cur.execute("""
             CREATE TABLE IF NOT EXISTS calculations (
                 id SERIAL PRIMARY KEY,
