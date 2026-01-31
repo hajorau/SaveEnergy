@@ -246,154 +246,160 @@ async function loadHistory() {
   
 if (!token) {
   return (
-
-    <div style={{
-       fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif'
-        }}>
-
-    
-    <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
-      <h1 style={{ marginBottom: 6 }}>
-        {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
-      </h1>
-
-      <p style={{ marginTop: 0, opacity: 0.75 }}>
-        {mode === "register"
-          ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
-          : "Melde dich mit deiner E-Mail und deinem Passwort an."}
-      </p>
-
-      {/* Schritt 4: Meldungsbox */}
-      {authErr && (
-        <div
-          style={{
-            marginTop: 12,
-            padding: 10,
-            borderRadius: 8,
-            background: "#ffe8e8",
-            border: "1px solid #f5b5b5",
-          }}
-        >
-          {authErr}
-        </div>
-      )}
-
-      {authMsg && (
-        <div
-          style={{
-            marginTop: 12,
-            padding: 10,
-            borderRadius: 8,
-            background: "#e8fff0",
-            border: "1px solid #9be3b3",
-          }}
-        >
-          {authMsg}
-        </div>
-      )}
-
-      <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
-        {/* Nur bei Registrierung: Extra-Felder */}
-        {mode === "register" && (
-          <>
-            <input
-              placeholder="Vorname"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-            <input
-              placeholder="Nachname"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-            <input
-              placeholder="Organisation"
-              value={organization}
-              onChange={(e) => setOrganization(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-            <input
-              placeholder="Rufnummer"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-          </>
-        )}
-
-        <input
-          placeholder="E-Mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-        />
-
-        <input
-          placeholder="Passwort"
-          type="password"
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-        />
-
-        {/* Schritt 5: Busy Button */}
-        <button
-          onClick={mode === "register" ? register : login}
-          disabled={authBusy}
-          style={{
-            padding: 12,
-            width: "100%",
-            borderRadius: 10,
-            border: "1px solid #ddd",
-            background: "#f2f2f2",
-            opacity: authBusy ? 0.6 : 1,
-            cursor: authBusy ? "not-allowed" : "pointer",
-            fontWeight: 600,
-          }}
-        >
-          {authBusy ? "Bitte warten…" : mode === "register" ? "Account erstellen" : "Einloggen"}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setMode(mode === "register" ? "login" : "register")}
-          style={{
-            padding: 10,
-            width: "100%",
-            borderRadius: 10,
-            border: "none",
-            background: "transparent",
-            color: "#0b57d0",
-            cursor: "pointer",
-          }}
-        >
-          {mode === "register"
-            ? "Hast du schon ein Konto? → Einloggen"
-            : "Noch kein Konto? → Account erstellen"}
-        </button>
-      </div>
-    </div>
-
-
-      <footer
+    <div
       style={{
-        marginTop: 40,
-        padding: "12px 0",
-        textAlign: "center",
-        fontSize: 12,
-        color: "#666",
-        borderTop: "1px solid #eee",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
       }}
     >
-      © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
-    </footer>
+      {/* Inhalt */}
+      <div style={{ flex: 1 }}>
+        <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+          <h1 style={{ marginBottom: 6 }}>
+            {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
+          </h1>
 
-      
-  </div>
+          <p style={{ marginTop: 0, opacity: 0.75 }}>
+            {mode === "register"
+              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+          </p>
+
+          {/* Meldungsbox */}
+          {authErr && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#ffe8e8",
+                border: "1px solid #f5b5b5",
+              }}
+            >
+              {authErr}
+            </div>
+          )}
+
+          {authMsg && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#e8fff0",
+                border: "1px solid #9be3b3",
+              }}
+            >
+              {authMsg}
+            </div>
+          )}
+
+          <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
+            {mode === "register" && (
+              <>
+                <input
+                  placeholder="Vorname"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Nachname"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Organisation"
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Rufnummer"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+              </>
+            )}
+
+            <input
+              placeholder="E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <input
+              placeholder="Passwort"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <button
+              onClick={mode === "register" ? register : login}
+              disabled={authBusy}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "#f2f2f2",
+                opacity: authBusy ? 0.6 : 1,
+                cursor: authBusy ? "not-allowed" : "pointer",
+                fontWeight: 600,
+              }}
+            >
+              {authBusy
+                ? "Bitte warten…"
+                : mode === "register"
+                ? "Account erstellen"
+                : "Einloggen"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMode(mode === "register" ? "login" : "register")}
+              style={{
+                padding: 10,
+                width: "100%",
+                borderRadius: 10,
+                border: "none",
+                background: "transparent",
+                color: "#0b57d0",
+                cursor: "pointer",
+              }}
+            >
+              {mode === "register"
+                ? "Hast du schon ein Konto? → Einloggen"
+                : "Noch kein Konto? → Account erstellen"}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer
+        style={{
+          padding: "12px 0",
+          textAlign: "center",
+          fontSize: 12,
+          color: "#666",
+          borderTop: "1px solid #eee",
+        }}
+      >
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+      </footer>
+    </div>
   );
 }
+
 
 
   return (
