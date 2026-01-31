@@ -393,13 +393,119 @@ if (!token) {
           borderTop: "1px solid #eee",
         }}
       >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christof Schaaf
       </footer>
     </div>
   );
 }
 
+if (page === "impressum") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div style={{ flex: 1 }}>
+        <div style={{ maxWidth: 900, margin: "30px auto", padding: 20 }}>
+          <h2>Impressum</h2>
 
+          <p style={{ opacity: 0.8 }}>
+            Angaben gemäß § 5 ECG / § 25 MedienG (AT) sowie DSGVO-Informationen.
+          </p>
+
+          <h3>Betreiber</h3>
+          <p>
+            <strong>SaveEnergyTeam</strong>
+            <br />
+            Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+          </p>
+
+          <h3>Kontakt</h3>
+          <p>
+            E-Mail: <em>[bitte eintragen]</em>
+            <br />
+            Telefon: <em>[optional]</em>
+          </p>
+
+          <h3>Haftungsausschluss</h3>
+          <p style={{ lineHeight: 1.5 }}>
+            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte
+            externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber
+            verantwortlich.
+          </p>
+
+          <h3>Datenschutz (DSGVO)</h3>
+          <p style={{ lineHeight: 1.5 }}>
+            Diese Anwendung verarbeitet personenbezogene Daten (z. B. Name, Organisation, Rufnummer,
+            E-Mail) zur Kontoerstellung und speichert Berechnungsdaten, wenn Sie der Speicherung
+            zustimmen. Zweck: Bereitstellung der App-Funktion (Berechnung, Historie, Export).
+            Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und/oder lit. b (Vertrag/
+            Nutzung der Anwendung).
+          </p>
+          <p style={{ lineHeight: 1.5 }}>
+            Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie die Speicherung nicht mehr
+            nutzen oder eine Löschung anfordern. Anfragen richten Sie bitte an die oben genannte
+            Kontaktadresse.
+          </p>
+
+          <div style={{ marginTop: 18 }}>
+            <button
+              type="button"
+              onClick={() => setPage("app")}
+              style={{
+                padding: "10px 14px",
+                borderRadius: 10,
+                border: "1px solid #ccc",
+                background: "#f3f3f3",
+                cursor: "pointer",
+              }}
+            >
+              Zurück zur App
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer wiederverwenden */}
+      <footer
+        style={{
+          padding: "12px 0",
+          textAlign: "center",
+          fontSize: 12,
+          color: "#666",
+          borderTop: "1px solid #eee",
+        }}
+      >
+        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf</span>
+
+          <button
+            type="button"
+            onClick={() => setPage("impressum")}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#0b57d0",
+              cursor: "pointer",
+              padding: 0,
+              textDecoration: "underline",
+              fontSize: 12,
+            }}
+          >
+            Impressum
+          </button>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+  
 return (
   <div
     style={{
@@ -583,7 +689,7 @@ return (
   }}
 >
   <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-    <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf</span>
+    <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christof Schaaf</span>
 
     <button
       type="button"
