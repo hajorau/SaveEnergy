@@ -47,17 +47,14 @@ export default function App() {
   const [lastname, setLastname] = useState("");
   const [organization, setOrganization] = useState("");
   const [phone, setPhone] = useState("");
-
-
-  
+  const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
-
   const [vdot, setVdot] = useState("10000");
+  
   const [strompreis, setStrompreis] = useState("0.30");
   const [waermepreis, setWaermepreis] = useState("0.22");
   const [zeit, setZeit] = useState("5");
   const [tage, setTage] = useState("300");
-
   const [out, setOut] = useState(null);
   const [history, setHistory] = useState([]);
 
@@ -539,12 +536,61 @@ return (
             <Field label="Zeitreduktion pro Tag" unit="h/d" value={zeit} onChange={setZeit} step="0.1" />
             <Field label="Betriebstage pro Jahr" unit="d/a" value={tage} onChange={setTage} step="1" />
 
-            <button
+<div
+  style={{
+    marginTop: 10,
+    padding: 10,
+    border: "1px solid #eee",
+    borderRadius: 10,
+    background: "#fafafa",
+  }}
+>
+  <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
+    <input
+      type="checkbox"
+      checked={consentStorage}
+      onChange={(e) => setConsentStorage(e.target.checked)}
+      style={{ marginTop: 2 }}
+    />
+    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+      Ich stimme zu, dass meine eingegebenen Daten und Berechnungsergebnisse zur Nutzung der App
+      gespeichert werden (Historie/Export). Hinweis: Einwilligung gemäß DSGVO (Art. 6 Abs. 1 lit. a).
+      Details siehe{" "}
+      <button
+        type="button"
+        onClick={() => setPage("impressum")}
+        style={{
+          border: "none",
+          background: "transparent",
+          color: "#0b57d0",
+          cursor: "pointer",
+          padding: 0,
+          textDecoration: "underline",
+          fontSize: 13,
+        }}
+      >
+        Impressum/Datenschutz
+      </button>
+      .
+    </span>
+  </label>
+</div>
+
+            
+           <button
               onClick={calculateAndSave}
-              style={{ padding: 12, width: "100%", fontSize: 16 }}
-            >
-              Berechnen & Speichern
-            </button>
+              disabled={!consentStorage}
+              style={{
+              padding: 12,
+              width: "100%",
+              fontSize: 16,
+              opacity: consentStorage ? 1 : 0.6,
+              cursor: consentStorage ? "pointer" : "not-allowed",
+          }}
+    >
+          Berechnen & Speichern
+</button>
+
 
             <div style={{ marginTop: 10, fontSize: 12, opacity: 0.7 }}>
               Hinweis: Konstanten (WRG, SEP, Temperaturen, CO₂-Faktoren) werden intern verwendet und nicht angezeigt.
