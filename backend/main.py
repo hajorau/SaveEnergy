@@ -74,12 +74,17 @@ def init_db():
     with get_conn() as con:
         with con.cursor() as cur:
             cur.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                id SERIAL PRIMARY KEY,
-                email TEXT UNIQUE NOT NULL,
-                password_hash TEXT NOT NULL,
-                created_at TEXT NOT NULL
-            );
+           CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    firstname TEXT,
+    lastname TEXT,
+    organization TEXT,
+    phone TEXT,
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
+
             """)
             cur.execute("""
             CREATE TABLE IF NOT EXISTS calculations (
@@ -96,8 +101,20 @@ def init_db():
 try:
     if DATABASE_URL:
         init_db()
+        migrate_users()
 except Exception:
     pass
+
+
+def migrate_users():
+    with get_conn() as con:
+        with con.cursor() as cur:
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS firstname TEXT;")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lastname TEXT;")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS organization TEXT;")
+            cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;")
+        con.commit()
+
 
 
 # ----------------------------
