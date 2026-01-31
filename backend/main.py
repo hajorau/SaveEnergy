@@ -431,3 +431,19 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
         media_type="text/csv; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+
+
+@app.post("/admin/reset-db")
+def reset_db(secret: str):
+    if secret != os.environ.get("APP_SECRET"):
+        raise HTTPException(status_code=403, detail="Forbidden")
+
+    with get_conn() as con:
+        with con.cursor() as cur:
+            cur.execute("DELETE FROM calculations;")
+            cur.execute("DELETE FROM users;")
+        con.commit()
+
+    return {"status": "ok", "message": "Database cleared"}
