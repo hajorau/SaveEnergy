@@ -430,7 +430,7 @@ if (!token) {
     background: "#f9f9f9",
     cursor: "pointer",
   }}
->
+  </td>
   PDF
 </button>
 
