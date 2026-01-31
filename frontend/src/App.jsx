@@ -36,7 +36,7 @@ function ResultCard({ title, value, unit }) {
 }
 
 export default function App() {
-  const [mode, setMode] = useState("login");
+  const [mode, setMode] = useState("register");
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [authMsg, setAuthMsg] = useState("");
@@ -108,7 +108,10 @@ async function register() {
           : j.detail
           ? "Bitte Eingaben prüfen."
           : "Registrierung fehlgeschlagen.";
-      setAuthErr(msg);
+      setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
+setMode("login");
+setPw("");
+
       return;
     }
 
