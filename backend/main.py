@@ -103,8 +103,10 @@ try:
     if DATABASE_URL:
         init_db()
         migrate_users()
-except Exception:
-    pass
+except Exception as e:
+    print("DB init/migration error:", repr(e))
+    raise
+
 
 
 def migrate_users():
@@ -115,6 +117,7 @@ def migrate_users():
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS organization TEXT;")
             cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;")
         con.commit()
+
 
 
 
