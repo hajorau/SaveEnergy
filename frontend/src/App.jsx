@@ -148,6 +148,7 @@ async function register() {
   if (!email.includes("@")) {
     setAuthErr("Bitte eine gültige E-Mail eingeben.");
     return;
+    }
   }
 
   try {
