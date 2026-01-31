@@ -137,7 +137,14 @@ async function register() {
   setAuthMsg("");
 
   // einfache Pflichtfeldprüfung
-  if (!firstname.trim() || !lastname.trim() || !organization.trim() || !phone.trim() || !email.trim() || !pw.trim()) {
+  if (
+    !firstname.trim() ||
+    !lastname.trim() ||
+    !organization.trim() ||
+    !phone.trim() ||
+    !email.trim() ||
+    !pw.trim()
+  ) {
     setAuthErr("Bitte alle Felder ausfüllen.");
     return;
   }
@@ -148,7 +155,6 @@ async function register() {
   if (!email.includes("@")) {
     setAuthErr("Bitte eine gültige E-Mail eingeben.");
     return;
-    }
   }
 
   try {
@@ -172,23 +178,18 @@ async function register() {
     const j = await r.json().catch(() => ({}));
 
     if (!r.ok) {
-      // Backend liefert z.B. {detail: "..."} oder 422 details
       const msg =
         typeof j.detail === "string"
           ? j.detail
           : j.detail
           ? "Bitte Eingaben prüfen."
           : "Registrierung fehlgeschlagen.";
-      setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
-setMode("login");
-setPw("");
-
+      setAuthErr(msg);
       return;
     }
 
     setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
-    setMode("login"); // Schritt 2
-    // E-Mail behalten, Passwort leeren
+    setMode("login");
     setPw("");
   } catch (e) {
     setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
@@ -196,6 +197,7 @@ setPw("");
     setAuthBusy(false);
   }
 }
+
 
 
 async function login() {
