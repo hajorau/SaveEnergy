@@ -74,31 +74,28 @@ def init_db():
     with get_conn() as con:
         with con.cursor() as cur:
             cur.execute("""
-          CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    firstname TEXT,
-    lastname TEXT,
-    organization TEXT,
-    phone TEXT,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    created_at TEXT NOT NULL
-);
-""")
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                firstname TEXT,
+                lastname TEXT,
+                organization TEXT,
+                phone TEXT,
+                email TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            );
+            """)
+            cur.execute("""
+            CREATE TABLE IF NOT EXISTS calculations (
+                id SERIAL PRIMARY KEY,
+                user_id INTEGER NOT NULL REFERENCES users(id),
+                created_at TEXT NOT NULL,
+                inputs_json TEXT NOT NULL,
+                outputs_json TEXT NOT NULL
+            );
+            """)
+        con.commit()
 
-cur.execute("""
-CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    firstname TEXT,
-    lastname TEXT,
-    organization TEXT,
-    phone TEXT,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    created_at TEXT NOT NULL
-);
-""")
-con.commit()
 
 def migrate_users():
     with get_conn() as con:
@@ -110,7 +107,6 @@ def migrate_users():
         con.commit()
 
 
-
 try:
     if DATABASE_URL:
         init_db()
@@ -118,6 +114,7 @@ try:
 except Exception as e:
     print("DB init/migration error:", repr(e))
     raise
+
 
 
 
@@ -241,7 +238,7 @@ def compute(inp: CalcIn) -> CalcOut:
         waerme_kwh_a=round(waerme, 0),
         strom_kwh_a=round(strom, 0),
         euro_a=round(euro, 0),
-        co2_t=round(co2, 2),
+        co2_t=round(co2, 0),
     )
 
 
