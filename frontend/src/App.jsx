@@ -42,8 +42,7 @@ export default function App() {
   const [authMsg, setAuthMsg] = useState("");
   const [authErr, setAuthErr] = useState("");
   const [authBusy, setAuthBusy] = useState(false);
-
-
+  const [page, setPage] = useState("app"); // "app" | "impressum"
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [organization, setOrganization] = useState("");
@@ -574,17 +573,36 @@ return (
     </div>
 
     {/* Footer */}
-    <footer
+<footer
+  style={{
+    padding: "12px 0",
+    textAlign: "center",
+    fontSize: 12,
+    color: "#666",
+    borderTop: "1px solid #eee",
+  }}
+>
+  <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+    <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf</span>
+
+    <button
+      type="button"
+      onClick={() => setPage("impressum")}
       style={{
-        padding: "12px 0",
-        textAlign: "center",
+        border: "none",
+        background: "transparent",
+        color: "#0b57d0",
+        cursor: "pointer",
+        padding: 0,
+        textDecoration: "underline",
         fontSize: 12,
-        color: "#666",
-        borderTop: "1px solid #eee",
       }}
     >
-      © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau - basierend auf einer Idee von Christof Schaaf
-    </footer>
+      Impressum
+    </button>
+  </div>
+</footer>
+
   </div>
 );
 
