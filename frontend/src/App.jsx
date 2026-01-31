@@ -246,6 +246,12 @@ async function loadHistory() {
   
 if (!token) {
   return (
+
+    <div style={{
+       fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif'
+        }}>
+
+    
     <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
       <h1 style={{ marginBottom: 6 }}>
         {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
@@ -369,6 +375,7 @@ if (!token) {
         </button>
       </div>
     </div>
+  </div>
   );
 }
 
