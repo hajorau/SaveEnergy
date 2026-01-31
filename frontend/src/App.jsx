@@ -320,8 +320,8 @@ async function loadHistory() {
 
   
 if (!token && page === "auth") {
-  return
-}
+  return (
+
 
     <div
       style={{
