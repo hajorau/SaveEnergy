@@ -39,11 +39,15 @@ export default function App() {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
+  const [authMsg, setAuthMsg] = useState("");
+  const [authErr, setAuthErr] = useState("");
+  const [authBusy, setAuthBusy] = useState(false);
 
-const [firstname, setFirstname] = useState("");
-const [lastname, setLastname] = useState("");
-const [organization, setOrganization] = useState("");
-const [phone, setPhone] = useState("");
+
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [phone, setPhone] = useState("");
 
 
   
@@ -58,14 +62,33 @@ const [phone, setPhone] = useState("");
   const [out, setOut] = useState(null);
   const [history, setHistory] = useState([]);
 
-  async function register() {
+async function register() {
+  setAuthErr("");
+  setAuthMsg("");
+
+  // einfache Pflichtfeldprüfung
+  if (!firstname.trim() || !lastname.trim() || !organization.trim() || !phone.trim() || !email.trim() || !pw.trim()) {
+    setAuthErr("Bitte alle Felder ausfüllen.");
+    return;
+  }
+  if (pw.trim().length < 6) {
+    setAuthErr("Passwort muss mindestens 6 Zeichen haben.");
+    return;
+  }
+  if (!email.includes("@")) {
+    setAuthErr("Bitte eine gültige E-Mail eingeben.");
+    return;
+  }
+
   try {
+    setAuthBusy(true);
+
     const payload = {
-      firstname,
-      lastname,
-      organization,
-      phone,
-      email,
+      firstname: firstname.trim(),
+      lastname: lastname.trim(),
+      organization: organization.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
       password: pw,
     };
 
@@ -78,34 +101,76 @@ const [phone, setPhone] = useState("");
     const j = await r.json().catch(() => ({}));
 
     if (!r.ok) {
-      // zeigt Backend-Fehlertext oder Details (z.B. 422)
-      alert(j.detail ? JSON.stringify(j.detail) : (j.message || "Registrierung fehlgeschlagen"));
+      // Backend liefert z.B. {detail: "..."} oder 422 details
+      const msg =
+        typeof j.detail === "string"
+          ? j.detail
+          : j.detail
+          ? "Bitte Eingaben prüfen."
+          : "Registrierung fehlgeschlagen.";
+      setAuthErr(msg);
       return;
     }
 
-    alert("Account erstellt. Jetzt einloggen.");
-    setMode("login");
+    setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
+    setMode("login"); // Schritt 2
+    // E-Mail behalten, Passwort leeren
+    setPw("");
   } catch (e) {
-    alert("Netzwerkfehler bei der Registrierung");
+    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
+  } finally {
+    setAuthBusy(false);
   }
 }
 
 
-  async function login() {
+async function login() {
+  setAuthErr("");
+  setAuthMsg("");
+
+  if (!email.trim() || !pw.trim()) {
+    setAuthErr("Bitte E-Mail und Passwort eingeben.");
+    return;
+  }
+  if (!email.includes("@")) {
+    setAuthErr("Bitte eine gültige E-Mail eingeben.");
+    return;
+  }
+
+  try {
+    setAuthBusy(true);
+
     const r = await fetch(`${API}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password: pw }),
+      body: JSON.stringify({ email: email.trim(), password: pw }),
     });
-    const j = await r.json().catch(() => ({}));
-    if (!r.ok) alert(j.detail || "Fehler");
-    else { setToken(j.token); await loadHistory(j.token); }
-  }
 
-  async function loadHistory(tk = token) {
-    const r = await fetch(`${API}/calc`, { headers: { Authorization: `Bearer ${tk}` } });
-    if (r.ok) setHistory(await r.json());
+    const j = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      // Backend liefert "Login falsch"
+      const msg =
+        typeof j.detail === "string"
+          ? j.detail
+          : "Login fehlgeschlagen. Bitte prüfen.";
+      setAuthErr(msg);
+      return;
+    }
+
+    setToken(j.token);
+    setPw("");         // Passwortfeld leeren
+    setAuthMsg("");    // Meldungen leeren
+    setAuthErr("");
+
+    await loadHistory(); // falls du das schon so machst
+  } catch (e) {
+    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
+  } finally {
+    setAuthBusy(false);
   }
+}
+
 
   async function calculateAndSave() {
     const payload = {
@@ -166,35 +231,134 @@ const [phone, setPhone] = useState("");
 
 
   
-  if (!token) {
-    return (
-      <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
-        <h2>{mode === "login" ? "Login" : "Registrieren"}</h2>
-        {mode === "register" && (
-  <>
-    <Field label="Vorname" value={firstname} onChange={setFirstname} type="text" />
-    <Field label="Nachname" value={lastname} onChange={setLastname} type="text" />
-    <Field label="Organisation" value={organization} onChange={setOrganization} type="text" />
-    <Field label="Rufnummer" value={phone} onChange={setPhone} type="text" />
-  </>
-)}
+if (!token) {
+  return (
+    <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+      <h1 style={{ marginBottom: 6 }}>
+        {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
+      </h1>
 
-        <Field label="E-Mail" unit="" value={email} onChange={setEmail} type="email" />
-        <Field label="Passwort" unit="" value={pw} onChange={setPw} type="password" />
-        <button onClick={mode === "login" ? login : register} style={{ padding: 10, width: "100%" }}>
-          {mode === "login" ? "Einloggen" : "Account erstellen"}
-        </button>
-        <div style={{ marginTop: 12, textAlign: "center" }}>
-          <button
-            onClick={() => setMode(mode === "login" ? "register" : "login")}
-            style={{ border: "none", background: "none", color: "blue", cursor: "pointer" }}
-          >
-            {mode === "login" ? "Neu hier? Registrieren" : "Schon registriert? Login"}
-          </button>
+      <p style={{ marginTop: 0, opacity: 0.75 }}>
+        {mode === "register"
+          ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+          : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+      </p>
+
+      {/* Schritt 4: Meldungsbox */}
+      {authErr && (
+        <div
+          style={{
+            marginTop: 12,
+            padding: 10,
+            borderRadius: 8,
+            background: "#ffe8e8",
+            border: "1px solid #f5b5b5",
+          }}
+        >
+          {authErr}
         </div>
+      )}
+
+      {authMsg && (
+        <div
+          style={{
+            marginTop: 12,
+            padding: 10,
+            borderRadius: 8,
+            background: "#e8fff0",
+            border: "1px solid #9be3b3",
+          }}
+        >
+          {authMsg}
+        </div>
+      )}
+
+      <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
+        {/* Nur bei Registrierung: Extra-Felder */}
+        {mode === "register" && (
+          <>
+            <input
+              placeholder="Vorname"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+            <input
+              placeholder="Nachname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+            <input
+              placeholder="Organisation"
+              value={organization}
+              onChange={(e) => setOrganization(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+            <input
+              placeholder="Rufnummer"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+          </>
+        )}
+
+        <input
+          placeholder="E-Mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+        />
+
+        <input
+          placeholder="Passwort"
+          type="password"
+          value={pw}
+          onChange={(e) => setPw(e.target.value)}
+          style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+        />
+
+        {/* Schritt 5: Busy Button */}
+        <button
+          onClick={mode === "register" ? register : login}
+          disabled={authBusy}
+          style={{
+            padding: 12,
+            width: "100%",
+            borderRadius: 10,
+            border: "1px solid #ddd",
+            background: "#f2f2f2",
+            opacity: authBusy ? 0.6 : 1,
+            cursor: authBusy ? "not-allowed" : "pointer",
+            fontWeight: 600,
+          }}
+        >
+          {authBusy ? "Bitte warten…" : mode === "register" ? "Account erstellen" : "Einloggen"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMode(mode === "register" ? "login" : "register")}
+          style={{
+            padding: 10,
+            width: "100%",
+            borderRadius: 10,
+            border: "none",
+            background: "transparent",
+            color: "#0b57d0",
+            cursor: "pointer",
+          }}
+        >
+          {mode === "register"
+            ? "Hast du schon ein Konto? → Einloggen"
+            : "Noch kein Konto? → Account erstellen"}
+        </button>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   return (
     <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
