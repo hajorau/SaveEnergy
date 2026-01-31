@@ -552,12 +552,6 @@ if (!token && page === "auth") {
 
 
 
-            
-
-
-            
-  
-
   <div
     style={{
       minHeight: "100vh",
