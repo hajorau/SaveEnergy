@@ -542,7 +542,7 @@ if (!token && page === "auth") {
           </button>
         </div>
       </footer>
-    </div>
+  
   );
 }
 
