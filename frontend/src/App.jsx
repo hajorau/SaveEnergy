@@ -427,9 +427,9 @@ if (page === "impressum") {
 
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <em>hajorau@me.coom</em>
+            E-Mail: <em> hajorau@me.com </em>
             <br />
-            Telefon: <em>[optional]+491716576101</em>
+            Telefon: <em> +49171 6576101 </em>
           </p>
 
           <h3>Haftungsausschluss</h3>
