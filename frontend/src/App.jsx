@@ -59,6 +59,128 @@ export default function App() {
   const [out, setOut] = useState(null);
   const [history, setHistory] = useState([]);
 
+
+// NICHTS zwischen } und async function register()!
+// register() muss oberhalb dieses } stehen, also innerhalb von App()
+async function login() {
+  setAuthErr("");
+  setAuthMsg("");
+
+  if (!email.trim() || !pw.trim()) {
+    setAuthErr("Bitte E-Mail und Passwort eingeben.");
+    return;
+  }
+  if (!email.includes("@")) {
+    setAuthErr("Bitte eine gültige E-Mail eingeben.");
+    return;
+  }
+
+  try {
+    setAuthBusy(true);
+
+    const r = await fetch(`${API}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email.trim(), password: pw }),
+    });
+
+    const j = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      // Backend liefert "Login falsch"
+      const msg =
+        typeof j.detail === "string"
+          ? j.detail
+          : "Login fehlgeschlagen. Bitte prüfen.";
+      setAuthErr(msg);
+      return;
+    }
+
+    setToken(j.token);
+    setPage("app");
+    setPw("");         // Passwortfeld leeren
+    setAuthMsg("");    // Meldungen leeren
+    setAuthErr("");
+
+    await loadHistory(); // falls du das schon so machst
+  } catch (e) {
+    setAuthErr("Netzwerkfehler/. Bitte später erneut versuchen.");
+  } finally {
+    setAuthBusy(false);
+  }
+}
+
+
+
+async function register() {
+
+  setAuthErr("");
+  setAuthMsg("");
+
+  // einfache Pflichtfeldprüfung
+  if (
+    !firstname.trim() ||
+    !lastname.trim() ||
+    !organization.trim() ||
+    !phone.trim() ||
+    !email.trim() ||
+    !pw.trim()
+  ) {
+    setAuthErr("Bitte alle Felder ausfüllen.");
+    return;
+  }
+  if (pw.trim().length < 6) {
+    setAuthErr("Passwort muss mindestens 6 Zeichen haben.");
+    return;
+  }
+  if (!email.includes("@")) {
+    setAuthErr("Bitte eine gültige E-Mail eingeben.");
+    return;
+  }
+
+  try {
+    setAuthBusy(true);
+
+    const payload = {
+      firstname: firstname.trim(),
+      lastname: lastname.trim(),
+      organization: organization.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      password: pw,
+    };
+
+    const r = await fetch(`${API}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const j = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      const msg =
+        typeof j.detail === "string"
+          ? j.detail
+          : j.detail
+          ? "Bitte Eingaben prüfen."
+          : "Registrierung fehlgeschlagen.";
+      setAuthErr(msg);
+      return;
+    }
+            
+
+    setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
+    setMode("login");
+    setPw("");
+  } catch (e) {
+    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
+  } finally {
+    setAuthBusy(false);
+  }
+}
+
+
 if (page === "home") {
   return (
     <div
@@ -130,123 +252,6 @@ des Anlagenbetriebs an die tatsächliche Nutzung der Räume.}
   );
 }
 
-  
-
-async function register() {
-  setAuthErr("");
-  setAuthMsg("");
-
-  // einfache Pflichtfeldprüfung
-  if (
-    !firstname.trim() ||
-    !lastname.trim() ||
-    !organization.trim() ||
-    !phone.trim() ||
-    !email.trim() ||
-    !pw.trim()
-  ) {
-    setAuthErr("Bitte alle Felder ausfüllen.");
-    return;
-  }
-  if (pw.trim().length < 6) {
-    setAuthErr("Passwort muss mindestens 6 Zeichen haben.");
-    return;
-  }
-  if (!email.includes("@")) {
-    setAuthErr("Bitte eine gültige E-Mail eingeben.");
-    return;
-  }
-
-  try {
-    setAuthBusy(true);
-
-    const payload = {
-      firstname: firstname.trim(),
-      lastname: lastname.trim(),
-      organization: organization.trim(),
-      phone: phone.trim(),
-      email: email.trim(),
-      password: pw,
-    };
-
-    const r = await fetch(`${API}/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    const j = await r.json().catch(() => ({}));
-
-    if (!r.ok) {
-      const msg =
-        typeof j.detail === "string"
-          ? j.detail
-          : j.detail
-          ? "Bitte Eingaben prüfen."
-          : "Registrierung fehlgeschlagen.";
-      setAuthErr(msg);
-      return;
-    }
-
-    setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
-    setMode("login");
-    setPw("");
-  } catch (e) {
-    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
-  } finally {
-    setAuthBusy(false);
-  }
-}
-
-
-
-async function login() {
-  setAuthErr("");
-  setAuthMsg("");
-
-  if (!email.trim() || !pw.trim()) {
-    setAuthErr("Bitte E-Mail und Passwort eingeben.");
-    return;
-  }
-  if (!email.includes("@")) {
-    setAuthErr("Bitte eine gültige E-Mail eingeben.");
-    return;
-  }
-
-  try {
-    setAuthBusy(true);
-
-    const r = await fetch(`${API}/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.trim(), password: pw }),
-    });
-
-    const j = await r.json().catch(() => ({}));
-
-    if (!r.ok) {
-      // Backend liefert "Login falsch"
-      const msg =
-        typeof j.detail === "string"
-          ? j.detail
-          : "Login fehlgeschlagen. Bitte prüfen.";
-      setAuthErr(msg);
-      return;
-    }
-
-    setToken(j.token);
-    setPage("app");
-    setPw("");         // Passwortfeld leeren
-    setAuthMsg("");    // Meldungen leeren
-    setAuthErr("");
-
-    await loadHistory(); // falls du das schon so machst
-  } catch (e) {
-    setAuthErr("Netzwerkfehler/. Bitte später erneut versuchen.");
-  } finally {
-    setAuthBusy(false);
-  }
-}
 
 
   async function calculateAndSave() {
