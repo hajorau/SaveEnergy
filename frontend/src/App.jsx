@@ -318,11 +318,8 @@ async function loadHistory() {
   }
 
 
-  
 if (!token && page === "auth") {
   return (
-
-
     <div
       style={{
         minHeight: "100vh",
