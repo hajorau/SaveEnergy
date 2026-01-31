@@ -477,8 +477,56 @@ return (
                   tableLayout: "fixed",
                 }}
               >
-                {/* Dein Tabelleninhalt bleibt hier unverändert */}
-                { /* TABLE HEAD + BODY bleibt wie vorher */ }
+            <thead>
+  <tr style={{ background: "#fafafa" }}>
+    <th style={{ textAlign: "left", padding: 10, borderBottom: "1px solid #eee" }}>Datum</th>
+    <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>€ / a</th>
+    <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>t CO₂e</th>
+    <th style={{ textAlign: "right", padding: 10, borderBottom: "1px solid #eee" }}>PDF</th>
+  </tr>
+</thead>
+
+<tbody>
+  {history.map((h) => (
+    <tr key={h.id}>
+      <td style={{ padding: 10, borderBottom: "1px solid #f3f3f3" }}>
+        {new Date(h.created_at + "Z").toLocaleString()}
+      </td>
+
+      <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+        {h.outputs.euro_a}
+      </td>
+
+      <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+        {h.outputs.co2_t}
+      </td>
+
+      <td style={{ padding: 10, textAlign: "right", borderBottom: "1px solid #f3f3f3" }}>
+        <button
+          onClick={() => downloadPDF(h.id)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: 6,
+            border: "1px solid #ccc",
+            background: "#f9f9f9",
+            cursor: "pointer",
+          }}
+        >
+          PDF
+        </button>
+      </td>
+    </tr>
+  ))}
+
+  {history.length === 0 && (
+    <tr>
+      <td colSpan="4" style={{ padding: 10, opacity: 0.7 }}>
+        Noch keine Einträge.
+      </td>
+    </tr>
+  )}
+</tbody>
+
               </table>
             </div>
 
