@@ -418,8 +418,26 @@ if (!token) {
           </div>
 
           <h3 style={{ marginTop: 18 }}>Meine gespeicherten Berechnungen</h3>
-          <div style={{ maxHeight: 280, overflow: "auto", border: "1px solid #eee", borderRadius: 10 }}>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <div
+              style={{
+              maxHeight: 280,
+              maxWidth: "100%",
+              overflowX: "auto",
+              overflowY: "auto",
+              border: "1px solid #eee",
+              borderRadius: 10,
+            }}
+          >
+
+            <table
+                style={{
+                width: "100%",
+                minWidth: 600,
+                borderCollapse: "collapse",
+                tableLayout: "fixed",
+              }}
+            >
+
               <thead>
                 <tr style={{ background: "#fafafa" }}>
                   <th style={{ textAlign: "left", padding: 10, borderBottom: "1px solid #eee" }}>Datum</th>
