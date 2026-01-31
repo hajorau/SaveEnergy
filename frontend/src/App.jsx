@@ -583,7 +583,7 @@ return (
         borderTop: "1px solid #eee",
       }}
     >
-      © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+      © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau - basierend auf einer Idee von Christof Schaaf
     </footer>
   </div>
 );
