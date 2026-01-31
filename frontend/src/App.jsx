@@ -422,14 +422,14 @@ if (page === "impressum") {
           <p>
             <strong>SaveEnergyTeam</strong>
             <br />
-            Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+            Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
           </p>
 
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <em>[bitte eintragen]</em>
+            E-Mail: <em>hajorau@me.coom</em>
             <br />
-            Telefon: <em>[optional]</em>
+            Telefon: <em>[optional]+491716576101</em>
           </p>
 
           <h3>Haftungsausschluss</h3>
@@ -482,7 +482,7 @@ if (page === "impressum") {
         }}
       >
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf</span>
+          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christoph Schaaf</span>
 
           <button
             type="button"
