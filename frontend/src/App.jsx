@@ -39,6 +39,14 @@ export default function App() {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
+
+const [firstname, setFirstname] = useState("");
+const [lastname, setLastname] = useState("");
+const [organization, setOrganization] = useState("");
+const [phone, setPhone] = useState("");
+
+
+  
   const [token, setToken] = useState("");
 
   const [vdot, setVdot] = useState("10000");
@@ -54,7 +62,15 @@ export default function App() {
     const r = await fetch(`${API}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password: pw }),
+     body: JSON.stringify({
+  firstname,
+  lastname,
+  organization,
+  phone,
+  email,
+  password: pw,
+}),
+
     });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) alert(j.detail || "Fehler");
@@ -140,6 +156,15 @@ export default function App() {
     return (
       <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
         <h2>{mode === "login" ? "Login" : "Registrieren"}</h2>
+        {mode === "register" && (
+  <>
+    <Field label="Vorname" value={firstname} onChange={setFirstname} type="text" />
+    <Field label="Nachname" value={lastname} onChange={setLastname} type="text" />
+    <Field label="Organisation" value={organization} onChange={setOrganization} type="text" />
+    <Field label="Rufnummer" value={phone} onChange={setPhone} type="text" />
+  </>
+)}
+
         <Field label="E-Mail" unit="" value={email} onChange={setEmail} type="email" />
         <Field label="Passwort" unit="" value={pw} onChange={setPw} type="password" />
         <button onClick={mode === "login" ? login : register} style={{ padding: 10, width: "100%" }}>
