@@ -495,7 +495,10 @@ if (!token && page === "auth") {
           </div>
         </div>
       </div>
+  );
+}
 
+      
       {/* Footer */}
       <footer
         style={{
@@ -542,7 +545,7 @@ if (!token && page === "auth") {
           </button>
         </div>
       </footer>
-  
+     </div>
   );
 }
 
