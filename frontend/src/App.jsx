@@ -401,8 +401,6 @@ des Anlagenbetriebs an die tatsächliche Nutzung der Räume.
         © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
       </footer>
     </div>
-  );
-}
 
 
             
