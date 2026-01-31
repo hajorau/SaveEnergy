@@ -59,23 +59,37 @@ const [phone, setPhone] = useState("");
   const [history, setHistory] = useState([]);
 
   async function register() {
+  try {
+    const payload = {
+      firstname,
+      lastname,
+      organization,
+      phone,
+      email,
+      password: pw,
+    };
+
     const r = await fetch(`${API}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-     body: JSON.stringify({
-  firstname,
-  lastname,
-  organization,
-  phone,
-  email,
-  password: pw,
-}),
-
+      body: JSON.stringify(payload),
     });
+
     const j = await r.json().catch(() => ({}));
-    if (!r.ok) alert(j.detail || "Fehler");
-    else { alert("Registriert. Bitte einloggen."); setMode("login"); }
+
+    if (!r.ok) {
+      // zeigt Backend-Fehlertext oder Details (z.B. 422)
+      alert(j.detail ? JSON.stringify(j.detail) : (j.message || "Registrierung fehlgeschlagen"));
+      return;
+    }
+
+    alert("Account erstellt. Jetzt einloggen.");
+    setMode("login");
+  } catch (e) {
+    alert("Netzwerkfehler bei der Registrierung");
   }
+}
+
 
   async function login() {
     const r = await fetch(`${API}/auth/login`, {
