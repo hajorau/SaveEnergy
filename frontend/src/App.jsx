@@ -389,12 +389,12 @@ if (!token) {
         style={{
           padding: "12px 0",
           textAlign: "center",
-          fontSize: 12,
+          fontSize: 14,
           color: "#666",
           borderTop: "1px solid #eee",
         }}
       >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
       </footer>
     </div>
   );
