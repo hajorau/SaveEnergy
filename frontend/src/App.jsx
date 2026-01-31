@@ -168,7 +168,7 @@ async function login() {
 
     await loadHistory(); // falls du das schon so machst
   } catch (e) {
-    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
+    setAuthErr("Netzwerkfehler/. Bitte später erneut versuchen.");
   } finally {
     setAuthBusy(false);
   }
@@ -198,6 +198,16 @@ async function login() {
     }
   }
 
+async function loadHistory() {
+  const r = await fetch(`${API}/calc`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const j = await r.json().catch(() => []);
+  if (r.ok) setHistory(j);
+}
+
+
+  
   async function downloadCSV() {
     const r = await fetch(`${API}/calc/export/csv`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -365,7 +375,7 @@ if (!token) {
 
   return (
     <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
-      <h2>SaveEnergy – Berechnung & Speicherung - Team SaveEnergy</h2>
+      <h2>SaveEnergy – Berechnung & Speicherung - SaveEnergyTeam</h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "start" }}>
         <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
@@ -482,9 +492,6 @@ if (!token) {
     Logout
   </button>
 </div>
-
-
-
 
           
         </div>
