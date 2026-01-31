@@ -323,10 +323,13 @@ if (page === "home") {
         <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
           <h1 style={{ fontSize: 34, marginBottom: 10 }}>Berechnung der Energieeinsparung</h1>
 
-          <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85, whiteSpace: "pre-line" }}>
-            {`Auf Basis der nachgewiesenen hohen Einsparungen in der durchgeführten Studie der DTHG wurde die nachfolgende näherungsweise Berechnungsgrundlage erstellt.
-Er zeigt Möglichkeiten zur Verbesserung der bedarfsgerechten Betriebsführung durch eine präzisere Anpassung des Anlagenbetriebs an die tatsächliche Nutzung der Räume.`}
-          </p>
+         <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+  Auf Basis der nachgewiesenen hohen Einsparungen in der durchgeführten Studie der DTHG wurde die
+  nachfolgende näherungsweise Berechnungsgrundlage erstellt. Sie zeigt Möglichkeiten zur Verbesserung der
+  bedarfsgerechten Betriebsführung durch eine präzisere Anpassung des Anlagenbetriebs an die tatsächliche
+  Nutzung der Räume.
+</p>
+
 
           <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
             <button
@@ -495,8 +498,7 @@ if (!token && page === "auth") {
           </div>
         </div>
       </div>
-  );
-}
+
 
       
       {/* Footer */}
