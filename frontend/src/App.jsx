@@ -258,17 +258,11 @@ async function loadHistory() {
   }
 
 
-  if (page === "impressum") {
+
+// 1) Impressum IMMER zuerst
+if (page === "impressum") {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 900, margin: "30px auto", padding: 20 }}>
           <h2>Impressum</h2>
@@ -279,95 +273,66 @@ async function loadHistory() {
 
           <h3>Betreiber</h3>
           <p>
-            <strong>SaveEnergyTeam</strong>
-            <br />
+            <strong>SaveEnergyTeam</strong><br />
             Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
           </p>
 
           <h3>Kontakt</h3>
           <p>
-            E-Mail: <em> hajorau@me.com </em>
-            <br />
-            Telefon: <em> +49171 6576101 </em>
+            E-Mail: <em>hajorau@me.com</em><br />
+            Telefon: <em>+49171 6576101</em>
           </p>
 
           <h3>Haftungsausschluss</h3>
           <p style={{ lineHeight: 1.5 }}>
-            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte
-            externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber
-            verantwortlich.
+            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
+            Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
           </p>
 
           <h3>Datenschutz (DSGVO)</h3>
           <p style={{ lineHeight: 1.5 }}>
-            Diese Anwendung verarbeitet personenbezogene Daten (z. B. Name, Organisation, Rufnummer,
-            E-Mail) zur Kontoerstellung und speichert Berechnungsdaten, wenn Sie der Speicherung
-            zustimmen. Zweck: Bereitstellung der App-Funktion (Berechnung, Historie, Export).
-            Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und/oder lit. b (Vertrag/
-            Nutzung der Anwendung).
-          </p>
-          <p style={{ lineHeight: 1.5 }}>
-            Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie die Speicherung nicht mehr
-            nutzen oder eine Löschung anfordern. Anfragen richten Sie bitte an die oben genannte
-            Kontaktadresse.
+            Diese Anwendung verarbeitet personenbezogene Daten (z. B. Name, Organisation, Rufnummer, E-Mail) zur Kontoerstellung
+            und speichert Berechnungsdaten, wenn Sie der Speicherung zustimmen. Zweck: Bereitstellung der App-Funktion
+            (Berechnung, Historie, Export).
           </p>
 
           <div style={{ marginTop: 18 }}>
             <button
               type="button"
-              onClick={() => setPage("app")}
-              style={{
-                padding: "10px 14px",
-                borderRadius: 10,
-                border: "1px solid #ccc",
-                background: "#f3f3f3",
-                cursor: "pointer",
-              }}
+              onClick={() => setPage(token ? "app" : "home")}
+              style={{ padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer" }}
             >
-              Zurück zur App
+              Zurück
             </button>
           </div>
         </div>
       </div>
 
-  
+      <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christoph Schaaf
+      </footer>
+    </div>
+  );
+}
 
+// 2) Frontseite
 if (page === "home") {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
       <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
-          <h1 style={{ fontSize: 34, marginBottom: 10 }}>
-            Berechnung der Energieeinsparung
-          </h1>
+          <h1 style={{ fontSize: 34, marginBottom: 10 }}>Berechnung der Energieeinsparung</h1>
 
           <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85, whiteSpace: "pre-line" }}>
             {`Auf Basis der nachgewiesenen hohen Einsparungen in der durchgeführten Studie der DTHG wurde die nachfolgende näherungsweise Berechnungsgrundlage erstellt.
-Er zeigt Möglichkeiten zur Verbesserung der bedarfsgerechten Betriebsführung durch eine präzisere Anpassung
-des Anlagenbetriebs an die tatsächliche Nutzung der Räume.
-`}
+Er zeigt Möglichkeiten zur Verbesserung der bedarfsgerechten Betriebsführung durch eine präzisere Anpassung des Anlagenbetriebs an die tatsächliche Nutzung der Räume.`}
           </p>
 
           <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
             <button
               type="button"
               onClick={() => setPage("auth")}
-              style={{
-                padding: "12px 16px",
-                borderRadius: 12,
-                border: "1px solid #ccc",
-                background: "#f3f3f3",
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
+              style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer", fontWeight: 600 }}
             >
               Weiter / Login
             </button>
@@ -375,13 +340,7 @@ des Anlagenbetriebs an die tatsächliche Nutzung der Räume.
             <button
               type="button"
               onClick={() => setPage("impressum")}
-              style={{
-                padding: "12px 16px",
-                borderRadius: 12,
-                border: "1px solid #ccc",
-                background: "#fff",
-                cursor: "pointer",
-              }}
+              style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid #ccc", background: "#fff", cursor: "pointer" }}
             >
               Impressum / Datenschutz
             </button>
@@ -389,22 +348,14 @@ des Anlagenbetriebs an die tatsächliche Nutzung der Räume.
         </div>
       </div>
 
-      <footer
-        style={{
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 12,
-          color: "#666",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
+      <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christoph Schaaf
       </footer>
     </div>
+  );
+}
 
-
-            
-
+// 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
 if (!token && page === "auth") {
   return (
     <div
@@ -555,13 +506,11 @@ if (!token && page === "auth") {
           borderTop: "1px solid #eee",
         }}
       >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christof Schaaf
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
       </footer>
     </div>
   );
 }
-
-
 
       {/* Footer wiederverwenden */}
       <footer
@@ -574,7 +523,7 @@ if (!token && page === "auth") {
         }}
       >
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christoph Schaaf</span>
+          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christoph Schaaf</span>
 
           <button
             type="button"
@@ -598,13 +547,17 @@ if (!token && page === "auth") {
 }
 
 
-if (page !== "app") {
-  return null;
-}
+// 4) Eingeloggt -> App
+// hier kommt dein Berechnungs-Return (der große Block)
+
+
+
+            
+
 
             
   
-return (
+
   <div
     style={{
       minHeight: "100vh",
@@ -614,6 +567,7 @@ return (
         '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
     }}
   >
+
     {/* Inhalt */}
     <div style={{ flex: 1 }}>
       <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
@@ -803,29 +757,24 @@ return (
                 CSV Export
               </button>
 
-              <button
-                onClick={() => {
-                  setToken("");
-                  setOut(null);
-                  setHistory([]);
-                }}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: 8,
-                  border: "1px solid #ccc",
-                  background: "#fff",
-                  cursor: "pointer",
-                }}
-              >
-                Logout
-
-setToken("");
-setOut(null);
-setHistory([]);
-setPage("home");
-
-                
-              </button>
+         <button
+  onClick={() => {
+    setToken("");
+    setOut(null);
+    setHistory([]);
+    setPage("home");
+  }}
+  style={{
+    padding: "8px 14px",
+    borderRadius: 8,
+    border: "1px solid #ccc",
+    background: "#fff",
+    cursor: "pointer",
+  }}
+>
+  Logout
+</button>
+               
             </div>
           </div>
         </div>
