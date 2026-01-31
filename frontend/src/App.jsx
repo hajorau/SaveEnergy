@@ -375,6 +375,22 @@ if (!token) {
         </button>
       </div>
     </div>
+
+
+      <footer
+      style={{
+        marginTop: 40,
+        padding: "12px 0",
+        textAlign: "center",
+        fontSize: 12,
+        color: "#666",
+        borderTop: "1px solid #eee",
+      }}
+    >
+      © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Christoph Schaaf
+    </footer>
+
+      
   </div>
   );
 }
