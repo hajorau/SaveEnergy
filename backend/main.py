@@ -171,8 +171,13 @@ def get_current_user(authorization: Optional[str] = Header(None)) -> int:
 # Schemas
 # ----------------------------
 class RegisterIn(BaseModel):
+    firstname: str
+    lastname: str
+    organization: str
+    phone: str
     email: str
     password: str = Field(min_length=6)
+
 
 
 class LoginIn(BaseModel):
@@ -245,14 +250,23 @@ def register(data: RegisterIn):
             with con.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO users(email, password_hash, created_at)
-                    VALUES(%s,%s,%s)
+                    INSERT INTO users(
+    firstname, lastname, organization, phone,
+    email, password_hash, created_at
+)
+VALUES(%s,%s,%s,%s,%s,%s,%s)
+
                     """,
-                    (
-                        data.email.lower().strip(),
-                        hash_password(data.password),
-                        datetime.utcnow().isoformat(),
-                    ),
+                   (
+    data.firstname.strip(),
+    data.lastname.strip(),
+    data.organization.strip(),
+    data.phone.strip(),
+    data.email.lower().strip(),
+    hash_password(data.password),
+    datetime.utcnow().isoformat(),
+),
+
                 )
             con.commit()
 
