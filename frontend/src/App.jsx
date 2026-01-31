@@ -172,6 +172,10 @@ async function login() {
 
 
   async function calculateAndSave() {
+    if (!consentStorage) {
+      alert("Bitte stimme der Datenspeicherung (DSGVO) zu, um Berechnungen zu speichern.");
+    return;
+  }
     const payload = {
       vdot_m3h: Number(vdot),
       strompreis_eur_kwh: Number(strompreis),
@@ -587,7 +591,7 @@ return (
               opacity: consentStorage ? 1 : 0.6,
               cursor: consentStorage ? "pointer" : "not-allowed",
           }}
-    >
+          >
           Berechnen & Speichern
 </button>
 
