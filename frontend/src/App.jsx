@@ -49,7 +49,7 @@ export default function App() {
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
   const [vdot, setVdot] = useState("10000");
-  const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum"
+  const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
 
   
   const [strompreis, setStrompreis] = useState("0.30");
@@ -62,6 +62,8 @@ export default function App() {
 
 // NICHTS zwischen } und async function register()!
 // register() muss oberhalb dieses } stehen, also innerhalb von App()
+
+  
 async function login() {
   setAuthErr("");
   setAuthMsg("");
