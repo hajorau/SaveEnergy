@@ -381,13 +381,12 @@ if (!token) {
 
 
   return (
-   <div
-    style={{
-      fontFamily:
-        '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-    }}
-  >
-    <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
+     <div
+        style={{
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+        }}
+      >
 
       <h2>SaveEnergy – Berechnung & Speicherung - SaveEnergyTeam</h2>
 
