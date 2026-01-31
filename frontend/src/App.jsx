@@ -162,7 +162,7 @@ async function register() {
       password: pw,
     };
 
-    const r = await fetch(`${API}/auth/register`, {
+    const r = await fetch(`{API}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
