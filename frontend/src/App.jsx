@@ -508,10 +508,18 @@ if (!token && page === "auth") {
                 : "Einloggen"}
             </button>
 
-<button
-  type="button"
-  onClick={() => setMode(mode === "register" ? "login" : "register")}
-  style={secondaryBtn}
+  <button
+              type="button"
+              onClick={() => setMode(mode === "register" ? "login" : "register")}
+              style={{
+                padding: 10,
+                width: "100%",
+                borderRadius: 10,
+                border: "none",
+                background: "transparent",
+                color: "#0b57d0",
+                cursor: "pointer",
+              }}
             
             >
               {mode === "register"
