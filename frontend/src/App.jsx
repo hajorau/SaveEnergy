@@ -336,7 +336,7 @@ if (page === "home") {
       <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
 
-<div style={{ marginBottom: 14 }}>
+
   <div
     style={{
       fontSize: 42,
