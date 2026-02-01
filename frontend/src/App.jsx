@@ -507,15 +507,14 @@ if (!token && page === "auth") {
                 ? "Account erstellen"
                 : "Einloggen"}
             </button>
-
-  <button
+            <button
               type="button"
               onClick={() => setMode(mode === "register" ? "login" : "register")}
               style={{
-                padding: 10,
+                padding: 12,
                 width: "100%",
                 borderRadius: 10,
-                border: "none",
+                border: "1px solid #ddd",
                 background: "transparent",
                 color: "#0b57d0",
                 cursor: "pointer",
