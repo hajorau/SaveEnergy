@@ -497,8 +497,7 @@ if (!token && page === "auth") {
             </button>
           </div>
         </div>
-  
-
+      </div>
     </div>
   );
 }
