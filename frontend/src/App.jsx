@@ -733,7 +733,7 @@ return (
       </div>
     </div>
 
-     {/* Footer */}
+    {/* Footer */}
     <footer
       style={{
         padding: "12px 0",
@@ -767,4 +767,3 @@ return (
     </footer>
   </div>
 );
-
