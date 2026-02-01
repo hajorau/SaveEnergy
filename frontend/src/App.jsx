@@ -335,6 +335,19 @@ if (page === "home") {
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
       <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
+
+<div style={{ marginBottom: 14 }}>
+  <div
+    style={{
+      fontSize: 42,
+      fontWeight: 900,
+      letterSpacing: 0.5,
+      marginBottom: 6,
+    }}
+  >
+    SaveEnergyTeam
+  </div>
+          
           <h1 style={{ fontSize: 34, marginBottom: 10 }}>Berechnung der Energieeinsparung</h1>
 
          <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
