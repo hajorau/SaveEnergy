@@ -337,16 +337,19 @@ if (page === "home") {
         <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
 
 
-  <div
-    style={{
-      fontSize: 42,
-      fontWeight: 900,
-      letterSpacing: 0.5,
-      marginBottom: 6,
-    }}
-  >
-    SaveEnergyTeam
-  </div>
+<div
+  style={{
+    fontSize: 42,
+    fontWeight: 900,
+    background: "linear-gradient(90deg, #111, #444)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    marginBottom: 6,
+  }}
+>
+  SaveEnergyTeam
+</div>
+
           
           <h1 style={{ fontSize: 34, marginBottom: 10 }}>Berechnung der Energieeinsparung</h1>
 
