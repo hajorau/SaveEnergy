@@ -360,7 +360,8 @@ if (page === "home") {
 
 // 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
 if (!token && page === "auth") {
-  return (
+  setPage("home");
+  return null;
     <div
       style={{
         minHeight: "100vh",
@@ -517,46 +518,13 @@ if (!token && page === "auth") {
   );
 }
 
-      {/* Footer wiederverwenden */}
-      <footer
-        style={{
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 12,
-          color: "#666",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christoph Schaaf</span>
 
-          <button
-            type="button"
-            onClick={() => setPage("impressum")}
-            style={{
-              border: "none",
-              background: "transparent",
-              color: "#0b57d0",
-              cursor: "pointer",
-              padding: 0,
-              textDecoration: "underline",
-              fontSize: 12,
-            }}
-          >
-            Impressum
-          </button>
-        </div>
-      </footer>
-     </div>
-  );
-}
 
 
 // 4) Eingeloggt -> App
 // hier kommt dein Berechnungs-Return (der große Block)
 
-
-
+return (
   <div
     style={{
       minHeight: "100vh",
