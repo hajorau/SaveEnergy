@@ -106,7 +106,7 @@ async function login() {
 
     await loadHistory(); // falls du das schon so machst
   } catch (e) {
-    setAuthErr("Netzwerkfehler/. Bitte später erneut versuchen.");
+    setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
   } finally {
     setAuthBusy(false);
   }
@@ -360,8 +360,7 @@ if (page === "home") {
 
 // 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
 if (!token && page === "auth") {
-  setPage("home");
-  return null;
+  return (
     <div
       style={{
         minHeight: "100vh",
@@ -767,7 +766,5 @@ return (
       </div>
     </footer>
   </div>
-  </div>
-
 );
-}
+
