@@ -579,7 +579,7 @@ return (
       >
         Impressum/Datenschutz
       </button>
-      .
+      
     </span>
   </label>
 </div>
@@ -596,8 +596,8 @@ return (
               cursor: consentStorage ? "pointer" : "not-allowed",
           }}
           >
-          Berechnen & Speichern
-</button>
+              Berechnen & Speichern
+              </button>
 
 
             <div style={{ marginTop: 10, fontSize: 12, opacity: 0.7 }}>
@@ -764,8 +764,8 @@ return (
     </button>
   </div>
 </footer>
-
-
+ </div>
+ </div>
 );
 
 }
