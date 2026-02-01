@@ -23,17 +23,31 @@ function Field({ label, unit, value, onChange, type="number", step="any" }) {
     </label>
   );
 }
+const fmtIntDE = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+const fmt1DE = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
-function ResultCard({ title, value, unit }) {
+function formatNumber(value, { decimals = 0 } = {}) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "—";
+  return decimals === 1 ? fmt1DE.format(n) : fmtIntDE.format(n);
+}
+
+function ResultCard({ title, value, unit, decimals = 0 }) {
   return (
     <div style={{ padding: 14, border: "1px solid #ddd", borderRadius: 10 }}>
       <div style={{ fontSize: 13, opacity: 0.75 }}>{title}</div>
-      <div style={{ fontSize: 26, fontWeight: 700, marginTop: 6 }}>
-        {value ?? "—"} <span style={{ fontSize: 14, fontWeight: 500 }}>{unit}</span>
+
+      <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 6 }}>
+        <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: -0.3, lineHeight: 1 }}>
+          {formatNumber(value, { decimals })}
+        </div>
+        <div style={{ fontSize: 14, fontWeight: 600, opacity: 0.8 }}>{unit}</div>
       </div>
     </div>
   );
 }
+
+
 
 export default function App() {
   const [mode, setMode] = useState("register");
@@ -608,10 +622,11 @@ return (
             <h3>Ergebnisse</h3>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              <ResultCard title="Einsparung Wärme" value={out?.waerme_kwh_a} unit="kWh/a" />
-              <ResultCard title="Einsparung Strom" value={out?.strom_kwh_a} unit="kWh/a" />
-              <ResultCard title="Kosteneinsparung" value={out?.euro_a} unit="€/a" />
-              <ResultCard title="CO₂-Einsparung" value={out?.co2_t} unit="t CO₂e" />
+                <ResultCard title="Einsparung Wärme" value={out?.waerme_kwh_a} unit="kWh/a" decimals={0} />
+                <ResultCard title="Einsparung Strom" value={out?.strom_kwh_a} unit="kWh/a" decimals={0} />
+                <ResultCard title="Kosteneinsparung" value={out?.euro_a} unit="€/a" decimals={0} />
+                <ResultCard title="CO₂-Einsparung" value={out?.co2_t} unit="t CO₂e" decimals={1} />
+
             </div>
 
             <h3 style={{ marginTop: 18 }}>Meine gespeicherten Berechnungen</h3>
