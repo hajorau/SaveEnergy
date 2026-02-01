@@ -734,36 +734,37 @@ return (
       </div>
     </div>
 
-    {/* Footer */}
-<footer
-  style={{
-    padding: "12px 0",
-    textAlign: "center",
-    fontSize: 12,
-    color: "#666",
-    borderTop: "1px solid #eee",
-  }}
->
-  <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-    <span>© SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christof Schaaf</span>
-
-    <button
-      type="button"
-      onClick={() => setPage("impressum")}
+     {/* Footer */}
+    <footer
       style={{
-        border: "none",
-        background: "transparent",
-        color: "#0b57d0",
-        cursor: "pointer",
-        padding: 0,
-        textDecoration: "underline",
+        padding: "12px 0",
+        textAlign: "center",
         fontSize: 12,
+        color: "#666",
+        borderTop: "1px solid #eee",
       }}
     >
-      Impressum
-    </button>
- 
-</footer>
-  
-);
+      <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+        <span>
+          © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Ideengeber Christof Schaaf
+        </span>
 
+        <button
+          type="button"
+          onClick={() => setPage("impressum")}
+          style={{
+            border: "none",
+            background: "transparent",
+            color: "#0b57d0",
+            cursor: "pointer",
+            padding: 0,
+            textDecoration: "underline",
+            fontSize: 12,
+          }}
+        >
+          Impressum
+        </button>
+      </div>
+    </footer>
+  </div>
+);
