@@ -500,20 +500,6 @@ if (!token && page === "auth") {
         </div>
       </div>
 
-
-      
-      {/* Footer */}
-      <footer
-        style={{
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 14,
-          color: "#666",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
-      </footer>
     </div>
   );
 }
