@@ -365,7 +365,7 @@ if (page === "impressum") {
           <p><strong>b) Bei der Nutzung der Anwendung:</strong></p>
           <ul>
             <li>Eingabedaten zur Berechnung</li>
-            <li>Raum oder Anlagenbezeichnung</li>
+            <li>Raum- oder Anlagenbezeichnung</li>
             <li>Wärmerückgewinnung</li>
             <li>Berechnungsergebnisse</li>
             <li>Zeitstempel</li>
@@ -822,7 +822,7 @@ return (
           <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
             <h3>Eingaben</h3>
             <Field
-              label="Raum/Anlage"
+              label="Raum- oder Anlagenbezeichnung"
               value={raumAnlage}
               onChange={setRaumAnlage}
               type="text"
