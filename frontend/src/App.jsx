@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-//li
 const API = import.meta.env.VITE_API_URL;
 
 function Field({ label, unit, value, onChange, type="number", step="any" }) {
@@ -67,9 +65,7 @@ export default function App() {
   const [vdot, setVdot] = useState("10000");
   const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
 
-  const [raumAnlage, setRaumAnlage] = useState("");
-  const [wrgVorhanden, setWrgVorhanden] = useState(false);
-
+  
   const [strompreis, setStrompreis] = useState("0.30");
   const [waermepreis, setWaermepreis] = useState("0.22");
   const [zeit, setZeit] = useState("5");
@@ -122,7 +118,7 @@ async function login() {
     setAuthMsg("");    // Meldungen leeren
     setAuthErr("");
 
-    await loadHistory(j.token); // falls du das schon so machst
+    await loadHistory(); // falls du das schon so machst
   } catch (e) {
     setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
   } finally {
@@ -210,8 +206,6 @@ async function register() {
     return;
   }
     const payload = {
-      raum_anlage: raumAnlage.trim(),
-      wrg_vorhanden: wrgVorhanden,
       vdot_m3h: Number(vdot),
       strompreis_eur_kwh: Number(strompreis),
       waermepreis_eur_kwh: Number(waermepreis),
@@ -233,9 +227,9 @@ async function register() {
     }
   }
 
-async function loadHistory(t = token) {
+async function loadHistory() {
   const r = await fetch(`${API}/calc`, {
-    headers: { Authorization: `Bearer ${t}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   const j = await r.json().catch(() => []);
   if (r.ok) setHistory(j);
@@ -278,200 +272,121 @@ async function loadHistory(t = token) {
   }
 
 
+
 // 1) Impressum IMMER zuerst
 if (page === "impressum") {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 900, margin: "30px auto", padding: 20 }}>
-
           <h2>Impressum</h2>
 
-          <h3>Angaben gemäß § 5 TMG</h3>
+          <p style={{ opacity: 0.8 }}>
+            Angaben gemäß § 5 ECG / § 25 MedienG (AT) sowie DSGVO-Informationen.
+          </p>
 
+          <h3>Betreiber</h3>
           <p>
             <strong>SaveEnergyTeam</strong><br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund<br />
-            Deutschland
+            Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
           </p>
 
+          <h3>Kontakt</h3>
           <p>
-            <strong>Vertreten durch / Verantwortlich:</strong><br />
-            Hans-Joachim Rau<br />
-            Rüdiger Külpmann<br />
-            Achim Sell
+            E-Mail: <em>hajorau@me.com</em><br />
+            Telefon: <em>+49171 6576101</em>
           </p>
 
-          <p>
-            <strong>Kontakt:</strong><br />
-            Telefon: 0171 6576101<br />
-            E-Mail: hajo@me.com
+          <h3>Haftungsausschluss</h3>
+          <p style={{ lineHeight: 1.5 }}>
+            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
+            Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
           </p>
 
-          <p>
-            <strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br />
-            Hans-Joachim Rau<br />
-            Rüdiger Külpmann<br />
-            Achim Sell<br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund
+          <h3>Datenschutz (DSGVO)</h3>
+          <p style={{ lineHeight: 1.5 }}>
+            Diese Anwendung verarbeitet personenbezogene Daten (z. B. Name, Organisation, Rufnummer, E-Mail) zur Kontoerstellung
+            und speichert Berechnungsdaten, wenn Sie der Speicherung zustimmen. Zweck: Bereitstellung der App-Funktion
+            (Berechnung, Historie, Export).
           </p>
 
-          <h3>Haftung für Inhalte</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte nach den allgemeinen
-            Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet,
-            übermittelte oder gespeicherte fremde Informationen zu überwachen.
-          </p>
-
-          <h3>Haftung für Links</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Diese Anwendung enthält ggf. Links zu externen Webseiten Dritter, auf deren Inhalte wir
-            keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
-          </p>
-
-          <h3>Urheberrecht</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Die durch die Betreiber erstellten Inhalte und Werke unterliegen dem deutschen
-            Urheberrecht. Jede Verwertung außerhalb der Grenzen des Urheberrechts bedarf der
-            schriftlichen Zustimmung der jeweiligen Autoren.
-          </p>
-
-          <hr style={{ margin: "30px 0" }} />
-
-          <h2>Datenschutzerklärung (DSGVO)</h2>
-
-          <h3>1. Verantwortlicher</h3>
-          <p>
-            SaveEnergyTeam<br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund<br />
-            Deutschland<br />
-            E-Mail: hajo@me.com<br />
-            Telefon: 0171 6576101
-          </p>
-
-          <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
-
-          <p><strong>a) Bei der Registrierung:</strong></p>
-          <ul>
-            <li>Vorname</li>
-            <li>Nachname</li>
-            <li>Organisation</li>
-            <li>Telefonnummer</li>
-            <li>E-Mail-Adresse</li>
-            <li>Passwort (verschlüsselt)</li>
-          </ul>
-
-          <p><strong>b) Bei der Nutzung der Anwendung:</strong></p>
-          <ul>
-            <li>Eingabedaten zur Berechnung</li>
-            <li>Raum/Anlage</li>
-            <li>Wärmerückgewinnung</li>
-            <li>Berechnungsergebnisse</li>
-            <li>Zeitstempel</li>
-          </ul>
-
-          <h3>3. Zweck der Datenverarbeitung</h3>
-          <ul>
-            <li>Bereitstellung der Berechnungsfunktion</li>
-            <li>Speicherung der Historie</li>
-            <li>PDF- und CSV-Export</li>
-            <li>Nutzerverwaltung</li>
-            <li>Technischer Betrieb</li>
-          </ul>
-
-          <h3>4. Rechtsgrundlage</h3>
-          <p>
-            Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a, b und f DSGVO.
-          </p>
-
-          <h3>5. Speicherung und Löschung</h3>
-          <p>
-            Daten werden nur solange gespeichert, wie dies für den Zweck erforderlich ist.
-            Nutzer können jederzeit die Löschung verlangen.
-          </p>
-
-          <h3>6. Weitergabe von Daten</h3>
-          <p>
-            Eine Weitergabe erfolgt nicht, außer bei gesetzlicher Verpflichtung oder Hosting.
-          </p>
-
-          <h3>7. Hosting</h3>
-          <p>
-            Die Anwendung wird bei externen Dienstleistern betrieben (z. B. Render, Vercel).
-          </p>
-
-          <h3>8. Datensicherheit</h3>
-          <p>
-            Wir setzen technische und organisatorische Maßnahmen zum Schutz der Daten ein.
-            Passwörter werden verschlüsselt gespeichert.
-          </p>
-
-          <h3>9. Rechte der Nutzer</h3>
-          <ul>
-            <li>Auskunft</li>
-            <li>Berichtigung</li>
-            <li>Löschung</li>
-            <li>Einschränkung</li>
-            <li>Datenübertragbarkeit</li>
-            <li>Widerspruch</li>
-          </ul>
-
-          <h3>10. Widerruf der Einwilligung</h3>
-          <p>
-            Eine Einwilligung kann jederzeit widerrufen werden.
-          </p>
-
-          <h3>11. Änderungen</h3>
-          <p>
-            Diese Datenschutzerklärung kann bei Bedarf angepasst werden.
-          </p>
-
-          <div style={{ marginTop: 25 }}>
+          <div style={{ marginTop: 18 }}>
             <button
               type="button"
               onClick={() => setPage(token ? "app" : "home")}
-              style={{
-                padding: "10px 14px",
-                borderRadius: 10,
-                border: "1px solid #ccc",
-                background: "#f3f3f3",
-                cursor: "pointer",
-              }}
+              style={{ padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer" }}
             >
               Zurück
             </button>
           </div>
-
         </div>
       </div>
 
-      <footer
-        style={{
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 12,
-          color: "#666",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        © SaveEnergyTeam – Hans-Joachim Rau · Rüdiger Külpmann · Achim Sell
+      <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
       </footer>
     </div>
   );
 }
 
+// 2) Frontseite
+if (page === "home") {
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+      <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
 
+
+<div
+  style={{
+    fontSize: 42,
+    fontWeight: 900,
+    background: "linear-gradient(90deg, #111, #444)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    marginBottom: 6,
+  }}
+>
+  SaveEnergyTeam
+</div>
+
+          
+          <h1 style={{ fontSize: 34, marginBottom: 10 }}>Berechnung der Energieeinsparung</h1>
+
+         <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+  Auf Basis der nachgewiesenen hohen Einsparungen in der durchgeführten Studie der DTHG wurde die
+  nachfolgende näherungsweise Berechnungsgrundlage erstellt. Sie zeigt Möglichkeiten zur Verbesserung der
+  bedarfsgerechten Betriebsführung durch eine präzisere Anpassung des Anlagenbetriebs an die tatsächliche
+  Nutzung der Räume.
+</p>
+
+
+          <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <button
+              type="button"
+              onClick={() => setPage("auth")}
+              style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer", fontWeight: 600 }}
+            >
+              Weiter / Login
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPage("impressum")}
+              style={{ padding: "12px 16px", borderRadius: 12, border: "1px solid #ccc", background: "#fff", cursor: "pointer" }}
+            >
+              Impressum / Datenschutz
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
+      </footer>
+    </div>
+  );
+}
 
 // 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
 if (!token && page === "auth") {
@@ -617,50 +532,7 @@ if (!token && page === "auth") {
   );
 }
 
-// Wenn NICHT eingeloggt und wir sind NICHT auf home/impressum/auth,
-// dann zurück zum Login (verhindert "App ohne Token")
-if (!token && page !== "home" && page !== "impressum" && page !== "auth") {
-  setPage("auth");
-  return null;
-}
 
-// Wenn page="auth", aber Token schon da -> direkt in die App
-if (token && page === "auth") {
-  setPage("app");
-  return null;
-}
-
-// Wenn NICHT eingeloggt: niemals App rendern
-if (!token) {
-  // Wenn jemand direkt auf "app" gelandet ist (z. B. durch alten State)
-  if (page === "app") {
-    return (
-      <div style={{ padding: 20, fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
-        <h2>Bitte einloggen</h2>
-        <p>Du musst dich zuerst anmelden, um die Eingabeseite zu nutzen.</p>
-        <button
-          onClick={() => setPage("auth")}
-          style={{ padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer" }}
-        >
-          Zum Login
-        </button>
-        <button
-          onClick={() => setPage("home")}
-          style={{ marginLeft: 10, padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#fff", cursor: "pointer" }}
-        >
-          Zur Startseite
-        </button>
-      </div>
-    );
-  }
-
-  // Für alle anderen Fälle (home/auth/impressum) greifen oben deine returns.
-  // Wenn wir hier landen, ist page etwas Unerwartetes -> zurück zur Startseite.
-  setPage("home");
-  return null;
-}
-
-// ab hier: eingeloggt
 
 
 // 4) Eingeloggt -> App
@@ -693,23 +565,6 @@ return (
           {/* Eingaben */}
           <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
             <h3>Eingaben</h3>
-            <Field
-              label="Raum/Anlage"
-              value={raumAnlage}
-              onChange={setRaumAnlage}
-              type="text"
-            />
-
-            <div style={{ marginTop: 10, marginBottom: 12, padding: 10, border: "1px solid #eee", borderRadius: 10, background: "#fafafa" }}>
-              <label style={{ display: "flex", gap: 10, alignItems: "center", cursor: "pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={wrgVorhanden}
-                  onChange={(e) => setWrgVorhanden(e.target.checked)}
-                />
-                <span style={{ fontSize: 14 }}>Wärmerückgewinnung vorhanden</span>
-              </label>
-            </div>
 
             <Field label="Volumenstrom Zu-/Abluft (V̇)" unit="m³/h" value={vdot} onChange={setVdot} />
             <Field label="Strompreis" unit="€/kWh" value={strompreis} onChange={setStrompreis} step="0.01" />
