@@ -187,7 +187,10 @@ class LoginIn(BaseModel):
     password: str
 
 
-class CalcIn(BaseModel):
+class CalcIn(BaseModel):    
+    raum_anlage: Optional[str] = Field(default=None, max_length=120)
+    wrg_vorhanden: bool = False
+
     vdot_m3h: confloat(gt=0)
     strompreis_eur_kwh: confloat(gt=0)
     waermepreis_eur_kwh: confloat(gt=0)
@@ -213,6 +216,8 @@ class CalcRecord(BaseModel):
 # Berechnung
 # ----------------------------
 def compute(inp: CalcIn) -> CalcOut:
+    wrg = 0.5 if inp.wrg_vorhanden else 0.0  # NEU
+    
     hours = inp.zeitreduktion_h_d * inp.betriebstage_d_a
 
     p_w = K["SEP"] * inp.vdot_m3h
@@ -223,7 +228,7 @@ def compute(inp: CalcIn) -> CalcOut:
         K["AIR_WH_PER_M3K"]
         * inp.vdot_m3h
         * dT
-        * (1 - K["WRG"])
+        * (1 - wrg)
         * hours
         / 1000
     )
@@ -384,6 +389,8 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     y -= 18
     c.setFont("Helvetica", 11)
     lines_in = [
+        f"Raum/Anlage: {inputs.get('raum_anlage') or ''}",
+        f"Wärmerückgewinnung vorhanden: {'ja' if inputs.get('wrg_vorhanden') else 'nein'}",
         f"Volumenstrom: {inputs.get('vdot_m3h')} m³/h",
         f"Strompreis: {inputs.get('strompreis_eur_kwh')} €/kWh",
         f"Wärmepreis: {inputs.get('waermepreis_eur_kwh')} €/kWh",
@@ -437,6 +444,7 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
 
     writer.writerow([
         "id", "created_at",
+        "raum_anlage", "wrg_vorhanden",
         "vdot_m3h", "strompreis_eur_kwh", "waermepreis_eur_kwh", "zeitreduktion_h_d", "betriebstage_d_a",
         "waerme_kwh_a", "strom_kwh_a", "euro_a", "co2_t"
     ])
@@ -446,6 +454,8 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
         outputs = json.loads(r["outputs_json"])
         writer.writerow([
             r["id"], r["created_at"],
+            inputs.get("wrg_vorhanden"),
+            inputs.get("vdot_m3h"),
             inputs.get("vdot_m3h"),
             inputs.get("strompreis_eur_kwh"),
             inputs.get("waermepreis_eur_kwh"),
