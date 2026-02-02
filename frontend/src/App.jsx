@@ -120,7 +120,7 @@ async function login() {
     setAuthMsg("");    // Meldungen leeren
     setAuthErr("");
 
-    await loadHistory(); // falls du das schon so machst
+    await loadHistory(j.token); // falls du das schon so machst
   } catch (e) {
     setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
   } finally {
@@ -618,9 +618,7 @@ if (!token && page === "auth") {
 // Wenn eingeloggt, App anzeigen, sonst Auth oder Home
 if (!token) {
   // nicht eingeloggt
-  if (page === "auth") {
-    return ( ...Auth UI... );
-  }
+
   // fallback
   return ( ...Home UI... );
 }
