@@ -278,29 +278,6 @@ async function loadHistory(t = token) {
   }
 
 
-// 1) Impressum IMMER zuerst
-if (page === "impressum") {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
-      <div style={{ flex: 1 }}>
-        <div style={{ maxWidth: 900, margin: "30px auto", padding: 20 }}>
-
-          <h2>Impressum</h2>
-
-          <h3>Angaben gemäß § 5 TMG</h3>
-
-          <p>
-            <strong>SaveEnergyTeam</strong><br />
-
-
 // ===========================
 // ROUTING (sauber & stabil)
 // ===========================
