@@ -684,23 +684,7 @@ if (!token && page === "auth") {
                 : "Einloggen"}
             </button>
 
-            <button
-              type="button"
-              onClick={() => setMode(mode === "register" ? "login" : "register")}
-              style={{
-                padding: 12,
-                width: "100%",
-                borderRadius: 10,
-                border: "1px solid #ddd",
-                background: "transparent",
-                color: "#0b57d0",
-                cursor: "pointer",
-              }}
-            >
-              {mode === "register"
-                ? "Hast du schon ein Konto? → Einloggen"
-                : "Noch kein Konto? → Account erstellen"}
-            </button>
+            
 
             <button
               type="button"
