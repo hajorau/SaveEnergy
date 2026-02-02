@@ -65,7 +65,7 @@ export default function App() {
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
   const [vdot, setVdot] = useState("10000");
-  const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
+  const [page, setPage] = useState("home"); // "home" | "auth-start" | "auth" | "app" | "impressum";
 
   const [raumAnlage, setRaumAnlage] = useState("");
   const [wrgVorhanden, setWrgVorhanden] = useState(false);
@@ -299,323 +299,7 @@ if (page === "impressum") {
 
           <p>
             <strong>SaveEnergyTeam</strong><br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund<br />
-            Deutschland
-          </p>
 
-          <p>
-            <strong>Vertreten durch / Verantwortlich:</strong><br />
-            Hans-Joachim Rau<br />
-            Rüdiger Külpmann<br />
-            Achim Sell
-          </p>
-
-          <p>
-            <strong>Kontakt:</strong><br />
-            Telefon: 0171 6576101<br />
-            E-Mail: hajo@me.com
-          </p>
-
-          <p>
-            <strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br />
-            Hans-Joachim Rau<br />
-            Rüdiger Külpmann<br />
-            Achim Sell<br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund
-          </p>
-
-          <h3>Haftung für Inhalte</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte nach den allgemeinen
-            Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet,
-            übermittelte oder gespeicherte fremde Informationen zu überwachen.
-          </p>
-
-          <h3>Haftung für Links</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Diese Anwendung enthält ggf. Links zu externen Webseiten Dritter, auf deren Inhalte wir
-            keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
-          </p>
-
-          <h3>Urheberrecht</h3>
-          <p style={{ lineHeight: 1.6 }}>
-            Die durch die Betreiber erstellten Inhalte und Werke unterliegen dem deutschen
-            Urheberrecht. Jede Verwertung außerhalb der Grenzen des Urheberrechts bedarf der
-            schriftlichen Zustimmung der jeweiligen Autoren.
-          </p>
-
-          <hr style={{ margin: "30px 0" }} />
-
-          <h2>Datenschutzerklärung (DSGVO)</h2>
-
-          <h3>1. Verantwortlicher</h3>
-          <p>
-            SaveEnergyTeam<br />
-            Am Lohbachhang 13<br />
-            44269 Dortmund<br />
-            Deutschland<br />
-            E-Mail: hajo@me.com<br />
-            Telefon: 0171 6576101
-          </p>
-
-          <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
-
-          <p><strong>a) Bei der Registrierung:</strong></p>
-          <ul>
-            <li>Vorname</li>
-            <li>Nachname</li>
-            <li>Organisation</li>
-            <li>Telefonnummer</li>
-            <li>E-Mail-Adresse</li>
-            <li>Passwort (verschlüsselt)</li>
-          </ul>
-
-          <p><strong>b) Bei der Nutzung der Anwendung:</strong></p>
-          <ul>
-            <li>Eingabedaten zur Berechnung</li>
-            <li>Raum/Anlage</li>
-            <li>Wärmerückgewinnung</li>
-            <li>Berechnungsergebnisse</li>
-            <li>Zeitstempel</li>
-          </ul>
-
-          <h3>3. Zweck der Datenverarbeitung</h3>
-          <ul>
-            <li>Bereitstellung der Berechnungsfunktion</li>
-            <li>Speicherung der Historie</li>
-            <li>PDF- und CSV-Export</li>
-            <li>Nutzerverwaltung</li>
-            <li>Technischer Betrieb</li>
-          </ul>
-
-          <h3>4. Rechtsgrundlage</h3>
-          <p>
-            Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a, b und f DSGVO.
-          </p>
-
-          <h3>5. Speicherung und Löschung</h3>
-          <p>
-            Daten werden nur solange gespeichert, wie dies für den Zweck erforderlich ist.
-            Nutzer können jederzeit die Löschung verlangen.
-          </p>
-
-          <h3>6. Weitergabe von Daten</h3>
-          <p>
-            Eine Weitergabe erfolgt nicht, außer bei gesetzlicher Verpflichtung oder Hosting.
-          </p>
-
-          <h3>7. Hosting</h3>
-          <p>
-            Die Anwendung wird bei externen Dienstleistern betrieben (z. B. Render, Vercel).
-          </p>
-
-          <h3>8. Datensicherheit</h3>
-          <p>
-            Wir setzen technische und organisatorische Maßnahmen zum Schutz der Daten ein.
-            Passwörter werden verschlüsselt gespeichert.
-          </p>
-
-          <h3>9. Rechte der Nutzer</h3>
-          <ul>
-            <li>Auskunft</li>
-            <li>Berichtigung</li>
-            <li>Löschung</li>
-            <li>Einschränkung</li>
-            <li>Datenübertragbarkeit</li>
-            <li>Widerspruch</li>
-          </ul>
-
-          <h3>10. Widerruf der Einwilligung</h3>
-          <p>
-            Eine Einwilligung kann jederzeit widerrufen werden.
-          </p>
-
-          <h3>11. Änderungen</h3>
-          <p>
-            Diese Datenschutzerklärung kann bei Bedarf angepasst werden.
-          </p>
-
-          <div style={{ marginTop: 25 }}>
-            <button
-              type="button"
-              onClick={() => setPage(token ? "app" : "home")}
-              style={{
-                padding: "10px 14px",
-                borderRadius: 10,
-                border: "1px solid #ccc",
-                background: "#f3f3f3",
-                cursor: "pointer",
-              }}
-            >
-              Zurück
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-      <footer
-        style={{
-          padding: "12px 0",
-          textAlign: "center",
-          fontSize: 12,
-          color: "#666",
-          borderTop: "1px solid #eee",
-        }}
-      >
-        © SaveEnergyTeam – Hans-Joachim Rau · Rüdiger Külpmann · Achim Sell
-      </footer>
-    </div>
-  );
-}
-
-
-
-// 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
-if (!token && page === "auth") {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
-      {/* Inhalt */}
-      <div style={{ flex: 1 }}>
-        <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
-          <h1 style={{ marginBottom: 6 }}>
-            {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
-          </h1>
-
-          <p style={{ marginTop: 0, opacity: 0.75 }}>
-            {mode === "register"
-              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
-              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
-          </p>
-
-          {/* Meldungsbox */}
-          {authErr && (
-            <div
-              style={{
-                marginTop: 12,
-                padding: 10,
-                borderRadius: 8,
-                background: "#ffe8e8",
-                border: "1px solid #f5b5b5",
-              }}
-            >
-              {authErr}
-            </div>
-          )}
-
-          {authMsg && (
-            <div
-              style={{
-                marginTop: 12,
-                padding: 10,
-                borderRadius: 8,
-                background: "#e8fff0",
-                border: "1px solid #9be3b3",
-              }}
-            >
-              {authMsg}
-            </div>
-          )}
-
-          <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
-            {mode === "register" && (
-              <>
-                <input
-                  placeholder="Vorname"
-                  value={firstname}
-                  onChange={(e) => setFirstname(e.target.value)}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-                />
-                <input
-                  placeholder="Nachname"
-                  value={lastname}
-                  onChange={(e) => setLastname(e.target.value)}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-                />
-                <input
-                  placeholder="Organisation"
-                  value={organization}
-                  onChange={(e) => setOrganization(e.target.value)}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-                />
-                <input
-                  placeholder="Rufnummer"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-                />
-              </>
-            )}
-
-            <input
-              placeholder="E-Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-
-            <input
-              placeholder="Passwort"
-              type="password"
-              value={pw}
-              onChange={(e) => setPw(e.target.value)}
-              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
-            />
-
-            <button
-              onClick={mode === "register" ? register : login}
-              disabled={authBusy}
-              style={{
-                padding: 12,
-                width: "100%",
-                borderRadius: 10,
-                border: "1px solid #ddd",
-                background: "#f2f2f2",
-                opacity: authBusy ? 0.6 : 1,
-                cursor: authBusy ? "not-allowed" : "pointer",
-                fontWeight: 600,
-              }}
-            >
-              {authBusy
-                ? "Bitte warten…"
-                : mode === "register"
-                ? "Account erstellen"
-                : "Einloggen"}
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode(mode === "register" ? "login" : "register")}
-              style={{
-                padding: 12,
-                width: "100%",
-                borderRadius: 10,
-                border: "1px solid #ddd",
-                background: "transparent",
-                color: "#0b57d0",
-                cursor: "pointer",
-              }}
-            
-            >
-              {mode === "register"
-                ? "Hast du schon ein Konto? → Einloggen"
-                : "Noch kein Konto? → Account erstellen"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ===========================
 // ROUTING (sauber & stabil)
@@ -842,7 +526,7 @@ if (page === "home") {
           <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
             <button
               type="button"
-              onClick={() => setPage("auth")}
+              onClick={() => setPage("auth-start")}
               style={{
                 padding: "12px 16px",
                 borderRadius: 12,
@@ -887,8 +571,94 @@ if (page === "home") {
   );
 }
 
-// 3) Auth (nur wenn nicht eingeloggt)
-if (!token && page === "auth") {
+
+// 2.5) Auth-Startseite (Auswahl Login / Registrierung)
+if (!token && page === "auth-start") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div style={{ maxWidth: 600, margin: "0 auto", padding: 24, textAlign: "center" }}>
+
+        <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 10 }}>
+          Energieeinspartool
+        </h1>
+
+        <p style={{ fontSize: 16, opacity: 0.8, marginBottom: 30 }}>
+          Bitte wähle aus, wie du fortfahren möchtest.
+        </p>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+
+          <button
+            onClick={() => {
+              setMode("login");
+              setPage("auth");
+            }}
+            style={{
+              padding: "14px 16px",
+              borderRadius: 12,
+              border: "1px solid #ccc",
+              background: "#f3f3f3",
+              cursor: "pointer",
+              fontSize: 16,
+              fontWeight: 600,
+            }}
+          >
+            Ich habe einen Account und möchte mich einloggen
+          </button>
+
+          <button
+            onClick={() => {
+              setMode("register");
+              setPage("auth");
+            }}
+            style={{
+              padding: "14px 16px",
+              borderRadius: 12,
+              border: "1px solid #ccc",
+              background: "#fff",
+              cursor: "pointer",
+              fontSize: 16,
+            }}
+          >
+            Ich habe keinen Account und möchte mich registrieren
+          </button>
+
+        </div>
+
+        <div style={{ marginTop: 24 }}>
+          <button
+            onClick={() => setPage("home")}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#0b57d0",
+              cursor: "pointer",
+              textDecoration: "underline",
+              fontSize: 14,
+            }}
+          >
+            Zurück zur Startseite
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+  
+  
+// 3) Auth (Login/Registrierung)
+if (!token && page === "auth" && page !== "auth-start") {
   return (
     <div
       style={{
@@ -1046,6 +816,7 @@ if (!token && page === "auth") {
 
 // 4) Fallback: nicht eingeloggt → immer Home
 if (!token) {
+  setPage("home");
   return null; // weil home bereits gerendert wird, wenn page="home"
 }
 
@@ -1054,6 +825,8 @@ if (!token) {
 
 
 // 4) Eingeloggt -> App
+
+            
 // hier kommt dein Berechnungs-Return (der große Block)
 
 return (
