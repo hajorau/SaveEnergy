@@ -365,7 +365,7 @@ if (page === "impressum") {
           <p><strong>b) Bei der Nutzung der Anwendung:</strong></p>
           <ul>
             <li>Eingabedaten zur Berechnung</li>
-            <li>Raum/Anlage</li>
+            <li>Raum oder Anlagenbezeichnung</li>
             <li>Wärmerückgewinnung</li>
             <li>Berechnungsergebnisse</li>
             <li>Zeitstempel</li>
