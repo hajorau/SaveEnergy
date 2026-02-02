@@ -615,13 +615,19 @@ if (!token && page === "auth") {
   );
 }
 
-// Wenn eingeloggt, App anzeigen, sonst Auth oder Home
-if (!token) {
-  // nicht eingeloggt
-
-  // fallback
-  return ( ...Home UI... );
+// Wenn NICHT eingeloggt und wir sind NICHT auf home/impressum/auth,
+// dann zurück zum Login (verhindert "App ohne Token")
+if (!token && page !== "home" && page !== "impressum" && page !== "auth") {
+  setPage("auth");
+  return null;
 }
+
+// Wenn page="auth", aber Token schon da -> direkt in die App
+if (token && page === "auth") {
+  setPage("app");
+  return null;
+}
+
 
 // ab hier: eingeloggt
 return ( ...App UI... );
