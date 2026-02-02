@@ -643,7 +643,7 @@ if (!token && page === "auth" && page !== "auth-start") {
           <p style={{ marginTop: 0, opacity: 0.75 }}>
             {mode === "register"
               ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
-              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+              : "Melde dich mit deiner E-Mail und deinem Passwort an. ACHTUNG: dies kann sehr lange dauern ;-) - bitte Geduld"}
           </p>
 
           {authErr && (
