@@ -61,7 +61,7 @@ export default function App() {
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
   const [vdot, setVdot] = useState("10000");
-  const [page, setPage] = useState("home"); // "home" | "auth-start" | "auth" | "app" | "impressum";
+  const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
 
   const [raumAnlage, setRaumAnlage] = useState("");
   const [wrgVorhanden, setWrgVorhanden] = useState(false);
@@ -488,36 +488,62 @@ if (page === "home") {
             Nutzung der Räume.
           </p>
 
-          <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button
-              type="button"
-              onClick={() => setPage("auth-start")}
-              style={{
-                padding: "12px 16px",
-                borderRadius: 12,
-                border: "1px solid #ccc",
-                background: "#f3f3f3",
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
-            >
-              Weiter / Login
-            </button>
+          <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}>
 
-            <button
-              type="button"
-              onClick={() => setPage("impressum")}
-              style={{
-                padding: "12px 16px",
-                borderRadius: 12,
-                border: "1px solid #ccc",
-                background: "#fff",
-                cursor: "pointer",
-              }}
-            >
-              Impressum / Datenschutz
-            </button>
-          </div>
+  <button
+    type="button"
+    onClick={() => {
+      setMode("login");
+      setPage("auth");
+    }}
+    style={{
+      padding: "12px 18px",
+      borderRadius: 12,
+      border: "1px solid #ccc",
+      background: "#f3f3f3",
+      cursor: "pointer",
+      fontWeight: 600,
+      fontSize: 15,
+    }}
+  >
+    Ich habe einen Account → Einloggen
+  </button>
+
+  <button
+    type="button"
+    onClick={() => {
+      setMode("register");
+      setPage("auth");
+    }}
+    style={{
+      padding: "12px 18px",
+      borderRadius: 12,
+      border: "1px solid #ccc",
+      background: "#fff",
+      cursor: "pointer",
+      fontSize: 15,
+    }}
+  >
+    Ich habe keinen Account → Registrieren
+  </button>
+
+  <button
+    type="button"
+    onClick={() => setPage("impressum")}
+    style={{
+      padding: "12px 18px",
+      borderRadius: 12,
+      border: "1px solid #ccc",
+      background: "#fff",
+      cursor: "pointer",
+      fontSize: 15,
+    }}
+  >
+    Impressum / Datenschutz
+  </button>
+
+</div>
+
         </div>
       </div>
 
@@ -537,93 +563,11 @@ if (page === "home") {
 }
 
 
-// 2.5) Auth-Startseite (Auswahl Login / Registrierung)
-if (!token && page === "auth-start") {
-  return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
-      <div style={{ maxWidth: 600, margin: "0 auto", padding: 24, textAlign: "center" }}>
-
-        <h1 style={{ fontSize: 40, fontWeight: 900, marginBottom: 10 }}>
-          Energieeinspartool
-        </h1>
-
-        <p style={{ fontSize: 16, opacity: 0.8, marginBottom: 30 }}>
-          Bitte wähle aus, wie du fortfahren möchtest.
-        </p>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-
-          <button
-            onClick={() => {
-              setMode("login");
-              setPage("auth");
-            }}
-            style={{
-              padding: "14px 16px",
-              borderRadius: 12,
-              border: "1px solid #ccc",
-              background: "#f3f3f3",
-              cursor: "pointer",
-              fontSize: 16,
-              fontWeight: 600,
-            }}
-          >
-            Ich habe einen Account und möchte mich einloggen
-          </button>
-
-          <button
-            onClick={() => {
-              setMode("register");
-              setPage("auth");
-            }}
-            style={{
-              padding: "14px 16px",
-              borderRadius: 12,
-              border: "1px solid #ccc",
-              background: "#fff",
-              cursor: "pointer",
-              fontSize: 16,
-            }}
-          >
-            Ich habe keinen Account und möchte mich registrieren
-          </button>
-
-        </div>
-
-        <div style={{ marginTop: 24 }}>
-          <button
-            onClick={() => setPage("home")}
-            style={{
-              border: "none",
-              background: "transparent",
-              color: "#0b57d0",
-              cursor: "pointer",
-              textDecoration: "underline",
-              fontSize: 14,
-            }}
-          >
-            Zurück zur Startseite
-          </button>
-        </div>
-
-      </div>
-    </div>
-  );
-}
 
   
   
 // 3) Auth (Login/Registrierung)
-if (!token && page === "auth" && page !== "auth-start") {
+if (!token && page === "auth") {
   return (
     <div
       style={{
