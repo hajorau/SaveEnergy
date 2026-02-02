@@ -628,6 +628,35 @@ if (token && page === "auth") {
   return null;
 }
 
+// Wenn NICHT eingeloggt: niemals App rendern
+if (!token) {
+  // Wenn jemand direkt auf "app" gelandet ist (z. B. durch alten State)
+  if (page === "app") {
+    return (
+      <div style={{ padding: 20, fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+        <h2>Bitte einloggen</h2>
+        <p>Du musst dich zuerst anmelden, um die Eingabeseite zu nutzen.</p>
+        <button
+          onClick={() => setPage("auth")}
+          style={{ padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#f3f3f3", cursor: "pointer" }}
+        >
+          Zum Login
+        </button>
+        <button
+          onClick={() => setPage("home")}
+          style={{ marginLeft: 10, padding: "10px 14px", borderRadius: 10, border: "1px solid #ccc", background: "#fff", cursor: "pointer" }}
+        >
+          Zur Startseite
+        </button>
+      </div>
+    );
+  }
+
+  // Für alle anderen Fälle (home/auth/impressum) greifen oben deine returns.
+  // Wenn wir hier landen, ist page etwas Unerwartetes -> zurück zur Startseite.
+  setPage("home");
+  return null;
+}
 
 // ab hier: eingeloggt
 
