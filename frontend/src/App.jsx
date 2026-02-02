@@ -630,7 +630,6 @@ if (token && page === "auth") {
 
 
 // ab hier: eingeloggt
-return ( ...App UI... );
 
 
 // 4) Eingeloggt -> App
