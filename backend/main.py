@@ -52,7 +52,7 @@ app.add_middleware(
 K = {
     "T_ZUL": 18.0,
     "T_AUSSEN_M": 9.5,
-    "WRG": 0.50,
+    "WRG": 0.0,
     "SEP": 0.4,
     "AIR_WH_PER_M3K": 0.34,
     "EF_STROM": 560.0,
