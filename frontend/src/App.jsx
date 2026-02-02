@@ -231,9 +231,9 @@ async function register() {
     }
   }
 
-async function loadHistory() {
+async function loadHistory(t = token) {
   const r = await fetch(`${API}/calc`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${t}` },
   });
   const j = await r.json().catch(() => []);
   if (r.ok) setHistory(j);
