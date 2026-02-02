@@ -65,9 +65,7 @@ export default function App() {
   const [vdot, setVdot] = useState("10000");
   const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
 
-  const [raumAnlage, setRaumAnlage] = useState("");
-  const [wrgVorhanden, setWrgVorhanden] = useState(false);
-
+  
   const [strompreis, setStrompreis] = useState("0.30");
   const [waermepreis, setWaermepreis] = useState("0.22");
   const [zeit, setZeit] = useState("5");
@@ -208,8 +206,6 @@ async function register() {
     return;
   }
     const payload = {
-      raum_anlage: raumAnlage.trim(),
-      wrg_vorhanden: wrgVorhanden,
       vdot_m3h: Number(vdot),
       strompreis_eur_kwh: Number(strompreis),
       waermepreis_eur_kwh: Number(waermepreis),
@@ -274,6 +270,7 @@ async function loadHistory() {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+
 
 
 // 1) Impressum IMMER zuerst
@@ -391,6 +388,150 @@ if (page === "home") {
   );
 }
 
+// 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
+if (!token && page === "auth") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      {/* Inhalt */}
+      <div style={{ flex: 1 }}>
+        <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+          <h1 style={{ marginBottom: 6 }}>
+            {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
+          </h1>
+
+          <p style={{ marginTop: 0, opacity: 0.75 }}>
+            {mode === "register"
+              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+          </p>
+
+          {/* Meldungsbox */}
+          {authErr && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#ffe8e8",
+                border: "1px solid #f5b5b5",
+              }}
+            >
+              {authErr}
+            </div>
+          )}
+
+          {authMsg && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#e8fff0",
+                border: "1px solid #9be3b3",
+              }}
+            >
+              {authMsg}
+            </div>
+          )}
+
+          <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
+            {mode === "register" && (
+              <>
+                <input
+                  placeholder="Vorname"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Nachname"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Organisation"
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Rufnummer"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+              </>
+            )}
+
+            <input
+              placeholder="E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <input
+              placeholder="Passwort"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <button
+              onClick={mode === "register" ? register : login}
+              disabled={authBusy}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "#f2f2f2",
+                opacity: authBusy ? 0.6 : 1,
+                cursor: authBusy ? "not-allowed" : "pointer",
+                fontWeight: 600,
+              }}
+            >
+              {authBusy
+                ? "Bitte warten…"
+                : mode === "register"
+                ? "Account erstellen"
+                : "Einloggen"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode(mode === "register" ? "login" : "register")}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "transparent",
+                color: "#0b57d0",
+                cursor: "pointer",
+              }}
+            
+            >
+              {mode === "register"
+                ? "Hast du schon ein Konto? → Einloggen"
+                : "Noch kein Konto? → Account erstellen"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 
@@ -424,23 +565,6 @@ return (
           {/* Eingaben */}
           <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
             <h3>Eingaben</h3>
-            <Field
-              label="Raum/Anlage"
-              value={raumAnlage}
-              onChange={setRaumAnlage}
-              type="text"
-            />
-
-            <div style={{ marginTop: 10, marginBottom: 12, padding: 10, border: "1px solid #eee", borderRadius: 10, background: "#fafafa" }}>
-              <label style={{ display: "flex", gap: 10, alignItems: "center", cursor: "pointer" }}>
-                <input
-                  type="checkbox"
-                  checked={wrgVorhanden}
-                  onChange={(e) => setWrgVorhanden(e.target.checked)}
-                />
-                <span style={{ fontSize: 14 }}>Wärmerückgewinnung vorhanden</span>
-              </label>
-            </div>
 
             <Field label="Volumenstrom Zu-/Abluft (V̇)" unit="m³/h" value={vdot} onChange={setVdot} />
             <Field label="Strompreis" unit="€/kWh" value={strompreis} onChange={setStrompreis} step="0.01" />
