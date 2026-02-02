@@ -392,6 +392,150 @@ if (page === "home") {
 }
 
 
+// 3) Auth (Login/Registrierung) – wenn nicht eingeloggt
+if (!token && page === "auth") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      {/* Inhalt */}
+      <div style={{ flex: 1 }}>
+        <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+          <h1 style={{ marginBottom: 6 }}>
+            {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
+          </h1>
+
+          <p style={{ marginTop: 0, opacity: 0.75 }}>
+            {mode === "register"
+              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+          </p>
+
+          {/* Meldungsbox */}
+          {authErr && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#ffe8e8",
+                border: "1px solid #f5b5b5",
+              }}
+            >
+              {authErr}
+            </div>
+          )}
+
+          {authMsg && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#e8fff0",
+                border: "1px solid #9be3b3",
+              }}
+            >
+              {authMsg}
+            </div>
+          )}
+
+          <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
+            {mode === "register" && (
+              <>
+                <input
+                  placeholder="Vorname"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Nachname"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Organisation"
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+                <input
+                  placeholder="Rufnummer"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+              </>
+            )}
+
+            <input
+              placeholder="E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <input
+              placeholder="Passwort"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <button
+              onClick={mode === "register" ? register : login}
+              disabled={authBusy}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "#f2f2f2",
+                opacity: authBusy ? 0.6 : 1,
+                cursor: authBusy ? "not-allowed" : "pointer",
+                fontWeight: 600,
+              }}
+            >
+              {authBusy
+                ? "Bitte warten…"
+                : mode === "register"
+                ? "Account erstellen"
+                : "Einloggen"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode(mode === "register" ? "login" : "register")}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "transparent",
+                color: "#0b57d0",
+                cursor: "pointer",
+              }}
+            
+            >
+              {mode === "register"
+                ? "Hast du schon ein Konto? → Einloggen"
+                : "Noch kein Konto? → Account erstellen"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 // 4) Eingeloggt -> App
