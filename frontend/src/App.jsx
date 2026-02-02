@@ -615,6 +615,18 @@ if (!token && page === "auth") {
   );
 }
 
+// Wenn eingeloggt, App anzeigen, sonst Auth oder Home
+if (!token) {
+  // nicht eingeloggt
+  if (page === "auth") {
+    return ( ...Auth UI... );
+  }
+  // fallback
+  return ( ...Home UI... );
+}
+
+// ab hier: eingeloggt
+return ( ...App UI... );
 
 
 // 4) Eingeloggt -> App
