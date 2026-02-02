@@ -65,7 +65,9 @@ export default function App() {
   const [vdot, setVdot] = useState("10000");
   const [page, setPage] = useState("home"); // "home" | "auth" | "app" | "impressum";
 
-  
+  const [raumAnlage, setRaumAnlage] = useState("");
+  const [wrgVorhanden, setWrgVorhanden] = useState(false);
+
   const [strompreis, setStrompreis] = useState("0.30");
   const [waermepreis, setWaermepreis] = useState("0.22");
   const [zeit, setZeit] = useState("5");
@@ -206,6 +208,8 @@ async function register() {
     return;
   }
     const payload = {
+      raum_anlage: raumAnlage.trim(),
+      wrg_vorhanden: wrgVorhanden,
       vdot_m3h: Number(vdot),
       strompreis_eur_kwh: Number(strompreis),
       waermepreis_eur_kwh: Number(waermepreis),
@@ -565,6 +569,23 @@ return (
           {/* Eingaben */}
           <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
             <h3>Eingaben</h3>
+            <Field
+              label="Raum/Anlage"
+              value={raumAnlage}
+              onChange={setRaumAnlage}
+              type="text"
+            />
+
+            <div style={{ marginTop: 10, marginBottom: 12, padding: 10, border: "1px solid #eee", borderRadius: 10, background: "#fafafa" }}>
+              <label style={{ display: "flex", gap: 10, alignItems: "center", cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={wrgVorhanden}
+                  onChange={(e) => setWrgVorhanden(e.target.checked)}
+                />
+                <span style={{ fontSize: 14 }}>Wärmerückgewinnung vorhanden</span>
+              </label>
+            </div>
 
             <Field label="Volumenstrom Zu-/Abluft (V̇)" unit="m³/h" value={vdot} onChange={setVdot} />
             <Field label="Strompreis" unit="€/kWh" value={strompreis} onChange={setStrompreis} step="0.01" />
