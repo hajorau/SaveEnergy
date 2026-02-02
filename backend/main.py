@@ -410,7 +410,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         f"Einsparung Wärme: {outputs.get('waerme_kwh_a')} kWh/a",
         f"Einsparung Strom: {outputs.get('strom_kwh_a')} kWh/a",
         f"Kosteneinsparung: {outputs.get('euro_a')} €/a",
-        f"CO₂-Einsparung: {outputs.get('co2_t')} t CO₂e",
+        f"CO₂-Einsparung: {outputs.get('co2_t')} t CO2e",
     ]
     for line in lines_out:
         c.drawString(60, y, line)
