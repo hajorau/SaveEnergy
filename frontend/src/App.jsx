@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-
-//li
 const API = import.meta.env.VITE_API_URL;
 
 function Field({ label, unit, value, onChange, type="number", step="any" }) {
@@ -49,8 +47,6 @@ function ResultCard({ title, value, unit, decimals = 0 }) {
   );
 }
 
-
-
 export default function App() {
   const [mode, setMode] = useState("register");
   const [email, setEmail] = useState("");
@@ -78,8 +74,7 @@ export default function App() {
   const [history, setHistory] = useState([]);
 
 
-// NICHTS zwischen } und async function register()!
-// register() muss oberhalb dieses } stehen, also innerhalb von App()
+// muss oberhalb dieses } stehen, also innerhalb von App()???
 
   
 async function login() {
@@ -129,8 +124,6 @@ async function login() {
     setAuthBusy(false);
   }
 }
-
-
 
 async function register() {
 
@@ -189,8 +182,7 @@ async function register() {
       return;
     }
             
-
-    setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
+    setAuthMsg("✅  Account erstellt - Bitte jetzt einloggen.");
     setMode("login");
     setPw("");
   } catch (e) {
@@ -199,9 +191,6 @@ async function register() {
     setAuthBusy(false);
   }
 }
-
-
-
 
 
   async function calculateAndSave() {
@@ -240,7 +229,6 @@ async function loadHistory(t = token) {
   const j = await r.json().catch(() => []);
   if (r.ok) setHistory(j);
 }
-
 
   
   async function downloadCSV() {
@@ -317,7 +305,7 @@ if (page === "impressum") {
           <p>
             <strong>Kontakt:</strong><br />
             Telefon: 0171 6576101<br />
-            E-Mail: hajo@me.com
+            E-Mail: hajorau@me.com
           </p>
 
           <p>
@@ -542,7 +530,7 @@ if (page === "home") {
           borderTop: "1px solid #eee",
         }}
       >
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
       </footer>
     </div>
   );
@@ -649,7 +637,7 @@ if (!token && page === "auth" && page !== "auth-start") {
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
           <h1 style={{ marginBottom: 6 }}>
-            {mode === "register" ? "Schritt 1: Account erstellen" : "Schritt 2: Einloggen"}
+            {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
           </h1>
 
           <p style={{ marginTop: 0, opacity: 0.75 }}>
@@ -820,7 +808,7 @@ return (
     {/* Inhalt */}
     <div style={{ flex: 1 }}>
       <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
-        <h2>SaveEnergy – Berechnung & Speicherung - SaveEnergyTeam</h2>
+        <h2>SaveEnergy – Berechnung & Speicherung - mögliche Einsparpotentiale - SaveEnergy</h2>
 
         <div
           style={{
@@ -847,7 +835,7 @@ return (
                   checked={wrgVorhanden}
                   onChange={(e) => setWrgVorhanden(e.target.checked)}
                 />
-                <span style={{ fontSize: 14 }}>Wärmerückgewinnung vorhanden</span>
+                <span style={{ fontSize: 14 }}>Wärmerückgewinnung vorhanden?</span>
               </label>
             </div>
 
@@ -1060,7 +1048,7 @@ return (
     >
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
         <span>
-          © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
+          © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
         </span>
 
         <button
