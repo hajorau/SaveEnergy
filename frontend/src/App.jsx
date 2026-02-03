@@ -502,8 +502,8 @@ export default function App() {
                   <p style={{ marginTop: 0 }}>
                     Grundlagen für die Berechnungen sind die Erkenntnisse aus der vom BKM geförderten Energiestudie.
                     Im Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
-                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Dabei wurde festgestellt, dass die Betriebszeiten der Anlagen in der Regel größer sind, als der eigentliche Bedarf. 
-                    Eine Laufzeitreduktion führt zu Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
+                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten der Anlagen in der Regel größer sind, als der eigentliche Bedarf. 
+                    Eine Laufzeitreduktion führt zur Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
                     („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt.
                   </p>
                 </div>
@@ -605,7 +605,7 @@ export default function App() {
         </div>
 
         <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
-          © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
+          © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
         </footer>
       </div>
     );
@@ -1012,7 +1012,7 @@ if (!token && page === "auth") {
       </div>
 
       <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
-        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau, Idee Christof Schaaf
+        © SaveEnergyTeam: Rüdiger Külpmann, Achim Sell, Hans-Joachim Rau
       </footer>
     </div>
   );
