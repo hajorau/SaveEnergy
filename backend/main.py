@@ -497,7 +497,6 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
 
 
 
-
 @app.post("/admin/reset-db")
 def reset_db(secret: str):
     if secret != os.environ.get("APP_SECRET"):
