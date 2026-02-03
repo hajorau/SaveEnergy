@@ -447,15 +447,15 @@ export default function App() {
           <div style={{ maxWidth: 980, margin: "0 auto", padding: 24 }}>
             <div
               style={{
-                fontSize: 44,
-                fontWeight: 900,
+                fontSize: 46,
+                fontWeight: 800,
                 background: "linear-gradient(90deg, #111, #444)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 marginBottom: 10,
               }}
             >
-              SaveEnergyTool(™)
+              SaveEnergyTool (™)
             </div>
 
             {/* Neuer Contentblock */}
