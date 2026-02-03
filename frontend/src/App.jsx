@@ -502,7 +502,8 @@ export default function App() {
                   <p style={{ marginTop: 0 }}>
                     Grundlagen für die Berechnungen sind die Erkenntnisse aus der vom BKM geförderten Energiestudie.
                     Im Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
-                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Die Annahmen im Anhang zu Kapitel 4
+                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Dabei wurde festgestellt, dass die Betriebszeiten der Anlagen in der Regel größer sind, als der eigentliche Bedarf. 
+                    Eine Laufzeitreduktion führt zu Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
                     („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt.
                   </p>
                 </div>
