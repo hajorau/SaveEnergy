@@ -610,7 +610,7 @@ export default function App() {
     );
   }
 
-/ 3) Auth (Login/Registrierung)
+// 3) Auth (Login/Registrierung)
 if (!token && page === "auth") {
   return (
     <div
