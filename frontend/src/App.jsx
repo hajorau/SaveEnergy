@@ -474,7 +474,7 @@ export default function App() {
                 marginBottom: 10,
               }}
             >
-              SaveEnergyTool™
+              SafeEnergyTool(™)
             </div>
 
             {/* Neuer Contentblock */}
@@ -530,7 +530,7 @@ export default function App() {
                   <p style={{ marginTop: 0 }}>
                     Grundlagen für die Berechnungen sind die Erkenntnisse aus der vom BKM geförderten Energiestudie.
                     Im Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
-                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten der Anlagen in der Regel größer sind, als der eigentliche Bedarf. 
+                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten der Anlagen in den untersuchten Räumen immer länger waren, als es notwendig ist. 
                     Eine Laufzeitreduktion führt zur Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
                     („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt.
                   </p>
