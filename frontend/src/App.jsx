@@ -562,10 +562,7 @@ if (page === "home") {
   );
 }
 
-
-
-  
-  
+    
 // 3) Auth (Login/Registrierung)
 if (!token && page === "auth") {
   return (
@@ -584,12 +581,53 @@ if (!token && page === "auth") {
             {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
           </h1>
 
-          <p style={{ marginTop: 0, opacity: 0.75 }}>
+          {/* Erklärung */}
+          <p style={{ marginTop: 0, opacity: 0.8, lineHeight: 1.5 }}>
             {mode === "register"
-              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen....ACHTUNG: dies kann sehr lange dauern ;-) - bitte Geduld"
-              : "Melde dich mit deiner E-Mail und deinem Passwort an...............ACHTUNG: dies kann sehr lange dauern ;-) - bitte Geduld"}
+              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
           </p>
 
+          {/* Warnbox */}
+          <div
+            style={{
+              marginTop: 12,
+              padding: "12px 14px",
+              borderRadius: 10,
+              background: "#fff3cd",
+              border: "1px solid #ffe69c",
+              color: "#664d03",
+              fontSize: 14,
+              lineHeight: 1.4,
+              fontWeight: 700,
+            }}
+          >
+            ⚠️ ACHTUNG: Das kann sehr lange dauern (teilweise mehrere Minuten).  
+            Bitte nicht abbrechen – Geduld haben.
+          </div>
+
+          {/* Bitte warten Badge */}
+          {authBusy && (
+            <div
+              style={{
+                marginTop: 12,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 12px",
+                borderRadius: 20,
+                background: "#e8f0fe",
+                color: "#174ea6",
+                fontSize: 13,
+                fontWeight: 600,
+                border: "1px solid #c6dafc",
+              }}
+            >
+              ⏳ Bitte warten… Anfrage läuft
+            </div>
+          )}
+
+          {/* Fehler */}
           {authErr && (
             <div
               style={{
@@ -604,6 +642,7 @@ if (!token && page === "auth") {
             </div>
           )}
 
+          {/* Erfolg */}
           {authMsg && (
             <div
               style={{
@@ -627,18 +666,21 @@ if (!token && page === "auth") {
                   onChange={(e) => setFirstname(e.target.value)}
                   style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
                 />
+
                 <input
                   placeholder="Nachname"
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
                   style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
                 />
+
                 <input
                   placeholder="Organisation"
                   value={organization}
                   onChange={(e) => setOrganization(e.target.value)}
                   style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
                 />
+
                 <input
                   placeholder="Rufnummer"
                   value={phone}
@@ -671,7 +713,7 @@ if (!token && page === "auth") {
                 width: "100%",
                 borderRadius: 10,
                 border: "1px solid #ddd",
-                background: "#f2f2f2",
+                background: authBusy ? "#eee" : "#f2f2f2",
                 opacity: authBusy ? 0.6 : 1,
                 cursor: authBusy ? "not-allowed" : "pointer",
                 fontWeight: 600,
@@ -684,18 +726,18 @@ if (!token && page === "auth") {
                 : "Einloggen"}
             </button>
 
-            
-
             <button
               type="button"
               onClick={() => setPage("home")}
+              disabled={authBusy}
               style={{
                 padding: 12,
                 width: "100%",
                 borderRadius: 10,
                 border: "1px solid #ddd",
                 background: "#fff",
-                cursor: "pointer",
+                cursor: authBusy ? "not-allowed" : "pointer",
+                opacity: authBusy ? 0.6 : 1,
               }}
             >
               Zurück
