@@ -464,18 +464,24 @@ export default function App() {
       >
         <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: 980, margin: "0 auto", padding: 24 }}>
-            <div
-              style={{
-                fontSize: 46,
-                fontWeight: 600,
-                background: "linear-gradient(90deg, #111, #444)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                marginBottom: 10,
-              }}
-            >
-              SafeEnergyTool(™)
-            </div>
+            <div style={{ marginBottom: 12 }}>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "6px 16px",
+                  border: "2px solid #ccc",
+                  borderRadius: 12,
+                  background: "#fafafa",
+                  fontWeight: 900,
+                  letterSpacing: "0.6px",
+                  fontSize: 36,
+                }}
+              >
+                SafeEnergyTool
+                <sup style={{ fontSize: "0.5em", marginLeft: 2 }}>™</sup>
+              </span>
+              </div>
+
 
             {/* Neuer Contentblock */}
             <div
