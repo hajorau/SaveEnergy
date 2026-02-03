@@ -446,7 +446,7 @@ export default function App() {
                 marginBottom: 10,
               }}
             >
-              SaveEnergyTeam
+              SaveEnergyTool
             </div>
 
             {/* Neuer Contentblock */}
@@ -468,8 +468,7 @@ export default function App() {
 
                 <ul style={{ marginTop: 6, marginBottom: 14, paddingLeft: 18 }}>
                   <li>ob sich die Beschäftigung mit dem Thema für Ihr Haus lohnt?</li>
-                  <li>wie hoch in Ihrem Haus das jährliche finanzielle Einsparpotenzial für Ihre RLT-Anlage ist?</li>
-                  <li>ob Sie zur Zeit keine Mittel haben, um in Ihre Anlagen zu investieren?</li>
+                  <li>wie hoch in Ihrem Haus das mögliche jährliche finanzielle Einsparpotenzial für Ihre RLT-Anlage ist?</li>
                 </ul>
 
                 <p style={{ marginTop: 0 }}>
@@ -611,141 +610,192 @@ export default function App() {
     );
   }
 
-  // 3) Auth (Login/Registrierung)
-  if (!token && page === "auth") {
-    return (
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
-        }}
-      >
-        <div style={{ flex: 1 }}>
-          <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
-            <h1 style={{ marginBottom: 6 }}>
-              {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
-            </h1>
+/ 3) Auth (Login/Registrierung)
+if (!token && page === "auth") {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      <div style={{ flex: 1 }}>
+        <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+          <h1 style={{ marginBottom: 6 }}>
+            {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
+          </h1>
 
-            <p style={{ marginTop: 0, opacity: 0.85, lineHeight: 1.45 }}>
-              {mode === "register"
-                ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
-                : "Melde dich mit deiner E-Mail und deinem Passwort an."}
-            </p>
+          {/* Erklärung */}
+          <p style={{ marginTop: 0, opacity: 0.8, lineHeight: 1.5 }}>
+            {mode === "register"
+              ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+              : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+          </p>
 
-            <WaitBadge />
+          {/* Warnbox */}
+          <div
+            style={{
+              marginTop: 12,
+              padding: "12px 14px",
+              borderRadius: 10,
+              background: "#fff3cd",
+              border: "1px solid #ffe69c",
+              color: "#664d03",
+              fontSize: 14,
+              lineHeight: 1.4,
+              fontWeight: 700,
+            }}
+          >
+            ⚠️ ACHTUNG: Das kann sehr lange dauern (teilweise mehrere Minuten).  
+            Bitte nicht abbrechen – Geduld haben.
+          </div>
 
-            {authErr && (
-              <div
-                style={{
-                  marginTop: 12,
-                  padding: 10,
-                  borderRadius: 8,
-                  background: "#ffe8e8",
-                  border: "1px solid #f5b5b5",
-                }}
-              >
-                {authErr}
-              </div>
-            )}
-
-            {authMsg && (
-              <div
-                style={{
-                  marginTop: 12,
-                  padding: 10,
-                  borderRadius: 8,
-                  background: "#e8fff0",
-                  border: "1px solid #9be3b3",
-                }}
-              >
-                {authMsg}
-              </div>
-            )}
-
-            <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
-              {mode === "register" && (
-                <>
-                  <input
-                    placeholder="Vorname"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
-                    style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd" }}
-                  />
-                  <input
-                    placeholder="Nachname"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                    style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd" }}
-                  />
-                  <input
-                    placeholder="Organisation"
-                    value={organization}
-                    onChange={(e) => setOrganization(e.target.value)}
-                    style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd" }}
-                  />
-                  <input
-                    placeholder="Rufnummer"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd" }}
-                  />
-                </>
-              )}
-
-              <input
-                placeholder="E-Mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd", background: "#fff7c7" }}
-              />
-
-              <input
-                placeholder="Passwort"
-                type="password"
-                value={pw}
-                onChange={(e) => setPw(e.target.value)}
-                style={{ padding: 10, borderRadius: 10, border: "1px solid #ddd", background: "#fff7c7" }}
-              />
-
-              <button
-                onClick={mode === "register" ? register : login}
-                disabled={authBusy}
-                style={{
-                  padding: 12,
-                  width: "100%",
-                  borderRadius: 12,
-                  border: "1px solid #ddd",
-                  background: "#f2f2f2",
-                  opacity: authBusy ? 0.6 : 1,
-                  cursor: authBusy ? "not-allowed" : "pointer",
-                  fontWeight: 800,
-                }}
-              >
-                {authBusy ? "Bitte warten…" : mode === "register" ? "Account erstellen" : "Einloggen"}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPage("home")}
-                style={{
-                  padding: 12,
-                  width: "100%",
-                  borderRadius: 12,
-                  border: "1px solid #ddd",
-                  background: "#fff",
-                  cursor: "pointer",
-                }}
-              >
-                Zurück
-              </button>
+          {/* Bitte warten Badge */}
+          {authBusy && (
+            <div
+              style={{
+                marginTop: 12,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 12px",
+                borderRadius: 20,
+                background: "#e8f0fe",
+                color: "#174ea6",
+                fontSize: 13,
+                fontWeight: 600,
+                border: "1px solid #c6dafc",
+              }}
+            >
+              ⏳ Bitte warten… Anfrage läuft
             </div>
+          )}
+
+          {/* Fehler */}
+          {authErr && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#ffe8e8",
+                border: "1px solid #f5b5b5",
+              }}
+            >
+              {authErr}
+            </div>
+          )}
+
+          {/* Erfolg */}
+          {authMsg && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 8,
+                background: "#e8fff0",
+                border: "1px solid #9be3b3",
+              }}
+            >
+              {authMsg}
+            </div>
+          )}
+
+          <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
+            {mode === "register" && (
+              <>
+                <input
+                  placeholder="Vorname"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+
+                <input
+                  placeholder="Nachname"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+
+                <input
+                  placeholder="Organisation"
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+
+                <input
+                  placeholder="Rufnummer"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+                />
+              </>
+            )}
+
+            <input
+              placeholder="E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <input
+              placeholder="Passwort"
+              type="password"
+              value={pw}
+              onChange={(e) => setPw(e.target.value)}
+              style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
+            />
+
+            <button
+              onClick={mode === "register" ? register : login}
+              disabled={authBusy}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: authBusy ? "#eee" : "#f2f2f2",
+                opacity: authBusy ? 0.6 : 1,
+                cursor: authBusy ? "not-allowed" : "pointer",
+                fontWeight: 600,
+              }}
+            >
+              {authBusy
+                ? "Bitte warten…"
+                : mode === "register"
+                ? "Account erstellen"
+                : "Einloggen"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPage("home")}
+              disabled={authBusy}
+              style={{
+                padding: 12,
+                width: "100%",
+                borderRadius: 10,
+                border: "1px solid #ddd",
+                background: "#fff",
+                cursor: authBusy ? "not-allowed" : "pointer",
+                opacity: authBusy ? 0.6 : 1,
+              }}
+            >
+              Zurück
+            </button>
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   // 4) Nicht eingeloggt → zurück zu Home
   if (!token) {
