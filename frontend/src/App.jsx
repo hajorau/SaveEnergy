@@ -350,12 +350,21 @@ export default function App() {
               haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
             </p>
 
-            <h3>Urheberrecht</h3>
-            <p style={{ lineHeight: 1.6 }}>
-              Die durch die Betreiber erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Jede
-              Verwertung außerhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung der jeweiligen
-              Autoren.
-            </p>
+            <h3>Urheberrecht / Nutzungsbedingungen</h3>
+<p style={{ lineHeight: 1.6 }}>
+  Die auf dieser Website veröffentlichten Inhalte (Texte, Grafiken, Layout, Logos sowie das Berechnungstool)
+  unterliegen dem deutschen Urheberrecht. Jede Verwertung außerhalb der Grenzen des Urheberrechts
+  bedarf der vorherigen schriftlichen Zustimmung der Verantwortlichen.
+</p>
+<p style={{ lineHeight: 1.6 }}>
+  Insbesondere ist die Vervielfältigung, Bearbeitung, Übersetzung, Speicherung, Verbreitung sowie jede
+  Art der gewerblichen Nutzung – auch auszugsweise – ohne ausdrückliche Genehmigung untersagt.
+</p>
+<p style={{ lineHeight: 1.6 }}>
+  Wir bitten darum, beim Setzen von Links auf diese Website keine Inhalte in Frames einzubinden
+  und die Quelle eindeutig kenntlich zu machen.
+</p>
+
 
             <hr style={{ margin: "30px 0" }} />
 
