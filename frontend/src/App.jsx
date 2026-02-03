@@ -816,7 +816,7 @@ if (!token && page === "auth") {
     >
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
-          <h2>SaveEnergy – Berechnung & Speicherung - SaveEnergyTeam</h2>
+          <h2>SaveEnergyTool – Berechnung & Speicherung - SaveEnergyTeam</h2>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "start" }}>
             <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
@@ -843,7 +843,7 @@ if (!token && page === "auth") {
               <Field label="Volumenstrom Zu-/Abluft (V̇)" unit="m³/h" value={vdot} onChange={setVdot} />
               <Field label="Strompreis" unit="€/kWh" value={strompreis} onChange={setStrompreis} step="0.01" />
               <Field label="Wärmepreis" unit="€/kWh" value={waermepreis} onChange={setWaermepreis} step="0.01" />
-              <Field label="Zeitreduktion pro Tag" unit="h/d" value={zeit} onChange={setZeit} step="0.1" />
+              <Field label="Laufzeitreduktion in Stunden pro Tag" unit="h/d" value={zeit} onChange={setZeit} step="0.1" />
               <Field label="Betriebstage pro Jahr" unit="d/a" value={tage} onChange={setTage} step="1" />
 
               <div style={{ marginTop: 10, padding: 10, border: "1px solid #eee", borderRadius: 10, background: "#fafafa" }}>
