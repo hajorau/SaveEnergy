@@ -454,8 +454,8 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
         outputs = json.loads(r["outputs_json"])
         writer.writerow([
             r["id"], r["created_at"],
+            inputs.get("raum_anlage"),
             inputs.get("wrg_vorhanden"),
-            inputs.get("vdot_m3h"),
             inputs.get("vdot_m3h"),
             inputs.get("strompreis_eur_kwh"),
             inputs.get("waermepreis_eur_kwh"),
