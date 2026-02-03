@@ -351,19 +351,37 @@ export default function App() {
             </p>
 
             <h3>Urheberrecht / Nutzungsbedingungen</h3>
-<p style={{ lineHeight: 1.6 }}>
-  Die auf dieser Website veröffentlichten Inhalte (Texte, Grafiken, Layout, Logos sowie das Berechnungstool)
-  unterliegen dem deutschen Urheberrecht. Jede Verwertung außerhalb der Grenzen des Urheberrechts
-  bedarf der vorherigen schriftlichen Zustimmung der Verantwortlichen.
-</p>
-<p style={{ lineHeight: 1.6 }}>
-  Insbesondere ist die Vervielfältigung, Bearbeitung, Übersetzung, Speicherung, Verbreitung sowie jede
-  Art der gewerblichen Nutzung – auch auszugsweise – ohne ausdrückliche Genehmigung untersagt.
-</p>
-<p style={{ lineHeight: 1.6 }}>
-  Wir bitten darum, beim Setzen von Links auf diese Website keine Inhalte in Frames einzubinden
-  und die Quelle eindeutig kenntlich zu machen.
-</p>
+          <p style={{ lineHeight: 1.6 }}>
+            Die durch die Betreiber erstellten Inhalte, Texte, Grafiken, Berechnungsmodelle,
+            Softwarebestandteile und Auswertungen dieser Anwendung unterliegen dem
+            deutschen und europäischen Urheberrecht. Jede Verwertung außerhalb der Grenzen des Urheberrechts
+            bedarf der vorherigen schriftlichen Zustimmung der Verantwortlichen.
+          </p>
+          <p style={{ lineHeight: 1.6 }}>
+           Jede Vervielfältigung, Verbreitung, öffentliche Wiedergabe, Weitergabe an Dritte,
+            Speicherung, Bearbeitung oder sonstige Verwendung – auch auszugsweise –
+            ist ohne vorherige schriftliche Zustimmung des SaveEnergyTeam untersagt.
+          </p>
+           <p style={{ lineHeight: 1.6 }}>
+              Dies gilt insbesondere für die Nutzung zu kommerziellen Zwecken,
+              für Beratungsleistungen, für Schulungen sowie für externe Veröffentlichungen.
+          </p>
+            <p style={{ lineHeight: 1.6 }}>
+            Wir bitten darum, beim Setzen von Links auf diese Website keine Inhalte in Frames einzubinden
+            und die Quelle eindeutig kenntlich zu machen.
+          </p>
+
+            <h3>Hinweis zu Beratung und Gutachten</h3>
+
+            <p style={{ lineHeight: 1.6 }}>
+              Die durch dieses Tool erzeugten Berechnungen, Auswertungen und Empfehlungen
+              dienen ausschließlich als unverbindliche Orientierungshilfe.
+            </p>
+
+            <p style={{ lineHeight: 1.6 }}>
+              Eine Weitergabe, kommerzielle Nutzung oder Verwendung im Rahmen externer
+              Beratungsleistungen ist ohne schriftliche Genehmigung nicht gestattet.
+            </p>
 
 
             <hr style={{ margin: "30px 0" }} />
