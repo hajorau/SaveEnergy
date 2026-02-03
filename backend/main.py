@@ -10,7 +10,6 @@ import io
 import csv
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
 
 
 import psycopg
@@ -19,30 +18,6 @@ from psycopg.rows import dict_row
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, conint, confloat
-
-
-def draw_pdf_footer(c, width, height):
-    # Positionen (A4, Koordinaten in Punkten)
-    x_left = 50
-    y1 = 28   # 1. Zeile
-    y2 = 16   # 2. Zeile
-    y3 = 4    # 3. Zeile (ganz unten, aber noch sichtbar)
-
-    c.saveState()
-    c.setFont("Helvetica", 8)
-    c.setFillColorRGB(0.35, 0.35, 0.35)  # dezentes Grau
-
-    line1 = "© SaveEnergyTeam – SafeEnergyTool™ | Alle Rechte vorbehalten"
-    line2 = ("Diese Auswertung ist urheberrechtlich geschützt. Weitergabe, Vervielfältigung "
-             "und kommerzielle Nutzung ohne schriftliche Zustimmung sind untersagt.")
-    line3 = "Nicht zur Verwendung für externe Beratung, Gutachten oder Veröffentlichungen bestimmt."
-
-    c.drawString(x_left, y1, line1)
-    c.drawString(x_left, y2, line2)
-    c.drawString(x_left, y3, line3)
-
-    c.restoreState()
-
 
 
 # ----------------------------
@@ -391,7 +366,6 @@ def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
 from fastapi.responses import StreamingResponse
 
 @app.get("/calc/{calc_id}/export/pdf")
-
 def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     row = get_calc_for_user(calc_id, uid)
     inputs = json.loads(row["inputs_json"])
@@ -403,7 +377,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
 
     y = height - 60
     c.setFont("Helvetica-Bold", 16)
-    c.drawString(50, y, "SaveEnergyTool – Berechnungsbericht")
+    c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
     y -= 25
 
     c.setFont("Helvetica", 10)
@@ -442,8 +416,6 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         c.drawString(60, y, line)
         y -= 16
 
-    draw_pdf_footer(c, width, height)
-    
     c.showPage()
     c.save()
 
