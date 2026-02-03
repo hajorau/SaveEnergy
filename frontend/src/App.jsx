@@ -426,7 +426,7 @@ export default function App() {
         </div>
 
         <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
-          SafeEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
+          SaveEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
         </footer>
       </div>
     );
@@ -455,7 +455,7 @@ export default function App() {
                 marginBottom: 10,
               }}
             >
-              SafeEnergyTool™
+              SaveEnergyTool™
             </div>
 
             {/* Neuer Contentblock */}
@@ -614,7 +614,7 @@ export default function App() {
         </div>
 
         <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
-          SafeEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
+          SaveEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
         </footer>
       </div>
     );
@@ -1021,7 +1021,7 @@ if (!token && page === "auth") {
       </div>
 
       <footer style={{ padding: "12px 0", textAlign: "center", fontSize: 12, color: "#666", borderTop: "1px solid #eee" }}>
-        SafeEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
+        SaveEnergyTool™ ist eine Bezeichnung des SaveEnergyTeam. Alle Rechte vorbehalten.
       </footer>
     </div>
   );
