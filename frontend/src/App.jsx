@@ -455,7 +455,7 @@ export default function App() {
                 marginBottom: 10,
               }}
             >
-              .               SaveEnergyTool
+              SaveEnergyTool(™)
             </div>
 
             {/* Neuer Contentblock */}
