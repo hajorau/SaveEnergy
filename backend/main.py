@@ -428,7 +428,6 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     )
 
 
-
 @app.get("/calc/export/csv")
 def export_calc_csv(uid: int = Depends(get_current_user)):
     with get_conn() as con:
@@ -440,32 +439,53 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
             rows = cur.fetchall()
 
     output = io.StringIO()
-    writer = csv.writer(output, delimiter=";")
+    writer = csv.writer(output, delimiter=";", lineterminator="\n")
 
-    writer.writerow([
+    header = [
         "id", "created_at",
         "raum_anlage", "wrg_vorhanden",
         "vdot_m3h", "strompreis_eur_kwh", "waermepreis_eur_kwh", "zeitreduktion_h_d", "betriebstage_d_a",
         "waerme_kwh_a", "strom_kwh_a", "euro_a", "co2_t"
-    ])
+    ]
+    writer.writerow(header)
 
     for r in rows:
-        inputs = json.loads(r["inputs_json"])
-        outputs = json.loads(r["outputs_json"])
-        writer.writerow([
+        inputs = r["inputs_json"]
+        if isinstance(inputs, str):
+            inputs = json.loads(inputs)
+
+        outputs = r["outputs_json"]
+        if isinstance(outputs, str):
+            outputs = json.loads(outputs)
+
+        # Fallback für alte Datensätze / andere Keys
+        raum = (
+            inputs.get("raum_anlage")
+            or inputs.get("raumAnlage")
+            or inputs.get("raum_anlage_bezeichnung")
+            or ""
+        )
+
+        row = [
             r["id"], r["created_at"],
-            inputs.get("raum_anlage"),
-            inputs.get("wrg_vorhanden"),
-            inputs.get("vdot_m3h"),
-            inputs.get("strompreis_eur_kwh"),
-            inputs.get("waermepreis_eur_kwh"),
-            inputs.get("zeitreduktion_h_d"),
-            inputs.get("betriebstage_d_a"),
-            outputs.get("waerme_kwh_a"),
-            outputs.get("strom_kwh_a"),
-            outputs.get("euro_a"),
-            outputs.get("co2_t"),
-        ])
+            raum,
+            inputs.get("wrg_vorhanden", ""),
+            inputs.get("vdot_m3h", ""),
+            inputs.get("strompreis_eur_kwh", ""),
+            inputs.get("waermepreis_eur_kwh", ""),
+            inputs.get("zeitreduktion_h_d", ""),
+            inputs.get("betriebstage_d_a", ""),
+            outputs.get("waerme_kwh_a", ""),
+            outputs.get("strom_kwh_a", ""),
+            outputs.get("euro_a", ""),
+            outputs.get("co2_t", ""),
+        ]
+
+        # Sicherheitsnetz: gleiche Spaltenanzahl wie Header
+        if len(row) != len(header):
+            raise RuntimeError(f"CSV row length mismatch: {len(row)} vs {len(header)}")
+
+        writer.writerow(row)
 
     data = output.getvalue().encode("utf-8")
     filename = "saveenergy_calcs.csv"
