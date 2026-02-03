@@ -448,7 +448,7 @@ export default function App() {
             <div
               style={{
                 fontSize: 46,
-                fontWeight: 800,
+                fontWeight: 600,
                 background: "linear-gradient(90deg, #111, #444)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
