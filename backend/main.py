@@ -10,6 +10,7 @@ import io
 import csv
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
 
 
 import psycopg
@@ -366,6 +367,28 @@ def get_calc_for_user(calc_id: int, uid: int) -> Dict[str, Any]:
 from fastapi.responses import StreamingResponse
 
 @app.get("/calc/{calc_id}/export/pdf")
+
+def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
+    row = get_calc_for_user(calc_id, uid)
+    inputs = json.loads(row["inputs_json"])
+    outputs = json.loads(row["outputs_json"])
+
+    buffer = io.BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+
+    # >>> OPTIONAL: Wasserzeichen/Schutz direkt am Anfang zeichnen
+    draw_pdf_protection(c, width, height, watermark=True)
+
+    y = height - 60
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
+    y -= 25
+
+    c.setFont("Helvetica", 10)
+    c.drawString(50, y, f"ID: {row['id']}   Datum: {row['created_at']}")
+    y -= 30
+
 def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     row = get_calc_for_user(calc_id, uid)
     inputs = json.loads(row["inputs_json"])
@@ -377,7 +400,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
 
     y = height - 60
     c.setFont("Helvetica-Bold", 16)
-    c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
+    c.drawString(50, y, "SaveEnergyTool – Berechnungsbericht")
     y -= 25
 
     c.setFont("Helvetica", 10)
@@ -416,6 +439,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         c.drawString(60, y, line)
         y -= 16
 
+        
     c.showPage()
     c.save()
 
