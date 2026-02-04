@@ -311,8 +311,17 @@ def login(data: LoginIn):
 def create_calc(inp: CalcIn, uid: int = Depends(get_current_user)):
     out = compute(inp)
 
+    # Organisation aus users-Tabelle holen
     with get_conn() as con:
         with con.cursor() as cur:
+            cur.execute("SELECT organization FROM users WHERE id=%s", (uid,))
+            u = cur.fetchone()
+            org = (u.get("organization") if u else "") or ""
+
+            # Inputs als dict und Organisation ergänzen
+            inputs_dict = inp.model_dump()
+            inputs_dict["organization"] = org
+
             cur.execute(
                 """
                 INSERT INTO calculations(user_id,created_at,inputs_json,outputs_json)
@@ -321,13 +330,14 @@ def create_calc(inp: CalcIn, uid: int = Depends(get_current_user)):
                 (
                     uid,
                     datetime.utcnow().isoformat(),
-                    inp.model_dump_json(),
+                    json.dumps(inputs_dict, ensure_ascii=False),
                     out.model_dump_json(),
                 ),
             )
         con.commit()
 
     return out
+
 
 
 @app.get("/calc", response_model=List[CalcRecord])
