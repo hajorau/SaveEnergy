@@ -654,7 +654,7 @@ if (!token && page === "auth") {
         <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
             <Brand size={42} showTeam centered />
           <h1 style={{ marginBottom: 6 }}>
-            {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
+            {mode === "register" ? " Account erstellen" : " Einloggen"}
           </h1>
 
           {/* Erklärung */}
@@ -844,7 +844,7 @@ if (!token && page === "auth") {
     >
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 1100, margin: "20px auto", padding: 20 }}>
-          <h2>SaveEnergyTool – Berechnung & Speicherung - SaveEnergyTeam</h2>
+           <Brand size={42} showTeam centered />
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "start" }}>
             <div style={{ padding: 16, border: "1px solid #ddd", borderRadius: 12 }}>
