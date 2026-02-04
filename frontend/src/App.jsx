@@ -300,6 +300,7 @@ export default function App() {
       >
         <div style={{ flex: 1 }}>
           <div style={{ maxWidth: 900, margin: "30px auto", padding: 20 }}>
+              <Brand size={42} showTeam centered />
             <h2>Impressum</h2>
 
             <h3>Angaben gemäß § 5 TMG</h3>
