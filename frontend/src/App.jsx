@@ -573,9 +573,7 @@ export default function App() {
                 >
                   <button
                     type="button"
-                    onClick={() => {
-                       window.location.href = `${API}/public/leitfaden`;
-                    }}
+                    onClick={() => alert("https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf")}
                     style={{
                       padding: "10px 14px",
                       borderRadius: 12,
