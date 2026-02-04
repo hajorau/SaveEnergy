@@ -447,7 +447,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.setFont("Helvetica", 11)
 
     lines_in = [
-        f"Organisation: {inputs.get('organization') or ''}",
+        f"Organisation: {inputs.get('organisation') or ''}",
         f"Raum/Anlage: {inputs.get('raum_anlage') or ''}",
         f"Wärmerückgewinnung vorhanden: {'ja' if inputs.get('wrg_vorhanden') else 'nein'}",
         f"Volumenstrom: {inputs.get('vdot_m3h')} m³/h",
