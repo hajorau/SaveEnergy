@@ -573,7 +573,9 @@ export default function App() {
                 >
                   <button
                     type="button"
-                    onClick={downloadLeitfaden}
+                    onClick={() => {
+                       window.location.href = `${API}/public/leitfaden`;
+                    }}
                     style={{
                       padding: "10px 14px",
                       borderRadius: 12,
