@@ -392,33 +392,33 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     # =========================
 
     base_dir = Path(__file__).resolve().parent
-    badge_path = base_dir / "assets" / "badge.png"
+    Badge_path = base_dir / "assets" / "Badge.png"
 
     # Debug-Ausgabe (einmal testen, später entfernen)
     c.setFont("Helvetica", 7)
-    c.drawString(50, y, f"[Badge-Pfad] {badge_path}")
+    c.drawString(50, y, f"[Badge-Pfad] {Badge_path}")
     y -= 10
 
-    if badge_path.is_file():
-        badge = ImageReader(str(badge_path))
+    if Badge_path.is_file():
+        Badge = ImageReader(str(Badge_path))
 
-        badge_w = 180
-        badge_h = 26
+        Badge_w = 180
+        Badge_h = 26
 
         c.drawImage(
-            badge,
+            Badge,
             50,               # links
-            y - badge_h,      # unter aktuellem y
-            width=badge_w,
-            height=badge_h,
+            y - Badge_h,      # unter aktuellem y
+            width=Badge_w,
+            height=Badge_h,
             mask="auto"
         )
 
-        y -= (badge_h + 12)
+        y -= (Badge_h + 12)
 
     else:
         c.setFont("Helvetica-Bold", 8)
-        c.drawString(50, y, "⚠ BADGE NICHT GEFUNDEN")
+        c.drawString(50, y, "⚠ Badge NICHT GEFUNDEN")
         y -= 12
 
     
