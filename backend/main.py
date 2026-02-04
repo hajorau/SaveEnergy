@@ -10,8 +10,6 @@ import io
 import csv
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.utils import ImageReader
-import os
 
 from pathlib import Path
 from reportlab.lib.utils import ImageReader
