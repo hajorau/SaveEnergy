@@ -497,7 +497,7 @@ export default function App() {
                   <li>wie hoch in Ihrem Haus das mögliche jährliche finanzielle Einsparpotenzial für Ihre RLT-Anlage ist?</li>
                 </ul>
                 <p style={{ marginTop: 0 }}>
-                  Dann kann Ihnen das Tool des <b>SaveEnergyTeam</b> erste Hinweise geben.
+                  Dann kann Ihnen das Tool <b>SafeEnergyTool™</b> erste Hinweise geben.
                 </p>
 
                 <div
