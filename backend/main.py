@@ -192,6 +192,7 @@ class LoginIn(BaseModel):
 
 
 class CalcIn(BaseModel):    
+    organization: Optional[str] = Field(default=None, max_length=200)  # ✅ NEU
     raum_anlage: Optional[str] = Field(default=None, max_length=120)
     wrg_vorhanden: bool = False
 
