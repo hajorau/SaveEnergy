@@ -418,25 +418,42 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         c.drawString(60, y, line)
         y -= 16
 
+       # =========================
+    # Footer / Urheberrecht (Fixiert)
     # =========================
-    # Footer / Urheberrecht / Badge
-    # =========================
-    footer_y = 40
 
-    c.setStrokeColorRGB(0.8, 0.8, 0.8)
-    c.line(40, footer_y + 25, width - 40, footer_y + 25)
+    c.saveState()  # Canvas-Zustand sichern
 
-    c.setFont("Helvetica-Bold", 9)
-    c.setFillColorRGB(0.8, 0.2, 0.0)
-    c.drawString(50, footer_y + 10, "ACHTUNG: Dieses Dokument dient zur internen Orientierung.")
+    footer_y = 25  # Sehr nah am unteren Rand
+    center_x = width / 2
 
-    c.setFont("Helvetica", 8)
-    c.setFillColorRGB(0.3, 0.3, 0.3)
-    c.drawString(
-        50,
-        footer_y,
-        "© 2026 SaveEnergyTeam – Alle Rechte vorbehalten."
+    # Graue Linie
+    c.setStrokeColorRGB(0.7, 0.7, 0.7)
+    c.setLineWidth(0.5)
+    c.line(40, footer_y + 15, width - 40, footer_y + 15)
+
+    # Hinweis
+    c.setFont("Helvetica-Bold", 8)
+    c.setFillColorRGB(0.6, 0.0, 0.0)
+
+    c.drawCentredString(
+        center_x,
+        footer_y + 4,
+        "ACHTUNG: Dieses Dokument dient der internen Orientierung."
     )
+
+    # Copyright
+    c.setFont("Helvetica", 7)
+    c.setFillColorRGB(0.2, 0.2, 0.2)
+
+    c.drawCentredString(
+        center_x,
+        footer_y - 6,
+        "© 2026 SaveEnergyTeam – Alle Rechte vorbehalten"
+    )
+
+    c.restoreState()  # Zustand zurücksetzen
+
 
     c.setFillColorRGB(0, 0, 0)
 
