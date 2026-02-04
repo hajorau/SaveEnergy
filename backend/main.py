@@ -384,22 +384,20 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.drawString(50, y, "Berechnungsbericht")
     y -= 25
 
-
-   # ...
-
     # =========================
-    # Header-badge ganz oben (nicht verzerrt)
+    # Header-Badge ganz oben (nicht verzerrt)
     # =========================
-    badge_path = Path(__file__).resolve().parent / "assets" / "badge.png"  # oder badge.png
+    badge_path = Path(__file__).resolve().parent / "assets" / "Badge.png"  # <-- oder badge.png
 
     if badge_path.is_file():
         badge = ImageReader(str(badge_path))
-        iw, ih = badge.getSize()              # Originalgröße
-        target_h = 32                         # Zielhöhe in Punkten (probier 28–40)
-        target_w = (iw / ih) * target_h       # Breite proportional berechnen
+        iw, ih = badge.getSize()
 
-        x = 50                                # links bündig
-        y_top = height - 40                   # ganz oben (Abstand vom oberen Rand)
+        target_h = 32
+        target_w = (iw / ih) * target_h
+
+        x = 50
+        y_top = height - 35  # näher an den oberen Rand
 
         c.drawImage(
             badge,
@@ -407,16 +405,17 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
             y_top - target_h,
             width=target_w,
             height=target_h,
-            mask="auto"
+            mask="auto",
         )
 
-
-        y -= (badge_h + 12)
+        # Platz nach dem Badge, damit der Rest nicht drüber schreibt
+        y = min(y, y_top - target_h - 15)
 
     else:
         c.setFont("Helvetica-Bold", 8)
-        c.drawString(50, y, "⚠ BADGE NICHT GEFUNDEN")
+        c.drawString(50, y, "BADGE NICHT GEFUNDEN (Dateiname/Ort prüfen)")
         y -= 12
+
 
     
     
