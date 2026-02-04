@@ -217,6 +217,7 @@ export default function App() {
       return;
     }
     const payload = {
+      organization: organization.trim(),   // ✅ NEU
       raum_anlage: raumAnlage.trim(),
       wrg_vorhanden: wrgVorhanden,
       vdot_m3h: Number(vdot),
