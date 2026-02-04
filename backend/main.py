@@ -385,9 +385,10 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     y -= 25
 
     # =========================
-    # Header-Badge ganz oben (nicht verzerrt)
+    # Header-Badge (oben links, korrekt skaliert)
     # =========================
-    badge_path = Path(__file__).resolve().parent / "assets" / "Badge.png"  # <-- oder badge.png
+
+    badge_path = Path(__file__).resolve().parent / "assets" / "badge.png"
 
     if badge_path.is_file():
         badge = ImageReader(str(badge_path))
@@ -397,7 +398,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         target_w = (iw / ih) * target_h
 
         x = 50
-        y_top = height - 35  # näher an den oberen Rand
+        y_top = height - 35
 
         c.drawImage(
             badge,
@@ -408,8 +409,9 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
             mask="auto",
         )
 
-        # Platz nach dem Badge, damit der Rest nicht drüber schreibt
-        y = min(y, y_top - target_h - 15)
+        # Cursor unter das Badge setzen
+        y = y_top - target_h - 20
+
 
     else:
         c.setFont("Helvetica-Bold", 8)
