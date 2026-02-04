@@ -652,6 +652,7 @@ if (!token && page === "auth") {
     >
       <div style={{ flex: 1 }}>
         <div style={{ maxWidth: 520, margin: "60px auto", padding: 20 }}>
+            <Brand size={42} showTeam centered />
           <h1 style={{ marginBottom: 6 }}>
             {mode === "register" ? "1.Schritt : Account erstellen" : "2.Schritt : Einloggen"}
           </h1>
