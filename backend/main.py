@@ -388,35 +388,39 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     # Header-Badge (oben links, korrekt skaliert)
     # =========================
 
-    badge_path = Path(__file__).resolve().parent / "assets" / "badge.png"
+    base = Path(__file__).resolve()
+candidates = [
+    base.parent / "assets" / "badge.png",            # backend/assets/badge.png wenn main.py in backend/
+    base.parent.parent / "assets" / "badge.png",     # backend/assets/badge.png wenn main.py in backend/app/
+    base.parent.parent.parent / "assets" / "badge.png",
+]
 
-    if badge_path.is_file():
-        badge = ImageReader(str(badge_path))
-        iw, ih = badge.getSize()
+badge_path = next((p for p in candidates if p.is_file()), None)
 
-        target_h = 32
-        target_w = (iw / ih) * target_h
+   if badge_path:
+    badge = ImageReader(str(badge_path))
+    iw, ih = badge.getSize()
+    target_h = 32
+    target_w = (iw / ih) * target_h
 
-        x = 50
-        y_top = height - 35
+    x = 50
+    y_top = height - 35
 
-        c.drawImage(
-            badge,
-            x,
-            y_top - target_h,
-            width=target_w,
-            height=target_h,
-            mask="auto",
-        )
+    c.drawImage(
+        badge,
+        x,
+        y_top - target_h,
+        width=target_w,
+        height=target_h,
+        mask="auto",
+    )
 
-        # Cursor unter das Badge setzen
-        y = y_top - target_h - 20
-
-
-    else:
-        c.setFont("Helvetica-Bold", 8)
-        c.drawString(50, y, "BADGE NICHT GEFUNDEN (Dateiname/Ort prüfen)")
-        y -= 12
+    y = y_top - target_h - 20
+else:
+    # Nur temporär zum Testen – kannst du danach wieder entfernen:
+    c.setFont("Helvetica-Bold", 8)
+    c.drawString(50, y, "BADGE NICHT GEFUNDEN – Pfad-Suche fehlgeschlagen")
+    y -= 12
 
 
     
