@@ -385,32 +385,34 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     y -= 25
 
 
+    from pathlib import Path
+    from reportlab.lib.utils import ImageReader
+
+    # ...
+
     # =========================
-    # Header-Badge (aus backend/assets)
+    # Header-Badge ganz oben (nicht verzerrt)
     # =========================
+    badge_path = Path(__file__).resolve().parent / "assets" / "Badge.png"  # oder badge.png
 
-    base_dir = Path(__file__).resolve().parent
-    Badge_path = base_dir / "assets" / "Badge.png"
+    if badge_path.is_file():
+        badge = ImageReader(str(badge_path))
+        iw, ih = badge.getSize()              # Originalgröße
+        target_h = 32                         # Zielhöhe in Punkten (probier 28–40)
+        target_w = (iw / ih) * target_h       # Breite proportional berechnen
 
-    # Debug-Ausgabe (einmal testen, später entfernen)
-    c.setFont("Helvetica", 7)
-    c.drawString(50, y, f"[Badge-Pfad] {Badge_path}")
-    y -= 10
-
-    if Badge_path.is_file():
-        Badge = ImageReader(str(Badge_path))
-
-        Badge_w = 180
-        Badge_h = 26
+        x = 50                                # links bündig
+        y_top = height - 40                   # ganz oben (Abstand vom oberen Rand)
 
         c.drawImage(
-            Badge,
-            50,               # links
-            y - Badge_h,      # unter aktuellem y
-            width=Badge_w,
-            height=Badge_h,
+            badge,
+            x,
+            y_top - target_h,
+            width=target_w,
+            height=target_h,
             mask="auto"
         )
+
 
         y -= (Badge_h + 12)
 
