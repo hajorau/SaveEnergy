@@ -378,13 +378,12 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
     width, height = A4
-
     # =========================
-    # HEADER: Badge + Titel + Meta (sauber getrennt)
+    # HEADER (fixes Layout: Badge oben, Text darunter)
     # =========================
     left = 50
-    top_margin = 30
-    header_top = height - top_margin
+    right = 50
+    top = height - 30
 
     # Badge suchen (robust)
     base = Path(__file__).resolve()
@@ -395,51 +394,50 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     ]
     badge_path = next((p for p in candidates if p.is_file()), None)
 
-    # Badge zeichnen (größer, nicht verzerrt)
-    badge_drawn_h = 0
-    badge_max_w = 260          # max Breite, damit es nicht zu dominant wird
-    badge_target_h = 52        # größer
-
+    badge_h = 0
     if badge_path:
         badge = ImageReader(str(badge_path))
         iw, ih = badge.getSize()
 
-        badge_w = (iw / ih) * badge_target_h
-        badge_h = badge_target_h
+        target_h = 56          # größer
+        target_w = (iw / ih) * target_h
+        max_w = 280            # begrenzen, damit es nicht zu breit wird
 
-        # Begrenzen, damit es nicht zu breit wird
-        if badge_w > badge_max_w:
-            badge_w = badge_max_w
-            badge_h = badge_w * (ih / iw)
+        if target_w > max_w:
+            target_w = max_w
+            target_h = target_w * (ih / iw)
 
         c.drawImage(
             badge,
             left,
-            header_top - badge_h,
-            width=badge_w,
-            height=badge_h,
+            top - target_h,
+            width=target_w,
+            height=target_h,
             mask="auto",
         )
-        badge_drawn_h = badge_h
+        badge_h = target_h
 
-    # Titel + Meta IMMER unterhalb des Badges (kein Überlappen)
-    y = header_top - badge_drawn_h - 18
+    # Textblock STARTET IMMER UNTER dem Badge (kein Überlappen)
+    title_y = top - badge_h - 18
 
     c.setFillColorRGB(0, 0, 0)
     c.setFont("Helvetica-Bold", 18)
-    c.drawString(left, y, "Berechnungsbericht")
-    y -= 18
+    c.drawString(left, title_y, "Berechnungsbericht")
 
+    meta_y = title_y - 16
     c.setFont("Helvetica", 10)
     c.setFillColorRGB(0.25, 0.25, 0.25)
-    c.drawString(left, y, f"ID: {row['id']}   Datum: {row['created_at']}")
-    y -= 16
+    c.drawString(left, meta_y, f"ID: {row['id']}   Datum: {row['created_at']}")
 
     # Trennlinie
+    line_y = meta_y - 14
     c.setStrokeColorRGB(0.85, 0.85, 0.85)
     c.setLineWidth(1)
-    c.line(left, y, width - left, y)
-    y -= 22
+    c.line(left, line_y, width - right, line_y)
+
+    # Ab hier startet der normale Inhalt
+    y = line_y - 24
+    c.setFillColorRGB(0, 0, 0)
 
     # Ab hier startet dein normaler Inhalt
     c.setFillColorRGB(0, 0, 0)
