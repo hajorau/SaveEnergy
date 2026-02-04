@@ -488,8 +488,8 @@ export default function App() {
                 <h3 style={{ marginBottom: 6 }}>Wissenschaftliche Grundlage</h3>
                   <p style={{ marginTop: 0 }}>
                     Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig
-                    der Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
-                    Auf Nachfrage anläßlich einer Jahrestagung der Technischen Direktoren ist das folgende Tool entstanden.
+                    der DTHG-Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
+                    Auf Initative anläßlich einer Jahrestagung der Technischen Direktoren ist das vorliegende Berechnungs-Tool entstanden.
                   </p>
                 <ul style={{ marginTop: 6, marginBottom: 14, paddingLeft: 18 }}>
                   <li>ob sich die Beschäftigung mit dem Thema für Ihr Haus lohnt?</li>
@@ -529,7 +529,8 @@ export default function App() {
                     Im Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
                     <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten der Anlagen in den untersuchten Räumen immer länger waren, als es notwendig ist. 
                     Eine Laufzeitreduktion führt zur Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
-                    („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt.
+                    („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt. Danke an Christoph. Von ihm stammt die Anregung, die Berechnung allgemein zugänglich zu
+                    machen.
                   </p>
                 </div>
 
