@@ -388,6 +388,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.drawString(50, y, "Eingaben")
     y -= 18
     c.setFont("Helvetica", 11)
+
     lines_in = [
         f"Raum/Anlage: {inputs.get('raum_anlage') or ''}",
         f"Wärmerückgewinnung vorhanden: {'ja' if inputs.get('wrg_vorhanden') else 'nein'}",
@@ -406,6 +407,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.drawString(50, y, "Ergebnisse")
     y -= 18
     c.setFont("Helvetica", 11)
+
     lines_out = [
         f"Einsparung Wärme: {outputs.get('waerme_kwh_a')} kWh/a",
         f"Einsparung Strom: {outputs.get('strom_kwh_a')} kWh/a",
@@ -416,41 +418,28 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         c.drawString(60, y, line)
         y -= 16
 
-
-
-
-
     # =========================
-# Footer / Urheberrecht / Badge
-# =========================
+    # Footer / Urheberrecht / Badge
+    # =========================
+    footer_y = 40
 
-footer_y = 40
+    c.setStrokeColorRGB(0.8, 0.8, 0.8)
+    c.line(40, footer_y + 25, width - 40, footer_y + 25)
 
-c.setStrokeColorRGB(0.8, 0.8, 0.8)
-c.line(40, footer_y + 25, width - 40, footer_y + 25)
+    c.setFont("Helvetica-Bold", 9)
+    c.setFillColorRGB(0.8, 0.2, 0.0)
+    c.drawString(50, footer_y + 10, "ACHTUNG: Dieses Dokument dient zur internen Orientierung.")
 
-c.setFont("Helvetica-Bold", 9)
-c.setFillColorRGB(0.8, 0.2, 0.0)
-c.drawString(
-    50,
-    footer_y + 10,
-    "⚠️ Hinweis: Dieses Dokument dient nur zur internen Orientierung."
-)
+    c.setFont("Helvetica", 8)
+    c.setFillColorRGB(0.3, 0.3, 0.3)
+    c.drawString(
+        50,
+        footer_y,
+        "© 2026 SaveEnergyTeam – Alle Rechte vorbehalten."
+    )
 
-c.setFont("Helvetica", 8)
-c.setFillColorRGB(0.3, 0.3, 0.3)
-c.drawString(
-    50,
-    footer_y,
-    "© 2026 SaveEnergyTeam – Alle Rechte vorbehalten. Keine Weitergabe ohne Genehmigung."
-)
+    c.setFillColorRGB(0, 0, 0)
 
-c.setFillColorRGB(0, 0, 0)
-
-    
-    
-    
-    
     c.showPage()
     c.save()
 
