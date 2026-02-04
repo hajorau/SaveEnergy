@@ -529,7 +529,7 @@ export default function App() {
                     Im Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
                     <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten der Anlagen in den untersuchten Räumen immer länger waren, als es notwendig ist. 
                     Eine Laufzeitreduktion führt zur Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4
-                    („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt. Danke an Christoph. Von ihm stammt die Anregung, die Berechnung allgemein zugänglich zu
+                    („Ermittlung einer typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt. Danke an Christof Schaaf. Von ihm stammt die Anregung, die Berechnung allgemein zugänglich zu
                     machen.
                   </p>
                 </div>
