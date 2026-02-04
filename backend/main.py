@@ -400,11 +400,11 @@ badge_path = next((p for p in candidates if p.is_file()), None)
    if badge_path:
     badge = ImageReader(str(badge_path))
     iw, ih = badge.getSize()
-    target_h = 32
+    target_h = 48
     target_w = (iw / ih) * target_h
 
     x = 50
-    y_top = height - 35
+    y_top = height - 30
 
     c.drawImage(
         badge,
@@ -415,12 +415,7 @@ badge_path = next((p for p in candidates if p.is_file()), None)
         mask="auto",
     )
 
-    y = y_top - target_h - 20
-else:
-    # Nur temporär zum Testen – kannst du danach wieder entfernen:
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(50, y, "BADGE NICHT GEFUNDEN – Pfad-Suche fehlgeschlagen")
-    y -= 12
+    y = y_top - target_h - 30
 
 
     
