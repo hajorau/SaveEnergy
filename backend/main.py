@@ -379,9 +379,9 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c = canvas.Canvas(buffer, pagesize=A4)
     width, height = A4
 
-    y = height - 60
+    y = height - 85
     c.setFont("Helvetica-Bold", 16)
-    c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
+    c.drawString(50, y, "Berechnungsbericht")
     y -= 25
 
 
@@ -467,7 +467,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
 
     c.saveState()  # Canvas-Zustand sichern
 
-    footer_y = 25  # Sehr nah am unteren Rand
+    footer_y = 55  # nah am unteren Rand
     center_x = width / 2
 
     # Graue Linie
