@@ -385,10 +385,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     y -= 25
 
 
-    from pathlib import Path
-    from reportlab.lib.utils import ImageReader
-
-    # ...
+   # ...
 
     # =========================
     # Header-Badge ganz oben (nicht verzerrt)
