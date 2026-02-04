@@ -282,33 +282,6 @@ export default function App() {
     window.URL.revokeObjectURL(url);
   }
 
-  async function downloadLeitfaden() {
-  const url = "https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf";
-
-  try {
-    const r = await fetch(url, { method: "GET" });
-    if (!r.ok) {
-      alert("Download fehlgeschlagen");
-      return;
-    }
-
-    const blob = await r.blob();
-    const objectUrl = window.URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = objectUrl;
-    a.download = "DTHG_Energie_Leitfaden.pdf"; // gewünschter lokaler Dateiname
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    window.URL.revokeObjectURL(objectUrl);
-  } catch (e) {
-    alert("Netzwerkfehler beim Download");
-  }
-}
-
-
   
   // ===========================
   // ROUTING
