@@ -18,7 +18,10 @@ from psycopg.rows import dict_row
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, conint, confloat
+from fastapi import Response
+import requests
 
+LEITFADEN_URL = "https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf"
 
 # ----------------------------
 # App
@@ -495,7 +498,18 @@ def export_calc_csv(uid: int = Depends(get_current_user)):
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
+@app.get("/public/leitfaden")
+def download_leitfaden():
+    r = requests.get(LEITFADEN_URL, timeout=30)
+    r.raise_for_status()
 
+    return Response(
+        content=r.content,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": 'attachment; filename="DTHG_Energie_Leitfaden.pdf"',
+        },
+    )
 
 @app.post("/admin/reset-db")
 def reset_db(secret: str):
