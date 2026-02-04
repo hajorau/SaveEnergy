@@ -1,0 +1,19 @@
+from fastapi import Response
+import requests
+
+LEITFADEN_URL = "https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf"
+
+@app.get("/public/leitfaden")
+def public_leitfaden():
+    r = requests.get(LEITFADEN_URL, timeout=30)
+    r.raise_for_status()
+
+    return Response(
+        content=r.content,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": 'attachment; filename="DTHG_Energie_Leitfaden.pdf"',
+            # optional: caching
+            "Cache-Control": "public, max-age=3600",
+        },
+    )
