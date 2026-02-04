@@ -19,9 +19,6 @@ from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, conint, confloat
 from fastapi import Response
-import requests
-
-LEITFADEN_URL = "https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf"
 
 # ----------------------------
 # App
