@@ -388,9 +388,9 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
    # ...
 
     # =========================
-    # Header-Badge ganz oben (nicht verzerrt)
+    # Header-badge ganz oben (nicht verzerrt)
     # =========================
-    badge_path = Path(__file__).resolve().parent / "assets" / "Badge.png"  # oder badge.png
+    badge_path = Path(__file__).resolve().parent / "assets" / "badge.png"  # oder badge.png
 
     if badge_path.is_file():
         badge = ImageReader(str(badge_path))
@@ -411,11 +411,11 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
         )
 
 
-        y -= (Badge_h + 12)
+        y -= (badge_h + 12)
 
     else:
         c.setFont("Helvetica-Bold", 8)
-        c.drawString(50, y, "⚠ Badge NICHT GEFUNDEN")
+        c.drawString(50, y, "⚠ BADGE NICHT GEFUNDEN")
         y -= 12
 
     
