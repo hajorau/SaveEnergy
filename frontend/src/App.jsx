@@ -92,7 +92,9 @@ export default function App() {
   const [authBusy, setAuthBusy] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [organization, setOrganization] = useState("");
+  const [organization, setOrganization] = useState(
+  () => localStorage.getItem("organization") || ""
+);
   const [phone, setPhone] = useState("");
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
@@ -140,11 +142,19 @@ export default function App() {
       }
 
       setToken(j.token);
+      if (j.organization) {
+  localStorage.setItem("organization", j.organization);
+  setOrganization(j.organization);
+}
+
       setPage("app");
       setPw("");
       setAuthMsg("");
       setAuthErr("");
 
+      localStorage.setItem("organization", j.organization || "");
+
+      
       await loadHistory(j.token);
     } catch (e) {
       setAuthErr("Netzwerkfehler. Bitte später erneut versuchen.");
@@ -202,6 +212,7 @@ export default function App() {
       }
 
       setAuthMsg("Account erstellt ✅ Bitte jetzt einloggen.");
+      localStorage.setItem("organization", organization.trim());
       setMode("login");
       setPw("");
     } catch (e) {
