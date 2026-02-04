@@ -13,6 +13,10 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 import os
 
+from pathlib import Path
+from reportlab.lib.utils import ImageReader
+
+
 
 import psycopg
 from psycopg.rows import dict_row
@@ -383,33 +387,39 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     y -= 25
 
 
-        # =========================
-    # Frontend-Badge als Bild
+    # =========================
+    # Header-Badge (aus backend/assets)
     # =========================
 
-    badge_path = os.path.join(
-        os.path.dirname(__file__),
-        "assets",
-        "badge.png"
-    )
+    base_dir = Path(__file__).resolve().parent
+    badge_path = base_dir / "assets" / "badge.png"
 
-    if os.path.exists(badge_path):
-        badge = ImageReader(badge_path)
+    # Debug-Ausgabe (einmal testen, später entfernen)
+    c.setFont("Helvetica", 7)
+    c.drawString(50, y, f"[Badge-Pfad] {badge_path}")
+    y -= 10
 
-        badge_width = 180
-        badge_height = 24
+    if badge_path.is_file():
+        badge = ImageReader(str(badge_path))
+
+        badge_w = 180
+        badge_h = 26
 
         c.drawImage(
             badge,
-            50,                 # X
-            y - 10,             # Y
-            width=badge_width,
-            height=badge_height,
-            mask="auto",
-            preserveAspectRatio=True
+            50,               # links
+            y - badge_h,      # unter aktuellem y
+            width=badge_w,
+            height=badge_h,
+            mask="auto"
         )
 
-        y -= 35  # Platz unter dem Badge
+        y -= (badge_h + 12)
+
+    else:
+        c.setFont("Helvetica-Bold", 8)
+        c.drawString(50, y, "⚠ BADGE NICHT GEFUNDEN")
+        y -= 12
 
     
     
