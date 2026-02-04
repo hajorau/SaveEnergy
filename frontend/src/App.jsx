@@ -482,20 +482,20 @@ export default function App() {
               <h1 style={{ fontSize: 34, margin: 0, marginBottom: 8 }}>Energieeffizienz im Theaterbetrieb</h1>
 
               <div style={{ fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
-                <p style={{ marginTop: 0 }}>
-                  <b>Wollen Sie wissen:</b>
-                </p>
+               
                 <h3 style={{ marginBottom: 6 }}>Wissenschaftliche Grundlage</h3>
                   <p style={{ marginTop: 0 }}>
                     Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig
                     der DTHG-Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
                     Auf Initative anläßlich einer Jahrestagung der Technischen Direktoren ist das vorliegende Berechnungs-Tool entstanden.
                   </p>
+                 <p style={{ marginTop: 0 }}>
+                  <b>Wollen Sie wissen:</b>
+                </p>
                 <ul style={{ marginTop: 6, marginBottom: 14, paddingLeft: 18 }}>
                   <li>ob sich die Beschäftigung mit dem Thema für Ihr Haus lohnt?</li>
                   <li>wie hoch in Ihrem Haus das mögliche jährliche finanzielle Einsparpotenzial für Ihre RLT-Anlage ist?</li>
                 </ul>
-
                 <p style={{ marginTop: 0 }}>
                   Dann kann Ihnen das Tool des <b>SaveEnergyTeam</b> erste Hinweise geben.
                 </p>
