@@ -497,7 +497,7 @@ export default function App() {
 
               <div style={{ fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
                
-                <h3 style={{ marginBottom: 6 }}>Wissenschaftliche Grundlage</h3>
+                <h3 style={{ marginBottom: 6 }}>DTHG-Energie Studie</h3>
                   <p style={{ marginTop: 0 }}>
                     Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig
                     der DTHG-Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
