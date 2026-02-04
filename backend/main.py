@@ -10,6 +10,8 @@ import io
 import csv
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.lib.utils import ImageReader
+import os
 
 
 import psycopg
@@ -380,6 +382,37 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.drawString(50, y, "SaveEnergy – Berechnungsbericht")
     y -= 25
 
+
+        # =========================
+    # Frontend-Badge als Bild
+    # =========================
+
+    badge_path = os.path.join(
+        os.path.dirname(__file__),
+        "assets",
+        "badge.png"
+    )
+
+    if os.path.exists(badge_path):
+        badge = ImageReader(badge_path)
+
+        badge_width = 180
+        badge_height = 24
+
+        c.drawImage(
+            badge,
+            50,                 # X
+            y - 10,             # Y
+            width=badge_width,
+            height=badge_height,
+            mask="auto",
+            preserveAspectRatio=True
+        )
+
+        y -= 35  # Platz unter dem Badge
+
+    
+    
     c.setFont("Helvetica", 10)
     c.drawString(50, y, f"ID: {row['id']}   Datum: {row['created_at']}")
     y -= 30
