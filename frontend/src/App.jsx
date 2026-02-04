@@ -93,8 +93,8 @@ export default function App() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [organization, setOrganization] = useState(
-  () => localStorage.getItem("organization") || ""
-);
+    () => localStorage.getItem("organization") || ""
+  );
   const [phone, setPhone] = useState("");
   const [consentStorage, setConsentStorage] = useState(false);
   const [token, setToken] = useState("");
