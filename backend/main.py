@@ -511,7 +511,7 @@ def export_calc_pdf(calc_id: int, uid: int = Depends(get_current_user)):
     c.drawCentredString(
         center_x,
         footer_y + 4,
-        "ACHTUNG: Dieses Dokument dient der internen Orientierung."
+        "ACHTUNG: Die ermittelten Werte sind als Einschätzung zu verstehen."
     )
 
     # Copyright
