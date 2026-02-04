@@ -293,15 +293,18 @@ def login(data: LoginIn):
     with get_conn() as con:
         with con.cursor() as cur:
             cur.execute(
-                "SELECT id,password_hash FROM users WHERE email=%s",
-                (data.email.lower().strip(),),
+               "SELECT id,password_hash,organization FROM users WHERE email=%s",
+    (data.email.lower().strip(),),
             )
             row = cur.fetchone()
 
     if not row or row["password_hash"] != hash_password(data.password):
         raise HTTPException(401, "Login falsch")
 
-    return {"token": sign_token({"uid": row["id"]})}
+    return {
+    "token": sign_token({"uid": row["id"]}),
+    "organization": row.get("organization") or ""
+}
 
 
 @app.post("/calc", response_model=CalcOut)
