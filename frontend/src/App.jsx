@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+
 import Brand from "./components/Brand";
+useEffect(() => {
+  fetch(`${API}/health`).catch(()=>{});
+}, []);
 
 
 const API = import.meta.env.VITE_API_URL;
@@ -110,6 +115,11 @@ export default function App() {
   const [tage, setTage] = useState("300");
   const [out, setOut] = useState(null);
   const [history, setHistory] = useState([]);
+
+  // ✅ HIER: Backend aufwecken
+  useEffect(() => {
+    fetch(`${API}/health`).catch(() => {});
+  }, []);
 
   async function login() {
     setAuthErr("");
@@ -594,6 +604,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => {
+                  fetch(`${API}/health`).catch(()=>{});
                   setMode("login");
                   setPage("auth");
                 }}
