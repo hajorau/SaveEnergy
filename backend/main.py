@@ -255,14 +255,6 @@ def compute(inp: CalcIn) -> CalcOut:
 # ----------------------------
 # API
 # ----------------------------
-
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
-
-
 @app.post("/auth/register")
 def register(data: RegisterIn):
     try:
