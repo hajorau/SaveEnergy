@@ -501,7 +501,7 @@ export default function App() {
                   <p style={{ marginTop: 0 }}>
                     Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig
                     der DTHG-Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
-                    Auf Initative anläßlich einer Jahrestagung der Technischen Direktoren ist das vorliegende Berechnungs-Tool entstanden.
+                    Auf Initative anläßlich einer Jahrestagung der Technischen Führungskräfte von Theatern ist das vorliegende Berechnungs-Tool entstanden.
                   </p>
                  <p style={{ marginTop: 0 }}>
                   <b>Wollen Sie wissen:</b>
