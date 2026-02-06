@@ -420,6 +420,14 @@ export default function App() {
               <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum/Anlage, WRG), Ergebnisse und
               Zeitstempel – Speicherung nur nach Einwilligung.
             </p>
+            <p>
+              <strong>c) Weiterverarbeitung zu Analyse- und Planungszwecken:
+Die vom Nutzer eingegebenen Daten können zur Berechnung weiterer energetischer, technischer oder wirtschaftlicher Effekte (z. B. Effizienzanalysen, Prognosen, Vergleichsrechnungen) verarbeitet werden..
+            </p>
+            <p>
+              <strong>d) Verwendung zur Kommunikation mit Dritten:
+Sofern erforderlich und gesetzlich zulässig, können eingegebene Daten zur Kommunikation mit Behörden, öffentlichen Stellen, Fachverbänden oder Förderstellen verwendet werden.
+            </p>
 
             <h3>3. Zweck</h3>
             <ul>
