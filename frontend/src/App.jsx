@@ -456,12 +456,7 @@ export default function App() {
             <p>Technische und organisatorische Maßnahmen; Passwörter werden verschlüsselt gespeichert.</p>
 
 
-              <h3>8. Weiterverarbeitung und externe Nutzung
-Die vom Nutzer bereitgestellten Daten können für weiterführende Berechnungen, Analysen und Simulationen im Zusammenhang mit energetischen, technischen oder wirtschaftlichen Effekten verwendet werden.
-Soweit dies im Interesse des Nutzers erforderlich ist, können Daten zur Erstellung von Anträgen, Berichten oder Stellungnahmen gegenüber Behörden, Förderstellen oder Fachverbänden genutzt werden.
-Eine Weitergabe erfolgt nur mit Einwilligung des Nutzers oder auf gesetzlicher Grundlage.</p>
-
-              
+      
             <div style={{ marginTop: 25 }}>
               <button
                 type="button"
