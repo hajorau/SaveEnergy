@@ -319,6 +319,8 @@ export default function App() {
 
             <p>
               <strong>SaveEnergyTeam</strong>
+               <br />
+              Hans-Joachim Rau
               <br />
               Am Lohbachhang 13
               <br />
@@ -420,13 +422,25 @@ export default function App() {
               <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum/Anlage, WRG), Ergebnisse und
               Zeitstempel – Speicherung nur nach Einwilligung.
             </p>
+            <p>
+              <strong>c) Weiterverarbeitung zu Analyse- und Planungszwecken:
+              Die vom Nutzer eingegebenen Daten können zur Berechnung weiterer energetischer, technischer oder wirtschaftlicher Effekte (z. B. Effizienzanalysen, Prognosen, Vergleichsrechnungen) verarbeitet werden.
+            </p>
+            <p>
+              <strong>c)d) d) Verwendung zur Kommunikation mit Dritten:
+              Sofern erforderlich und gesetzlich zulässig, können eingegebene Daten zur Kommunikation mit Behörden, öffentlichen Stellen, Fachverbänden oder Förderstellen verwendet werden.
+            </p>
 
+              
             <h3>3. Zweck</h3>
             <ul>
               <li>Bereitstellung der Berechnungsfunktion</li>
               <li>Speicherung der Historie</li>
               <li>PDF- und CSV-Export</li>
               <li>Nutzerverwaltung / technischer Betrieb</li>
+              <li>Weiterführende Auswertungen und Effektsimulationen</li>
+              <li>Unterstützung bei behördlicher und verbandlicher Kommunikation</li>
+              <li>Erstellung von Berichten und Nachweisen</li>
             </ul>
 
             <h3>4. Rechtsgrundlagen</h3>
@@ -441,6 +455,13 @@ export default function App() {
             <h3>7. Datensicherheit</h3>
             <p>Technische und organisatorische Maßnahmen; Passwörter werden verschlüsselt gespeichert.</p>
 
+
+              <h3>8. Weiterverarbeitung und externe Nutzung
+Die vom Nutzer bereitgestellten Daten können für weiterführende Berechnungen, Analysen und Simulationen im Zusammenhang mit energetischen, technischen oder wirtschaftlichen Effekten verwendet werden.
+Soweit dies im Interesse des Nutzers erforderlich ist, können Daten zur Erstellung von Anträgen, Berichten oder Stellungnahmen gegenüber Behörden, Förderstellen oder Fachverbänden genutzt werden.
+Eine Weitergabe erfolgt nur mit Einwilligung des Nutzers oder auf gesetzlicher Grundlage.</p>
+
+              
             <div style={{ marginTop: 25 }}>
               <button
                 type="button"
