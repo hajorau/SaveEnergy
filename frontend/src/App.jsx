@@ -406,9 +406,9 @@ export default function App() {
 
             <h3>1. Verantwortlicher</h3>
             <p>
-              SaveEnergyTeam, Am Lohbachhang 13, 44269 Dortmund, Deutschland
+              SaveEnergyTeam, Hans-Joachim Rau, Am Lohbachhang 13, 44269 Dortmund, Deutschland
               <br />
-              E-Mail: hajo@me.com · Telefon: 0171 6576101
+              E-Mail: hajorau@me.com
             </p>
 
             <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
