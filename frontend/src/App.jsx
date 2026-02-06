@@ -342,9 +342,7 @@ export default function App() {
             <p>
               <strong>Kontakt:</strong>
               <br />
-              Telefon: 0171 6576101
-              <br />
-              E-Mail: hajo@me.com
+              E-Mail: hajorau@me.com
             </p>
 
             <p>
