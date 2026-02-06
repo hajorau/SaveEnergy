@@ -319,8 +319,6 @@ export default function App() {
 
             <p>
               <strong>SaveEnergyTeam</strong>
-               <br />
-              Hans-Joachim Rau
               <br />
               Am Lohbachhang 13
               <br />
@@ -342,9 +340,9 @@ export default function App() {
             <p>
               <strong>Kontakt:</strong>
               <br />
-           
+              Telefon: 0171 6576101
               <br />
-              E-Mail: hajorau@me.com
+              E-Mail: hajo@me.com
             </p>
 
             <p>
@@ -410,7 +408,7 @@ export default function App() {
             <p>
               SaveEnergyTeam, Am Lohbachhang 13, 44269 Dortmund, Deutschland
               <br />
-              E-Mail: hajorau@me.com
+              E-Mail: hajo@me.com · Telefon: 0171 6576101
             </p>
 
             <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
@@ -422,25 +420,13 @@ export default function App() {
               <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum/Anlage, WRG), Ergebnisse und
               Zeitstempel – Speicherung nur nach Einwilligung.
             </p>
-            <p>
-              <strong>c) Weiterverarbeitung zu Analyse- und Planungszwecken:
-              Die vom Nutzer eingegebenen Daten können zur Berechnung weiterer energetischer, technischer oder wirtschaftlicher Effekte (z. B. Effizienzanalysen, Prognosen, Vergleichsrechnungen) verarbeitet werden.
-            </p>
-            <p>
-              <strong>c)d) d) Verwendung zur Kommunikation mit Dritten:
-              Sofern erforderlich und gesetzlich zulässig, können eingegebene Daten zur Kommunikation mit Behörden, öffentlichen Stellen, Fachverbänden oder Förderstellen verwendet werden.
-            </p>
 
-              
             <h3>3. Zweck</h3>
             <ul>
               <li>Bereitstellung der Berechnungsfunktion</li>
               <li>Speicherung der Historie</li>
               <li>PDF- und CSV-Export</li>
               <li>Nutzerverwaltung / technischer Betrieb</li>
-              <li>Weiterführende Auswertungen und Effektsimulationen</li>
-              <li>Unterstützung bei behördlicher und verbandlicher Kommunikation</li>
-              <li>Erstellung von Berichten und Nachweisen</li>
             </ul>
 
             <h3>4. Rechtsgrundlagen</h3>
@@ -455,8 +441,6 @@ export default function App() {
             <h3>7. Datensicherheit</h3>
             <p>Technische und organisatorische Maßnahmen; Passwörter werden verschlüsselt gespeichert.</p>
 
-
-      
             <div style={{ marginTop: 25 }}>
               <button
                 type="button"
@@ -517,7 +501,7 @@ export default function App() {
                   <p style={{ marginTop: 0 }}>
                     Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig
                     der DTHG-Leitfaden „Energieeﬃzienz im Theaterbetrieb“ vorgestellt.
-                    Auf Initative anläßlich einer Jahrestagung der Technischen Führungskräfte von Theatern ist das vorliegende Berechnungs-Tool entstanden.
+                    Auf Initative anläßlich einer Jahrestagung der Technischen Direktoren ist das vorliegende Berechnungs-Tool entstanden.
                   </p>
                  <p style={{ marginTop: 0 }}>
                   <b>Wollen Sie wissen:</b>
