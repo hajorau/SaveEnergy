@@ -406,7 +406,7 @@ export default function App() {
 
 <h3>1. Verantwortlicher</h3>
 <p>
-  SaveEnergyTeam, Hans-Joachim Rau, Am Lohbachhang 13, 44269 Dortmund, Deutschland
+  SaveEnergyTeam, Hans-Joachim Rau, Rüdiger Külpmann, Achim Sell, Am Lohbachhang 13, 44269 Dortmund, Deutschland
   <br />
   E-Mail: hajorau@me.com
 </p>
