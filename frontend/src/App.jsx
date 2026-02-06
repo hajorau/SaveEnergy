@@ -340,9 +340,9 @@ export default function App() {
             <p>
               <strong>Kontakt:</strong>
               <br />
-              Telefon: 0171 6576101
+           
               <br />
-              E-Mail: hajo@me.com
+              E-Mail: hajorau@me.com
             </p>
 
             <p>
@@ -408,7 +408,7 @@ export default function App() {
             <p>
               SaveEnergyTeam, Am Lohbachhang 13, 44269 Dortmund, Deutschland
               <br />
-              E-Mail: hajo@me.com
+              E-Mail: hajorau@me.com
             </p>
 
             <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
