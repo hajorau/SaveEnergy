@@ -400,47 +400,142 @@ export default function App() {
             </p>
 
 
-            <hr style={{ margin: "30px 0" }} />
+<hr style={{ margin: "30px 0" }} />
 
-            <h2>Datenschutzerklärung (DSGVO)</h2>
+<h2>Datenschutzerklärung (DSGVO)</h2>
 
-            <h3>1. Verantwortlicher</h3>
-            <p>
-              SaveEnergyTeam, Hans-Joachim Rau, Am Lohbachhang 13, 44269 Dortmund, Deutschland
-              <br />
-              E-Mail: hajorau@me.com
-            </p>
+<h3>1. Verantwortlicher</h3>
+<p>
+  SaveEnergyTeam, Hans-Joachim Rau, Am Lohbachhang 13, 44269 Dortmund, Deutschland
+  <br />
+  E-Mail: hajorau@me.com
+</p>
 
-            <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
-            <p>
-              <strong>a) Bei der Registrierung:</strong> Vorname, Nachname, Organisation, Rufnummer, E-Mail, Passwort
-              (verschlüsselt).
-            </p>
-            <p>
-              <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum/Anlage, WRG), Ergebnisse und
-              Zeitstempel – Speicherung nur nach Einwilligung.
-            </p>
- 
+<h3>2. Erhebung, Verarbeitung und Weiterverwendung personenbezogener Daten</h3>
 
-            <h3>3. Zweck</h3>
-            <ul>
-              <li>Bereitstellung der Berechnungsfunktion</li>
-              <li>Speicherung der Historie</li>
-              <li>PDF- und CSV-Export</li>
-              <li>Nutzerverwaltung / technischer Betrieb</li>
-            </ul>
+<p>
+  <strong>a) Bei der Registrierung:</strong> Vorname, Nachname, Organisation, Rufnummer,
+  E-Mail-Adresse sowie Passwort (verschlüsselt gespeichert).
+</p>
 
-            <h3>4. Rechtsgrundlagen</h3>
-            <p>Art. 6 Abs. 1 lit. a (Einwilligung), b (Vertrag), f (berechtigtes Interesse).</p>
+<p>
+  <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum-/Anlagendaten,
+  WRG-Parameter), Berechnungsergebnisse, Projektinformationen und Zeitstempel.
+</p>
 
-            <h3>5. Speicherung und Löschung</h3>
-            <p>Daten werden nur solange gespeichert, wie dies für den Zweck erforderlich ist. Nutzer können Löschung verlangen.</p>
+<p>
+  <strong>c) Weiterverarbeitung zu Analyse- und Effektsimulationszwecken:</strong>
+  Die eingegebenen Daten und Berechnungsergebnisse können zur Durchführung weiterführender
+  technischer, energetischer, wirtschaftlicher und ökologischer Analysen, Prognosen,
+  Vergleichsrechnungen, Wirtschaftlichkeitsberechnungen sowie Energie- und
+  Emissionsbewertungen verarbeitet werden.
+</p>
 
-            <h3>6. Weitergabe</h3>
-            <p>Keine Weitergabe, außer gesetzliche Pflicht oder Hosting/Dienstleister für technischen Betrieb.</p>
+<p>
+  <strong>d) Nutzung zur Erstellung von Berichten und Dokumentationen:</strong>
+  Die Daten können zur Erstellung von Berichten, Auswertungen, Nachweisen,
+  Antragsunterlagen und technischen Dokumentationen in digitaler oder gedruckter Form
+  verwendet werden.
+</p>
 
-            <h3>7. Datensicherheit</h3>
-            <p>Technische und organisatorische Maßnahmen; Passwörter werden verschlüsselt gespeichert.</p>
+<p>
+  <strong>e) Nutzung zur Kommunikation mit Behörden, Förderstellen und Fachverbänden:</strong>
+  Sofern dies im Interesse des Nutzers erforderlich ist, können Daten und Auswertungen zur
+  Kommunikation mit Behörden, öffentlichen Stellen, Förderstellen, Kammern und
+  Fachverbänden herangezogen werden. Eine Übermittlung erfolgt ausschließlich auf Wunsch
+  des Nutzers, mit dessen Einwilligung oder auf gesetzlicher Grundlage. Eine automatische
+  Weiterleitung findet nicht statt.
+</p>
+
+<h3>3. Zweck der Datenverarbeitung</h3>
+
+<ul>
+  <li>Bereitstellung, Betrieb und Wartung der Anwendung</li>
+  <li>Durchführung technischer, energetischer und wirtschaftlicher Berechnungen</li>
+  <li>Speicherung und Verwaltung von Projekten und Berechnungshistorien</li>
+  <li>Erstellung von Auswertungen, Berichten und Nachweisen</li>
+  <li>Durchführung von Effektsimulationen und Prognosen</li>
+  <li>Unterstützung bei Förderanträgen und Verwaltungsverfahren</li>
+  <li>Kommunikation mit Behörden und Fachverbänden auf Nutzerveranlassung</li>
+  <li>Qualitätssicherung und Weiterentwicklung des Tools</li>
+  <li>Gewährleistung von IT-Sicherheit und Systemstabilität</li>
+</ul>
+
+<h3>4. Rechtsgrundlagen der Verarbeitung</h3>
+
+<p>
+  Die Verarbeitung personenbezogener Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a
+  DSGVO (Einwilligung), Art. 6 Abs. 1 lit. b DSGVO (Vertrag und vorvertragliche Maßnahmen),
+  Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung) sowie Art. 6 Abs. 1 lit. f DSGVO
+  (berechtigtes Interesse).
+</p>
+
+<p>
+  Das berechtigte Interesse besteht insbesondere im sicheren und wirtschaftlichen Betrieb
+  der Anwendung, der technischen Weiterentwicklung sowie der Qualitätssicherung.
+</p>
+
+<h3>5. Speicherdauer und Löschung</h3>
+
+<p>
+  Personenbezogene Daten werden nur so lange gespeichert, wie dies für die jeweiligen
+  Verarbeitungszwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.
+  Nach Wegfall des Zweckes oder Ablauf gesetzlicher Fristen werden die Daten gelöscht oder
+  anonymisiert.
+</p>
+
+<h3>6. Empfänger und Weitergabe von Daten</h3>
+
+<p>
+  Eine Weitergabe an Dritte erfolgt grundsätzlich nicht. Ausnahmen bestehen ausschließlich
+  in folgenden Fällen:
+</p>
+
+<ul>
+  <li>an technische Dienstleister (Hosting, Wartung, IT-Sicherheit) im Rahmen von Auftragsverarbeitung</li>
+  <li>bei gesetzlicher Verpflichtung gegenüber Behörden</li>
+  <li>bei ausdrücklicher Einwilligung des Nutzers</li>
+  <li>an Behörden, Förderstellen oder Fachverbände auf Nutzerveranlassung</li>
+</ul>
+
+<p>
+  Eine Datenübermittlung in Drittstaaten außerhalb der Europäischen Union findet nicht statt,
+  sofern nicht ausdrücklich anders angegeben.
+</p>
+
+<h3>7. Datensicherheit</h3>
+
+<p>
+  Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um personenbezogene
+  Daten gegen Verlust, Manipulation, unbefugten Zugriff und unberechtigte Offenlegung zu
+  schützen. Passwörter werden ausschließlich verschlüsselt gespeichert.
+</p>
+
+<h3>8. Rechte der betroffenen Personen</h3>
+
+<p>
+  Nutzer haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO),
+  Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO),
+  Datenübertragbarkeit (Art. 20 DSGVO) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO).
+</p>
+
+<p>
+  Erteilte Einwilligungen können jederzeit mit Wirkung für die Zukunft widerrufen werden.
+  Der Widerruf kann formfrei per E-Mail an hajorau@me.com erfolgen.
+</p>
+
+<p>
+  Zudem besteht ein Beschwerderecht bei einer zuständigen Datenschutzaufsichtsbehörde.
+</p>
+
+<h3>9. Automatisierte Entscheidungen und Profiling</h3>
+
+<p>
+  Eine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO findet nicht statt.
+  Profiling erfolgt ausschließlich in anonymisierter oder pseudonymisierter Form zu
+  statistischen und technischen Zwecken.
+</p>
+
 
             <div style={{ marginTop: 25 }}>
               <button
