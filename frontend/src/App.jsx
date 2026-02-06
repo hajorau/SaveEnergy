@@ -320,6 +320,8 @@ export default function App() {
             <p>
               <strong>SaveEnergyTeam</strong>
               <br />
+              Hans-Joachim Rau
+              <br />
               Am Lohbachhang 13
               <br />
               44269 Dortmund
