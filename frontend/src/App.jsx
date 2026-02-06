@@ -408,7 +408,7 @@ export default function App() {
             <p>
               SaveEnergyTeam, Am Lohbachhang 13, 44269 Dortmund, Deutschland
               <br />
-              E-Mail: hajo@me.com · Telefon: 0171 6576101
+              E-Mail: hajo@me.com
             </p>
 
             <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
