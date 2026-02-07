@@ -313,7 +313,95 @@ export default function App() {
             <Brand size={42} showTeam centered />
             <h2>Impressum</h2>
 
-            {/* ... Inhalt unverändert ... */}
+            <h3>Angaben gemäß § 5 TMG</h3>
+
+            <p>
+              <strong>SaveEnergyTeam</strong>
+              <br />
+              Hans-Joachim Rau
+              <br />
+              Am Lohbachhang 13
+              <br />
+              44269 Dortmund
+              <br />
+              Deutschland
+            </p>
+
+            <p>
+              <strong>Vertreten durch / Verantwortlich:</strong>
+              <br />
+              Hans-Joachim Rau
+              <br />
+              Rüdiger Külpmann
+              <br />
+              Achim Sell
+            </p>
+
+            <p>
+              <strong>Kontakt:</strong>
+              <br />
+              E-Mail: hajorau@me.com
+            </p>
+
+            <p>
+              <strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong>
+              <br />
+              Hans-Joachim Rau · Rüdiger Külpmann · Achim Sell
+              <br />
+              Am Lohbachhang 13, 44269 Dortmund
+            </p>
+
+            <h3>Haftung für Inhalte</h3>
+            <p style={{ lineHeight: 1.6 }}>
+              Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte nach den allgemeinen Gesetzen
+              verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte
+              fremde Informationen zu überwachen.
+            </p>
+
+            <h3>Haftung für Links</h3>
+            <p style={{ lineHeight: 1.6 }}>
+              Diese Anwendung enthält ggf. Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss
+              haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
+            </p>
+
+            <h3>Urheberrecht / Nutzungsbedingungen</h3>
+            <p style={{ lineHeight: 1.6 }}>
+              Die durch die Betreiber erstellten Inhalte, Texte, Grafiken, Berechnungsmodelle, Softwarebestandteile und
+              Auswertungen dieser Anwendung unterliegen dem deutschen und europäischen Urheberrecht. Jede Verwertung
+              außerhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung der
+              Verantwortlichen.
+            </p>
+            <p style={{ lineHeight: 1.6 }}>
+              Jede Vervielfältigung, Verbreitung, öffentliche Wiedergabe, Weitergabe an Dritte, Speicherung,
+              Bearbeitung oder sonstige Verwendung – auch auszugsweise – ist ohne vorherige schriftliche Zustimmung des
+              SaveEnergyTeam untersagt.
+            </p>
+            <p style={{ lineHeight: 1.6 }}>
+              Dies gilt insbesondere für die Nutzung zu kommerziellen Zwecken, für Beratungsleistungen, für Schulungen
+              sowie für externe Veröffentlichungen.
+            </p>
+            <p style={{ lineHeight: 1.6 }}>
+              Wir bitten darum, beim Setzen von Links auf diese Website keine Inhalte in Frames einzubinden und die
+              Quelle eindeutig kenntlich zu machen.
+            </p>
+
+            <h3>Hinweis zu Beratung und Gutachten</h3>
+
+            <p style={{ lineHeight: 1.6 }}>
+              Die durch dieses Tool erzeugten Berechnungen, Auswertungen und Empfehlungen dienen ausschließlich als
+              unverbindliche Orientierungshilfe.
+            </p>
+
+            <p style={{ lineHeight: 1.6 }}>
+              Eine Weitergabe, kommerzielle Nutzung oder Verwendung im Rahmen externer Beratungsleistungen ist ohne
+              schriftliche Genehmigung nicht gestattet.
+            </p>
+
+            <hr style={{ margin: "30px 0" }} />
+
+            <h2>Datenschutzerklärung (DSGVO)</h2>
+
+            {/* ... (Inhalt unverändert) ... */}
 
             <div style={{ marginTop: 25 }}>
               <button
@@ -437,47 +525,6 @@ export default function App() {
             {/* ... Hinweis/Warnbox/Status/Fehler/Erfolg unverändert ... */}
 
             <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
-              {/* ✅ Zustimmung jetzt als ERSTES Feld ganz oben (nur bei Registrierung) */}
-              {mode === "register" && (
-                <div
-                  style={{
-                    marginTop: 2,
-                    padding: 10,
-                    border: "1px solid #eee",
-                    borderRadius: 10,
-                    background: "#fafafa",
-                  }}
-                >
-                  <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
-                    <input
-                      type="checkbox"
-                      checked={consentStorage}
-                      onChange={(e) => setConsentStorage(e.target.checked)}
-                      style={{ marginTop: 2 }}
-                    />
-                    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                      Ich stimme zu, dass meine eingegebenen Daten und Berechnungsergebnisse zur Nutzung der App gespeichert werden
-                      (Historie/Export). Hinweis: Einwilligung gemäß DSGVO (Art. 6 Abs. 1 lit. a). Details siehe{" "}
-                      <button
-                        type="button"
-                        onClick={() => setPage("impressum")}
-                        style={{
-                          border: "none",
-                          background: "transparent",
-                          color: "#0b57d0",
-                          cursor: "pointer",
-                          padding: 0,
-                          textDecoration: "underline",
-                          fontSize: 13,
-                        }}
-                      >
-                        Impressum/Datenschutz
-                      </button>
-                    </span>
-                  </label>
-                </div>
-              )}
-
               {mode === "register" && (
                 <>
                   <input
@@ -524,6 +571,47 @@ export default function App() {
                 onChange={(e) => setPw(e.target.value)}
                 style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
               />
+
+              {/* ✅ Zustimmung jetzt DIREKT unter dem Passwortfeld */}
+              {mode === "register" && (
+                <div
+                  style={{
+                    marginTop: 2,
+                    padding: 10,
+                    border: "1px solid #eee",
+                    borderRadius: 10,
+                    background: "#fafafa",
+                  }}
+                >
+                  <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
+                    <input
+                      type="checkbox"
+                      checked={consentStorage}
+                      onChange={(e) => setConsentStorage(e.target.checked)}
+                      style={{ marginTop: 2 }}
+                    />
+                    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                      Ich stimme zu, dass meine eingegebenen Daten und Berechnungsergebnisse zur Nutzung der App gespeichert werden
+                      (Historie/Export). Hinweis: Einwilligung gemäß DSGVO (Art. 6 Abs. 1 lit. a). Details siehe{" "}
+                      <button
+                        type="button"
+                        onClick={() => setPage("impressum")}
+                        style={{
+                          border: "none",
+                          background: "transparent",
+                          color: "#0b57d0",
+                          cursor: "pointer",
+                          padding: 0,
+                          textDecoration: "underline",
+                          fontSize: 13,
+                        }}
+                      >
+                        Impressum/Datenschutz
+                      </button>
+                    </span>
+                  </label>
+                </div>
+              )}
 
               <button
                 onClick={mode === "register" ? register : login}
