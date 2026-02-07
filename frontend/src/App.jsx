@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Brand from "./components/Brand";
 
@@ -95,7 +94,7 @@ export default function App() {
   const [organization, setOrganization] = useState(() => localStorage.getItem("organization") || "");
   const [phone, setPhone] = useState("");
 
-  // ✅ DSGVO-Einwilligung wird bei der REGISTRIERUNG abgefragt
+  // ✅ DSGVO-Einwilligung wird jetzt bei der REGISTRIERUNG abgefragt (nicht mehr in der Berechnung)
   const [consentStorage, setConsentStorage] = useState(false);
 
   const [token, setToken] = useState("");
@@ -180,6 +179,7 @@ export default function App() {
       return;
     }
 
+    // ✅ Einwilligung MUSS bei Registrierung erteilt werden
     if (!consentStorage) {
       setAuthErr("Bitte stimme der Datenspeicherung (DSGVO) zu, um einen Account zu erstellen.");
       return;
@@ -228,8 +228,10 @@ export default function App() {
   }
 
   async function calculateAndSave() {
+    // ✅ DSGVO-Check wurde von hier entfernt (war vorher auf der Berechnungsseite)
+
     const payload = {
-      organization: organization.trim(),
+      organization: organization.trim(), // ✅ NEU
       raum_anlage: raumAnlage.trim(),
       wrg_vorhanden: wrgVorhanden,
       vdot_m3h: Number(vdot),
@@ -299,6 +301,7 @@ export default function App() {
   // ROUTING
   // ===========================
 
+  // 1) Impressum / DSGVO
   if (page === "impressum") {
     return (
       <div
@@ -402,7 +405,127 @@ export default function App() {
 
             <h2>Datenschutzerklärung (DSGVO)</h2>
 
-            {/* ... (Inhalt unverändert) ... */}
+            <h3>1. Verantwortlicher</h3>
+            <p>
+              SaveEnergyTeam, Hans-Joachim Rau, Rüdiger Külpmann, Achim Sell, Am Lohbachhang 13, 44269 Dortmund,
+              Deutschland
+              <br />
+              E-Mail: hajorau@me.com
+            </p>
+
+            <h3>2. Erhebung, Verarbeitung und Weiterverwendung personenbezogener Daten</h3>
+
+            <p>
+              <strong>a) Bei der Registrierung:</strong> Vorname, Nachname, Organisation, Rufnummer, E-Mail-Adresse
+              sowie Passwort (verschlüsselt gespeichert).
+            </p>
+
+            <p>
+              <strong>b) Bei der Nutzung:</strong> Eingabedaten zur Berechnung (z. B. Raum-/Anlagendaten,
+              WRG-Parameter), Berechnungsergebnisse, Projektinformationen und Zeitstempel.
+            </p>
+
+            <p>
+              <strong>c) Weiterverarbeitung zu Analyse- und Effektsimulationszwecken:</strong>
+              Die eingegebenen Daten und Berechnungsergebnisse können zur Durchführung weiterführender technischer,
+              energetischer, wirtschaftlicher und ökologischer Analysen, Prognosen, Vergleichsrechnungen,
+              Wirtschaftlichkeitsberechnungen sowie Energie- und Emissionsbewertungen verarbeitet werden.
+            </p>
+
+            <p>
+              <strong>d) Nutzung zur Erstellung von Berichten und Dokumentationen:</strong>
+              Die Daten können zur Erstellung von Berichten, Auswertungen, Nachweisen, Antragsunterlagen und
+              technischen Dokumentationen in digitaler oder gedruckter Form verwendet werden.
+            </p>
+
+            <p>
+              <strong>e) Nutzung zur Kommunikation mit Behörden, Förderstellen und Fachverbänden:</strong>
+              Sofern dies im Interesse des Nutzers erforderlich ist, können Daten und Auswertungen zur Kommunikation mit
+              Behörden, öffentlichen Stellen, Förderstellen, Kammern und Fachverbänden herangezogen werden. Eine
+              Übermittlung erfolgt ausschließlich auf Wunsch des Nutzers, mit dessen Einwilligung oder auf gesetzlicher
+              Grundlage. Eine automatische Weiterleitung findet nicht statt.
+            </p>
+
+            <h3>3. Zweck der Datenverarbeitung</h3>
+
+            <ul>
+              <li>Bereitstellung, Betrieb und Wartung der Anwendung</li>
+              <li>Durchführung technischer, energetischer und wirtschaftlicher Berechnungen</li>
+              <li>Speicherung und Verwaltung von Projekten und Berechnungshistorien</li>
+              <li>Erstellung von Auswertungen, Berichten und Nachweisen</li>
+              <li>Durchführung von Effektsimulationen und Prognosen</li>
+              <li>Unterstützung bei Förderanträgen und Verwaltungsverfahren</li>
+              <li>Kommunikation mit Behörden und Fachverbänden auf Nutzerveranlassung</li>
+              <li>Qualitätssicherung und Weiterentwicklung des Tools</li>
+              <li>Gewährleistung von IT-Sicherheit und Systemstabilität</li>
+            </ul>
+
+            <h3>4. Rechtsgrundlagen der Verarbeitung</h3>
+
+            <p>
+              Die Verarbeitung personenbezogener Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO
+              (Einwilligung), Art. 6 Abs. 1 lit. b DSGVO (Vertrag und vorvertragliche Maßnahmen), Art. 6 Abs. 1 lit. c
+              DSGVO (rechtliche Verpflichtung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+            </p>
+
+            <p>
+              Das berechtigte Interesse besteht insbesondere im sicheren und wirtschaftlichen Betrieb der Anwendung, der
+              technischen Weiterentwicklung sowie der Qualitätssicherung.
+            </p>
+
+            <h3>5. Speicherdauer und Löschung</h3>
+
+            <p>
+              Personenbezogene Daten werden nur so lange gespeichert, wie dies für die jeweiligen Verarbeitungszwecke
+              erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen. Nach Wegfall des Zweckes oder Ablauf
+              gesetzlicher Fristen werden die Daten gelöscht oder anonymisiert.
+            </p>
+
+            <h3>6. Empfänger und Weitergabe von Daten</h3>
+
+            <p>Eine Weitergabe an Dritte erfolgt grundsätzlich nicht. Ausnahmen bestehen ausschließlich in folgenden Fällen:</p>
+
+            <ul>
+              <li>an technische Dienstleister (Hosting, Wartung, IT-Sicherheit) im Rahmen von Auftragsverarbeitung</li>
+              <li>bei gesetzlicher Verpflichtung gegenüber Behörden</li>
+              <li>bei ausdrücklicher Einwilligung des Nutzers</li>
+              <li>an Behörden, Förderstellen oder Fachverbände auf Nutzerveranlassung</li>
+            </ul>
+
+            <p>
+              Eine Datenübermittlung in Drittstaaten außerhalb der Europäischen Union findet nicht statt, sofern nicht
+              ausdrücklich anders angegeben.
+            </p>
+
+            <h3>7. Datensicherheit</h3>
+
+            <p>
+              Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um personenbezogene Daten gegen
+              Verlust, Manipulation, unbefugten Zugriff und unberechtigte Offenlegung zu schützen. Passwörter werden
+              ausschließlich verschlüsselt gespeichert.
+            </p>
+
+            <h3>8. Rechte der betroffenen Personen</h3>
+
+            <p>
+              Nutzer haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung
+              (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO)
+              sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO).
+            </p>
+
+            <p>
+              Erteilte Einwilligungen können jederzeit mit Wirkung für die Zukunft widerrufen werden. Der Widerruf kann
+              formfrei per E-Mail an hajorau@me.com erfolgen.
+            </p>
+
+            <p>Zudem besteht ein Beschwerderecht bei einer zuständigen Datenschutzaufsichtsbehörde.</p>
+
+            <h3>9. Automatisierte Entscheidungen und Profiling</h3>
+
+            <p>
+              Eine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO findet nicht statt. Profiling erfolgt
+              ausschließlich in anonymisierter oder pseudonymisierter Form zu statistischen und technischen Zwecken.
+            </p>
 
             <div style={{ marginTop: 25 }}>
               <button
@@ -429,6 +552,7 @@ export default function App() {
     );
   }
 
+  // 2) Home (Startseite)
   if (page === "home") {
     return (
       <div
@@ -443,7 +567,112 @@ export default function App() {
           <div style={{ maxWidth: 980, margin: "0 auto", padding: 24 }}>
             <Brand size={42} showTeam centered />
 
-            {/* ... Home Content unverändert ... */}
+            {/* Neuer Contentblock */}
+            <div
+              style={{
+                marginTop: 8,
+                padding: 18,
+                border: "1px solid #eee",
+                borderRadius: 16,
+                background: "linear-gradient(180deg, #ffffff, #fafafa)",
+              }}
+            >
+              <h1 style={{ fontSize: 34, margin: 0, marginBottom: 8 }}>Energieeffizienz im Theaterbetrieb</h1>
+
+              <div style={{ fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+                <h3 style={{ marginBottom: 6 }}>DTHG-Energie Studie</h3>
+                <p style={{ marginTop: 0 }}>
+                  Am 8. Oktober 2025 wurde auf dem Symposium DTHG-Energie in Leipzig der DTHG-Leitfaden
+                  „Energieeﬃzienz im Theaterbetrieb“ vorgestellt. Auf Initative anläßlich einer Jahrestagung der
+                  Technischen Direktoren ist das vorliegende Berechnungs-Tool entstanden.
+                </p>
+                <p style={{ marginTop: 0 }}>
+                  <b>Wollen Sie wissen:</b>
+                </p>
+                <ul style={{ marginTop: 6, marginBottom: 14, paddingLeft: 18 }}>
+                  <li>ob sich die Beschäftigung mit dem Thema für Ihr Haus lohnt?</li>
+                  <li>wie hoch in Ihrem Haus das mögliche jährliche finanzielle Einsparpotenzial für Ihre RLT-Anlage ist?</li>
+                </ul>
+                <p style={{ marginTop: 0 }}>
+                  Dann kann Ihnen das <b>SafeEnergyTool™</b> erste Hinweise geben.
+                </p>
+
+                <div
+                  style={{
+                    marginTop: 14,
+                    padding: 14,
+                    borderRadius: 14,
+                    border: "1px solid #e8e8e8",
+                    background: "#fff",
+                  }}
+                >
+                  <h3 style={{ margin: 0, marginBottom: 6 }}>Ihr Einsparpotenzial auf einen Blick</h3>
+                  <p style={{ margin: 0 }}>
+                    Das Berechnungstool des <b>SaveEnergyTeams</b> ermittelt für Sie das mögliche Einsparpotenzial Ihrer
+                    eigenen RLT-Anlage in Euro.
+                  </p>
+
+                  <div style={{ marginTop: 10, display: "grid", gap: 6 }}>
+                    <div>✅ ohne Investitionen in die Anlagentechnik</div>
+                    <div>✅ ohne Verzicht auf Behaglichkeitskomfort</div>
+                    <div>✅ ausschließlich durch Anpassen der Anlagenlaufzeit an den echten Bedarf</div>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: 16 }}>
+                  <h3 style={{ marginBottom: 6 }}>Wissenschaftliche Grundlage</h3>
+                  <p style={{ marginTop: 0 }}>
+                    Grundlagen für die Berechnungen sind die Erkenntnisse aus der vom BKM geförderten Energiestudie. Im
+                    Rahmen der <b>DTHG-Energie-Studie (2024/2025)</b> wurde der Leitfaden{" "}
+                    <b>„Energieeffizienz im Theaterbetrieb“</b> erstellt. Es wurde festgestellt, dass die Betriebszeiten
+                    der Anlagen in den untersuchten Räumen immer länger waren, als es notwendig ist. Eine
+                    Laufzeitreduktion führt zur Kosteneinsparung. Die Annahmen im Anhang zu Kapitel 4 („Ermittlung einer
+                    typischen Kostenreduktion“) werden in diesem Berechnungstool zugrunde gelegt. Danke an Christof
+                    Schaaf. Von ihm stammt die Anregung, die Berechnung allgemein zugänglich zu machen.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    marginTop: 14,
+                    display: "flex",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => alert("https://dthgev.de/wp-content/uploads/2025/10/DTHG_Energie_Leitfaden.pdf")}
+                    style={{
+                      padding: "10px 14px",
+                      borderRadius: 12,
+                      border: "1px solid #ddd",
+                      background: "#fff",
+                      cursor: "pointer",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Leitfaden herunterladen (Download)
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => alert("hajorau@me.com")}
+                    style={{
+                      padding: "10px 14px",
+                      borderRadius: 12,
+                      border: "1px solid #ddd",
+                      background: "#fff",
+                      cursor: "pointer",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Fragen? Kontakt
+                  </button>
+                </div>
+              </div>
+            </div>
 
             <div style={{ marginTop: 18, display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button
@@ -468,7 +697,7 @@ export default function App() {
                 type="button"
                 onClick={() => {
                   setMode("register");
-                  setConsentStorage(false);
+                  setConsentStorage(false); // ✅ beim Start der Registrierung zurücksetzen
                   setPage("auth");
                 }}
                 style={{
@@ -523,7 +752,80 @@ export default function App() {
             <Brand size={42} showTeam centered />
             <h1 style={{ marginBottom: 6 }}>{mode === "register" ? " Account erstellen" : " Einloggen"}</h1>
 
-            {/* ... Hinweis/Warnbox/Status/Fehler/Erfolg unverändert ... */}
+            {/* Erklärung */}
+            <p style={{ marginTop: 0, opacity: 0.8, lineHeight: 1.5 }}>
+              {mode === "register"
+                ? "Erstelle einmalig deinen Account. Danach kannst du dich jederzeit einloggen."
+                : "Melde dich mit deiner E-Mail und deinem Passwort an."}
+            </p>
+
+            {/* Warnbox */}
+            <div
+              style={{
+                marginTop: 12,
+                padding: "12px 14px",
+                borderRadius: 10,
+                background: "#fff3cd",
+                border: "1px solid #ffe69c",
+                color: "#664d03",
+                fontSize: 14,
+                lineHeight: 1.4,
+                fontWeight: 700,
+              }}
+            >
+              ⚠️ ACHTUNG: Das kann sehr lange dauern (teilweise mehrere Minuten). Bitte nicht abbrechen – Geduld haben.
+            </div>
+
+            {/* Bitte warten Badge */}
+            {authBusy && (
+              <div
+                style={{
+                  marginTop: 12,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "6px 12px",
+                  borderRadius: 20,
+                  background: "#e8f0fe",
+                  color: "#174ea6",
+                  fontSize: 13,
+                  fontWeight: 600,
+                  border: "1px solid #c6dafc",
+                }}
+              >
+                ⏳ Bitte warten… Anfrage läuft
+              </div>
+            )}
+
+            {/* Fehler */}
+            {authErr && (
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: 10,
+                  borderRadius: 8,
+                  background: "#ffe8e8",
+                  border: "1px solid #f5b5b5",
+                }}
+              >
+                {authErr}
+              </div>
+            )}
+
+            {/* Erfolg */}
+            {authMsg && (
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: 10,
+                  borderRadius: 8,
+                  background: "#e8fff0",
+                  border: "1px solid #9be3b3",
+                }}
+              >
+                {authMsg}
+              </div>
+            )}
 
             <div style={{ marginTop: 16, display: "grid", gap: 10 }}>
               {mode === "register" && (
@@ -555,6 +857,46 @@ export default function App() {
                     onChange={(e) => setPhone(e.target.value)}
                     style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
                   />
+
+                  {/* ✅ DSGVO/Einwilligung ist jetzt hier (Registrierung) */}
+                  <div
+                    style={{
+                      marginTop: 2,
+                      padding: 10,
+                      border: "1px solid #eee",
+                      borderRadius: 10,
+                      background: "#fafafa",
+                    }}
+                  >
+                    <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
+                      <input
+                        type="checkbox"
+                        checked={consentStorage}
+                        onChange={(e) => setConsentStorage(e.target.checked)}
+                        style={{ marginTop: 2 }}
+                      />
+                      <span style={{ fontSize: 13, lineHeight: 1.4 }}>
+                        Ich stimme zu, dass meine eingegebenen Daten und Berechnungsergebnisse zur Nutzung der App
+                        gespeichert werden (Historie/Export). Hinweis: Einwilligung gemäß DSGVO (Art. 6 Abs. 1 lit. a).
+                        Details siehe{" "}
+                        <button
+                          type="button"
+                          onClick={() => setPage("impressum")}
+                          style={{
+                            border: "none",
+                            background: "transparent",
+                            color: "#0b57d0",
+                            cursor: "pointer",
+                            padding: 0,
+                            textDecoration: "underline",
+                            fontSize: 13,
+                          }}
+                        >
+                          Impressum/Datenschutz
+                        </button>
+                      </span>
+                    </label>
+                  </div>
                 </>
               )}
 
@@ -572,47 +914,6 @@ export default function App() {
                 onChange={(e) => setPw(e.target.value)}
                 style={{ padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
               />
-
-              {/* ✅ Zustimmung jetzt DIREKT unter dem Passwortfeld */}
-              {mode === "register" && (
-                <div
-                  style={{
-                    marginTop: 2,
-                    padding: 10,
-                    border: "1px solid #eee",
-                    borderRadius: 10,
-                    background: "#fafafa",
-                  }}
-                >
-                  <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer" }}>
-                    <input
-                      type="checkbox"
-                      checked={consentStorage}
-                      onChange={(e) => setConsentStorage(e.target.checked)}
-                      style={{ marginTop: 2 }}
-                    />
-                    <span style={{ fontSize: 13, lineHeight: 1.4 }}>
-                      Ich stimme zu, dass meine eingegebenen Daten und Berechnungsergebnisse zur Nutzung der App gespeichert werden
-                      (Historie/Export). Hinweis: Einwilligung gemäß DSGVO (Art. 6 Abs. 1 lit. a). Details siehe{" "}
-                      <button
-                        type="button"
-                        onClick={() => setPage("impressum")}
-                        style={{
-                          border: "none",
-                          background: "transparent",
-                          color: "#0b57d0",
-                          cursor: "pointer",
-                          padding: 0,
-                          textDecoration: "underline",
-                          fontSize: 13,
-                        }}
-                      >
-                        Impressum/Datenschutz
-                      </button>
-                    </span>
-                  </label>
-                </div>
-              )}
 
               <button
                 onClick={mode === "register" ? register : login}
@@ -654,6 +955,7 @@ export default function App() {
     );
   }
 
+  // 4) Nicht eingeloggt → zurück zu Home
   if (!token) {
     setPage("home");
     return null;
@@ -700,6 +1002,8 @@ export default function App() {
               <Field label="Wärmepreis" unit="€/kWh" value={waermepreis} onChange={setWaermepreis} step="0.01" />
               <Field label="Laufzeitreduktion in Stunden pro Tag" unit="h/d" value={zeit} onChange={setZeit} step="0.1" />
               <Field label="Betriebstage pro Jahr" unit="d/a" value={tage} onChange={setTage} step="1" />
+
+              {/* ✅ DSGVO-Checkbox wurde von hier entfernt */}
 
               <button
                 onClick={calculateAndSave}
@@ -801,7 +1105,7 @@ export default function App() {
                     setToken("");
                     setOut(null);
                     setHistory([]);
-                    setConsentStorage(false);
+                    setConsentStorage(false); // ✅ optional zurücksetzen
                     setPage("home");
                   }}
                   style={{
